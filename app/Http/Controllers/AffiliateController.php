@@ -13,9 +13,16 @@ use App\Http\Traits\FlutterwaveTrait;
 class AffiliateController extends Controller
 {
     use StripeTrait,FlutterwaveTrait;
+
+    public function __construct(){
+        $domain = request()->domain ? request()->domain: request()->root();
+        $affiliate = Affiliate::where('username', $domain)->first();
+        \abort_if(!$affiliate,404);
+    }
     
     public function index()
     {
+        dd('we dey here');
         if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
             return redirect()->route('affiliate.overview');
         }
@@ -86,12 +93,6 @@ class AffiliateController extends Controller
     {
         $orders = auth()->user()->affiliate->orders;
         return view('user.affiliate.overview',compact('orders'));
-    }
-
-    
-    public function show(string $id)
-    {
-        //
     }
 
 
