@@ -1,0 +1,6 @@
+data-woocs-sd-currencies='[
+{"value":"USD","sign":"&#36;","title":"USD","text":"","img":"{{ asset('wp-content/uploads/2023/09/35px-Flag_of_the_United_States.svg.webp') }}","title_attributes":{"data-sign":"&#36;","data-name":"USD","data-desc":""}},
+{"value":"EUR","sign":"&euro;","title":"EUR","text":"","img":"{{ asset('wp-content/uploads/2023/09/Flag_of_Europe.svg.webp') }}","title_attributes":{"data-sign":"&euro;","data-name":"EUR","data-desc":""}},
+{"value":"GBP","sign":"&pound;","title":"GBP","text":"","img":"/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png')}}","title_attributes":{"data-sign":"&pound;","data-name":"GBP","data-desc":""}},
+{"value":"NGN","sign":"&#8358;","title":"NGN","text":"","img":"/wp-content\/plugins\/woocommerce-currency-switcher\/img\/no_flag.png')}}","title_attributes":{"data-sign":"&#8358;","data-name":"NGN","data-desc":""}}
+]'

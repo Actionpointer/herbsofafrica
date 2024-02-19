@@ -1,0 +1,14 @@
+.delete{
+    cursor: pointer;
+    color: red;
+}
+
+.imgthumbnail{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.gap{
+    gap: 20px;
+}
