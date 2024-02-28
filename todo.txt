@@ -22,3 +22,9 @@ The CEO in interested in knowing the following:
 6. Show percentage of the profit
 7. Total Revenue after a period of time
 8. Profit / Loss 
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
