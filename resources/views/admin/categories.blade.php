@@ -56,7 +56,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <a data-input="thumbnails" data-preview="holder" class="btn btn-secondary lfm">
+                                            <a data-input="thumbnails" data-preview="holders" class="btn btn-secondary lfm">
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
                                         </span>
@@ -148,11 +148,11 @@
                                                             <div class="col-md-12">
                                                                 <div class="input-group">
                                                                     <span class="input-group-btn">
-                                                                        <a data-input="thumbnail1" data-preview="holder" class="btn btn-secondary lfm">
+                                                                        <a data-input="thumbnail{{$category->id}}" data-preview="holder" class="btn btn-secondary lfm">
                                                                             <i class="fa fa-picture-o"></i> Choose
                                                                         </a>
                                                                     </span>
-                                                                    <input id="thumbnail1" class="form-control" type="text" name="image" value="{{$category->image}}">
+                                                                    <input id="thumbnail{{$category->id}}" class="form-control" type="text" name="image" value="{{$category->image}}">
                                                                 </div>
                                                             </div>
                                                         </div>
