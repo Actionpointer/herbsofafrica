@@ -21,14 +21,6 @@ Route::group(['middleware'=> ['auth','verified']],function () {
         Route::get('view', [OrderController::class, 'show'])->name('view');
     });
 
-    Route::group(['prefix'=>'affiliate','as'=> 'affiliate.'],function(){
-        Route::get('/', [AffiliateController::class, 'index'])->name('index');
-        Route::post('store', [AffiliateController::class, 'store'])->name('store');
-        Route::get('bank/account', [AffiliateController::class, 'bankAccountLink'])->name('bank.account');
-        Route::get('connect/stripe', [AffiliateController::class, 'stripeOnboarding'])->name('connect.stripe');
-        Route::get('overview', [AffiliateController::class, 'overview'])->name('overview');
-    });
-
     Route::group(['prefix'=>'settings','as'=> 'settings.'],function(){
         Route::get('/', [SettingsController::class, 'index'])->name('index');
         Route::post('currencies', [SettingsController::class, 'currencies'])->name('currencies');

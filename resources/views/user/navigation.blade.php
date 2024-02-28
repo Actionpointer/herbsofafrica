@@ -23,11 +23,7 @@
             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
                 <a href="{{ route('wishlist') }}">Wishlist</a>
             </li>
-            @if(auth()->user()->affiliate && auth()->user()->affiliate->account_number)
-            <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
-                <a href="{{ route('affiliate.index') }}">Affiliate</a>
-            </li>
-            @endif
+            
             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span>{{ __('Logout') }}</span>

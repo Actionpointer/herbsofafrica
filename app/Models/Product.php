@@ -47,6 +47,10 @@ class Product extends Model
         return explode(',',$this->images);
     }
 
+    public function getUrlAttribute(){
+        return request()->host().'/product/'.$this->slug;
+    }
+
     protected function prices(): Attribute
     {
         return Attribute::make(

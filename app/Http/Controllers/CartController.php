@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Wishlist;
+use App\Models\Affiliate;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
 use App\Http\Traits\CartTrait;
@@ -21,9 +22,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 class CartController extends Controller
 {
     use CartTrait,WishlistTrait,PaymentTrait;
+    protected $affiliate;
     
     public function __construct(){
         $this->middleware('auth')->only(['wishlist','addtowish','removefromwish']);
+        $this->affiliate = '';
+        if(request()->domain){
+            $this->affiliate = Affiliate::where('username',request()->domain)->first();
+        }
     }
 
     public function index(){
@@ -31,15 +37,15 @@ class CartController extends Controller
         if(session('carts')){
             $carts = session('carts');
         }
-        // dd($carts);
-        //request()->session()->forget('carts');
-        return view('webpages.cart',compact('carts'));
+        $affiliate = $this->affiliate;
+        return view('webpages.cart',compact('carts','affiliate'));
     }
 
     public function wishlist(){
         $user = auth()->user();
         $wishlists = $user->wishlists;
-        return view('webpages.wishlist',compact('wishlists'));
+        $affiliate = $this->affiliate;
+        return view('webpages.wishlist',compact('wishlists','affiliate'));
     }
 
     public function addtocart(Request $request){
@@ -100,8 +106,8 @@ class CartController extends Controller
             return back();
         }
         $countries = Country::all();
-        
-        return view('webpages.checkout',compact('carts','countries'));
+        $affiliate = $this->affiliate;
+        return view('webpages.checkout',compact('carts','countries','affiliate'));
     }    
 
 }

@@ -7,7 +7,7 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-themecolor">Settings</h3>
+                <h3 class="text-themecolor">Rates</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Settings</li>
@@ -15,9 +15,10 @@
             </div>
             
         </div>
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Currency</button>
+              <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Rate</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">General</button>
@@ -25,32 +26,32 @@
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Unknown</button>
             </li>
-          </ul>
+        </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row mt-5">
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
-                            <h4 class="card-title pb-3 pl-5">Add Currency</h4>
+                            <h4 class="card-title pb-3 pl-5">Add Rate</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form class="form-horizontal form-material" action="{{route('settings.currencies')}}" method="POST"> @csrf
+                                <form class="form-horizontal form-material" action="" method="POST"> @csrf
                                     <div class="form-group">
-                                        <label class="col-md-12">Currency Name</label>
+                                        <label class="col-md-12">Rate Name</label>
                                         <div class="col-md-12">
                                             <input type="text" name="name" placeholder="Dollars" class="form-control form-control-line" required>
                                         </div>
                                     </div>
         
                                     <div class="form-group">
-                                        <label class="col-md-12">Currency Symbol</label>
+                                        <label class="col-md-12">Rate Location</label>
                                         <div class="col-md-12">
                                             <input type="text" name="symbol" placeholder="$" class="form-control form-control-line" required>
                                         </div>
                                     </div>
         
                                     <div class="form-group">
-                                        <label class="col-md-12">Currency Code</label>
+                                        <label class="col-md-12">Rate Code</label>
                                         <div class="col-md-12">
                                             <input type="text" name="code" placeholder="USD" class="form-control form-control-line" required>
                                         </div>
@@ -58,7 +59,7 @@
         
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button type="submit" name="action" value="create" class="btn btn-success">Add Currency</button>
+                                            <button type="submit" name="action" value="create" class="btn btn-success">Add Rate</button>
                                         </div>
                                     </div>
                                 </form>
@@ -73,26 +74,26 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Currency Name</th>
+                                                <th>Rate Name</th>
                                                 <th>Symbol</th>
-                                                <th>Currency Code</th>
+                                                <th>Rate Code</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($currencies as $currency)
+                                            @forelse ($rates as $rate)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$currency->name}}</td>
-                                                <td>{{$currency->symbol}}</td>
-                                                <td>{{$currency->code}}</td>
+                                                <td>{{$rate->name}}</td>
+                                                <td>{{$rate->symbol}}</td>
+                                                <td>{{$rate->code}}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a data-toggle="modal" href="#exampleModal{{$currency->id}}" class="btn btn-info mr-2">
+                                                        <a data-toggle="modal" href="#exampleModal{{$rate->id}}" class="btn btn-info mr-2">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <form action="{{route('settings.currencies')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Currency?')">@csrf
-                                                            <input type="hidden" name="currency_id" value="{{$currency->id}}">
+                                                        <form action="{{route('settings.Rates')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Rate?')">@csrf
+                                                            <input type="hidden" name="Rate_id" value="{{$rate->id}}">
                                                             <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
@@ -100,42 +101,42 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="exampleModal{{$currency->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{$rate->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLabel">Edit Currency</h5>
+                                                      <h5 class="modal-title" id="exampleModalLabel">Edit Rate</h5>
                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                       </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-horizontal form-material" action="{{route('settings.currencies')}}" method="POST"> @csrf
-                                                            <input type="hidden" name="currency_id" value="{{$currency->id}}">
+                                                        <form class="form-horizontal form-material" action="{{route('settings.Rates')}}" method="POST"> @csrf
+                                                            <input type="hidden" name="Rate_id" value="{{$rate->id}}">
                                                             <div class="form-group">
-                                                                <label class="col-md-12">Currency Name</label>
+                                                                <label class="col-md-12">Rate Name</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" name="name" value="{{$currency->name}}" placeholder="Dollars" class="form-control form-control-line" required>
+                                                                    <input type="text" name="name" value="{{$rate->name}}" placeholder="Dollars" class="form-control form-control-line" required>
                                                                 </div>
                                                             </div>
                                 
                                                             <div class="form-group">
-                                                                <label class="col-md-12">Currency Symbol</label>
+                                                                <label class="col-md-12">Rate Symbol</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" name="symbol" value="{{$currency->symbol}}" placeholder="$" class="form-control form-control-line" required>
+                                                                    <input type="text" name="symbol" value="{{$rate->symbol}}" placeholder="$" class="form-control form-control-line" required>
                                                                 </div>
                                                             </div>
                                 
                                                             <div class="form-group">
-                                                                <label class="col-md-12">Currency Code</label>
+                                                                <label class="col-md-12">Rate Code</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" name="code" value="{{$currency->code}}" placeholder="USD" class="form-control form-control-line" required>
+                                                                    <input type="text" name="code" value="{{$rate->code}}" placeholder="USD" class="form-control form-control-line" required>
                                                                 </div>
                                                             </div>
                                 
                                                             <div class="form-group">
                                                                 <div class="col-sm-12">
-                                                                    <button type="submit" name="action" value="update" class="btn btn-success">Update Currency</button>
+                                                                    <button type="submit" name="action" value="update" class="btn btn-success">Update Rate</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -148,7 +149,7 @@
                                             </div>
                                             @empty
                                             <tr>
-                                                <td colspan="5">No Currency</td>
+                                                <td colspan="5">No Rate</td>
                                             </tr>
                                             @endforelse
                                         </tbody>

@@ -29,8 +29,7 @@
     
     <!-- You can change the theme colors from here -->
     <link href="{{asset('/assets/css/colors/default.css')}}" id="theme" rel="stylesheet">
-    
-<![endif]-->
+
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -100,8 +99,28 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li> <a class="waves-effect waves-dark" href="{{route('admin.dashboard')}}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.categories.index') }}" aria-expanded="false"><i class="fa fa-globe"></i><span class="hide-menu">Categories</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.products.index') }}" aria-expanded="false"><i class="fa fa-smile-o"></i><span class="hide-menu">Products</span></a></li>
+                        <li> 
+                            <a class="waves-effect waves-dark" href="{{ route('admin.categories.index') }}" aria-expanded="false">
+                                <i class="fa fa-globe"></i><span class="hide-menu">Categories</span>
+                            </a>
+                        </li>
+                        
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="fa fa-smile-o"></i>
+                                <span class="hide-menu">Shipment</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" >
+                                <li><a href="{{route('admin.shipment.rates')}}">Rates</a></li>
+                                <li><a href="#">Packages</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li> 
+                            <a class="waves-effect waves-dark" href="{{ route('admin.products.index') }}" aria-expanded="false">
+                            <i class="fa fa-smile-o"></i><span class="hide-menu">Products</span>
+                            </a>
+                        </li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.index') }}" aria-expanded="false"><i class="fa fa-bookmark-o"></i><span class="hide-menu">Orders</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Customers</span></a></li>
 

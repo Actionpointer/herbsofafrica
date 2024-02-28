@@ -15,14 +15,14 @@ class AffiliateController extends Controller
     use StripeTrait,FlutterwaveTrait;
 
     public function __construct(){
-        $domain = request()->domain ? request()->domain: request()->root();
-        $affiliate = Affiliate::where('username', $domain)->first();
-        \abort_if(!$affiliate,404);
+        // $domain = request()->domain ? request()->domain: request()->root();
+        // $affiliate = Affiliate::where('username', $domain)->first();
+        // \abort_if(!$affiliate,404);
     }
     
     public function index()
     {
-        dd('we dey here');
+        
         if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
             return redirect()->route('affiliate.overview');
         }
@@ -31,24 +31,45 @@ class AffiliateController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function AffiliateRegister(Request $request)
     {
         $request->validate([
             'affiliate_username' => ['required', 'string'],
             'affiliate_email' => ['required', 'string','email','max:255'],
             'affiliate_phone' => ['required', 'string', 'max:255'],
             'affiliate_country' => ['required', 'string'],
-            // 'chkAgreeTerms' => ['required', '1'],
         ]);
-        $affiliate = Affiliate::updateOrCreate(['user_id'=> auth()->id(),'username'=> $request->affiliate_username],['email'=> $request->affiliate_email,'phone'=> $request->affiliate_phone,'country_id'=> $request->affiliate_country]);
+
+        $affiliate = Affiliate::updateOrCreate(['user_id'=> auth()->id(),'username'=> $request->affiliate_username],
+                ['email'=> $request->affiliate_email,
+                'phone'=> $request->affiliate_phone,
+                'country_id'=> $request->affiliate_country]);
+        
         $response = Curl::to('https://api.stripe.com/v1/accounts')
         ->withHeader('Content-Type: application/x-www-form-urlencoded')
         ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
         ->withData( array('type'=> 'express','country'=> $affiliate->country->iso ,'email' => $affiliate->email))
         ->asJsonResponse()
         ->get();
+
         dd($response);
-        // dd($response);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         if($affiliate->country->iso == "NG"){
             return redirect()->route('affiliate.bank.account');
         }else{
@@ -88,18 +109,19 @@ class AffiliateController extends Controller
         return redirect()->route('affiliate.index');
     }
 
+    public function site()
+    {
+        //
+    }
     
-    public function overview()
+    public function dashboard()
     {
         $orders = auth()->user()->affiliate->orders;
         return view('user.affiliate.overview',compact('orders'));
     }
 
 
-    public function edit(string $id)
-    {
-        //
-    }
+    
 
 
     public function update(Request $request, string $id)

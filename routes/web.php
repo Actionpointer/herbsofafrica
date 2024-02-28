@@ -16,6 +16,7 @@ use App\Http\Controllers\WebsiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+    include('affiliate.php');
 
     Route::get('/', [WebsiteController::class, 'welcome']);
     Route::view('who-we-are', 'webpages.whoweare')->name('about');
@@ -59,10 +60,10 @@ use App\Http\Controllers\WebsiteController;
     Route::get('payment/redirect', [PaymentController::class, 'callback'])->name('payment.callback');
 
 
-    require __DIR__.'/user.php';
-    require __DIR__.'/admin.php';
-    require __DIR__.'/auth.php';
+require __DIR__.'/user.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/auth.php';
 
-require __DIR__.'/affiliate.php';
+
 
 

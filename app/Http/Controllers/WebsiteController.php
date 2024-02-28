@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\FlutterwaveTrait;
 use App\Http\Traits\GeoLocationTrait;
+use App\Models\Affiliate;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Post;
@@ -25,30 +26,43 @@ use App\Notifications\TrainingRegistrationNotification;
 class WebsiteController extends Controller
 {
     use GeoLocationTrait,FlutterwaveTrait;
+    protected $affiliate;
 
+    public function __construct()
+    {
+        $this->affiliate = '';
+        if(request()->domain){
+            $this->affiliate = Affiliate::where('username',request()->domain)->first();
+        }
+    }
     public function welcome(){
         $categories = Category::all();
         $products = Product::where('published',true)->where('featured',true)->get();
-        return view('webpages.index',compact('products','categories'));
+        $affiliate = $this->affiliate;
+        return view('webpages.index',compact('products','categories','affiliate'));
     }
 
     public function shop(){
         // request()->session()->flush();
+        $affiliate = '';
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
-        return view('webpages.products.shop', compact('products','categories'));
+        $affiliate = $this->affiliate;
+        return view('webpages.products.shop', compact('products','categories','affiliate'));
     }
 
     public function product(Product $product){
-        return view('webpages.products.show',compact('product'));
+        $affiliate = $this->affiliate;
+        return view('webpages.products.show',compact('product','affiliate'));
     }
 
     public function categories(Category $category){
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
-        return view('webpages.products.shop')->with(['products'=> $products,'categories'=> $categories,'shopCategory'=> $category]);
+        $affiliate = $this->affiliate;
+        return view('webpages.products.shop')->with(['products'=> $products,'categories'=> $categories,'shopCategory'=> $category,'affiliate'=> $affiliate]);
     }
 
     public function contact(){

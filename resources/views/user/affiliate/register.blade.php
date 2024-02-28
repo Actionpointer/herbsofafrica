@@ -87,7 +87,7 @@
 
                                                                     <div class="col-12 col-md-6 col-register">
                                                                         <h2 class="wd-login-title">Register</h2>
-                                                                        <form action="{{route('affiliate.store')}}" method="post" id="mainForm" class="pure-form pure-form-stacked">@csrf
+                                                                        <form action="{{route('affiliate.register')}}" method="post" id="mainForm" class="pure-form pure-form-stacked">@csrf
                                                                             * Required fields<br><br>
                                                                             <fieldset>
                                                                                 <div class="mb-3">

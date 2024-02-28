@@ -12,7 +12,7 @@ class Affiliate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email','username','phone','user_id','currency','country_id','bank_code','bank_name','account_number','balance','status'];
+    protected $fillable = ['email','name','username','phone','user_id','currency','country_id','bank_code','bank_name','account_number','balance','status'];
 
     public function user(){
         return $this->belongsTo(User::class);

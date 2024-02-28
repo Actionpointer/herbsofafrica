@@ -13,8 +13,7 @@ class AdminController extends Controller
 {
 
     public function dashboard(){
-        if(auth()->user()->role != 'admin')
-        return redirect()->route('dashboard');
+        abort_if(auth()->user()->role != 'admin',503,'Something went wrong');
         return view('admin.index');
     }
 
@@ -24,6 +23,7 @@ class AdminController extends Controller
     }
 
     public function password_update(Request $request){
+        /** @var \App\Models\User $user **/
         $user = Auth::user();
         $validator = Validator::make($request->all(), [
             'oldpassword' => 'required|string',

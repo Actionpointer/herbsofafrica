@@ -1,7 +1,7 @@
   
 <div class="product-wrapper">
     <div class="product-element-top wd-quick-shop">
-        <a href="product/fabman/index.html"
+        <a href="{{route('product.show',$product)}}"
             class="product-image-link">
             @if($product->featured)
             <div class="product-labels labels-rounded">
@@ -17,14 +17,7 @@
         </a>
         <div class="hover-img">
             <a href="{{route('product.show',$product)}}">
-                <img loading="lazy"
-                    decoding="async"
-                    width="800"
-                    height="800"
-                    src="{{$product->photos[0]}}"
-                    class="attachment-large size-large wp-image-777"
-                    alt=""
-                     />
+                <img loading="lazy" decoding="async" width="800" height="800" src="{{$product->photos[0]}}" class="attachment-large size-large wp-image-777" alt="" />
             </a>
         </div>
         @if(!Route::is('wishlist') && auth()->check())
