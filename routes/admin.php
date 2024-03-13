@@ -1,7 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -12,7 +14,7 @@ use App\Http\Controllers\TestimonialController;
 
 
 Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
-    Route::group(['middleware'=> ['auth','verified','role:admin']],function () {
+    Route::group(['middleware'=> ['auth','active','verified','role:admin']],function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('profile', [AdminController::class, 'profile'])->name('profile');
         Route::post('password', [AdminController::class, 'password_update'])->name('password_update');
@@ -39,15 +41,17 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
         });
 
         Route::group(['prefix'=>'orders','as'=> 'orders.'],function(){
-            Route::get('/', [PaymentController::class, 'index'])->name('index');
-            Route::get('view/{order}', [PaymentController::class, 'view'])->name('view');
-            Route::post('dispatch', [PaymentController::class, 'dispatch'])->name('dispatch');
+            Route::get('/', [OrderController::class, 'browse'])->name('browse');
+            Route::get('view/{order}', [OrderController::class, 'read'])->name('read');
+            Route::post('status', [OrderController::class, 'edit'])->name('edit');
         });
 
-        Route::group(['prefix'=>'customers','as'=> 'customers.'],function(){
-            Route::get('/', [PaymentController::class, 'index'])->name('index');
-            Route::get('view/{order}', [PaymentController::class, 'view'])->name('view');
-            Route::post('dispatch', [PaymentController::class, 'dispatch'])->name('dispatch');
+        Route::group(['prefix'=>'users','as'=> 'users.'],function(){
+            Route::get('staff', [UserController::class, 'staff'])->name('staff');
+            Route::post('staff', [UserController::class, 'staff'])->name('staff');
+            Route::get('customers', [UserController::class, 'customers'])->name('customers');
+            Route::get('affiliates', [UserController::class, 'affiliates'])->name('affiliates');
+            Route::post('manage', [UserController::class, 'manage'])->name('manage');
         });
 
         Route::group(['prefix'=>'settings','as'=> 'settings.'],function(){
@@ -57,8 +61,16 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
         });
 
         Route::group(['prefix'=>'shipment','as'=> 'shipment.'],function(){
-            Route::get('/', [ShipmentController::class, 'rates'])->name('rates');
-            Route::post('packages', [ShipmentController::class, 'manage'])->name('packages');
+            Route::group(['prefix'=>'rates','as'=> 'rates.'],function(){
+                Route::get('/', [ShipmentController::class, 'index'])->name('index');
+                Route::get('create', [ShipmentController::class, 'create'])->name('create');
+                Route::get('edit/{rate}', [ShipmentController::class, 'edit'])->name('edit');
+                Route::post('store', [ShipmentController::class, 'store'])->name('store');
+                Route::post('update', [ShipmentController::class, 'update'])->name('update');
+                Route::post('delete', [ShipmentController::class, 'destroy'])->name('destroy');
+                
+            });
+            Route::get('packages', [ShipmentController::class, 'packages'])->name('packages');
         });
 
 

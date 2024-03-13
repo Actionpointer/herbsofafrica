@@ -9,7 +9,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\AffiliateController;
 use App\Http\Controllers\TestimonialController;
 
-Route::group(['middleware'=> ['auth','verified']],function () {
+Route::group(['middleware'=> ['auth','active','verified']],function () {
     Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('password', [UserController::class, 'password_update'])->name('password_update');
@@ -21,11 +21,7 @@ Route::group(['middleware'=> ['auth','verified']],function () {
         Route::get('view', [OrderController::class, 'show'])->name('view');
     });
 
-    Route::group(['prefix'=>'settings','as'=> 'settings.'],function(){
-        Route::get('/', [SettingsController::class, 'index'])->name('index');
-        Route::post('currencies', [SettingsController::class, 'currencies'])->name('currencies');
-        Route::post('counters', [SettingsController::class, 'counters'])->name('counters');
-    });
+    
 
     Route::group(['prefix'=>'products','as'=> 'products.'],function(){
         Route::get('/', [ProductController::class, 'index'])->name('index');

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rate;
+use App\Models\State;
+use App\Models\Country;
+use App\Models\Currency;
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -10,15 +14,85 @@ class ShipmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function rates()
+    public function index()
     {
-        $rates = Rate::all();
-        return view('admin.shipment.rates',compact('rates'));
+        $rates = Rate::paginate(50);
+        return view('admin.shipment.rates.list',compact('rates'));
+        
+    }
+
+    public function create(){
+        $countries = Country::all();
+        $currencies = Currency::all();
+        return view('admin.shipment.rates.create',compact('countries','currencies'));
+    }
+
+    public function edit(Rate $rate){
+        $countries = Country::all();
+        $states = State::whereIn('country_id',$rate->countries)->get();
+        $currencies = Currency::all();
+        return view('admin.shipment.rates.edit',compact('rate','countries','states','currencies'));
     }
 
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'countries' => 'required',
+            'states_mode' => 'required',
+            'prices' => 'required_if:method,flat-rate',
+            'percentage' => 'required_if:price_type,order-percentage',
+            'warehouse' => 'required_if:method,local-pickup',
+        ]);
+
+        $rate = Rate::create([ "name" => $request->name, "countries" => $request->countries,
+        "states"=> $request->states,
+        "states_mode"=> $request->states_mode, 
+        "method"=> $request->method, 
+        "price_type"=> $request->price_type, 
+        "percentage"=> $request->percentage,
+        "prices"=> $request->prices,
+        "warehouse"=> $request->warehouse]);
+        return redirect()->route('admin.shipment.rates.index');
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'rate_id' => 'required',
+            'name' => 'required',
+            'countries' => 'required',
+            'states_mode' => 'required',
+            'prices' => 'required_if:method,flat-rate',
+            'percentage' => 'required_if:price_type,order-percentage',
+            'warehouse' => 'required_if:method,local-pickup',
+        ]);
+        
+        Rate::where('id',$request->rate_id)->update([ "name" => $request->name, "countries" => $request->countries,
+        "states"=> $request->states,
+        "states_mode"=> $request->states_mode, 
+        "method"=> $request->method, 
+        "price_type"=> $request->price_type, 
+        "percentage"=> $request->percentage,
+        "prices"=> $request->prices,
+        "warehouse"=> $request->warehouse]);
+        return redirect()->route('admin.shipment.rates.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request)
+    {
+
+        $rate = Rate::find($request->rate_id);
+        if($rate->shipments->isEmpty()){
+            $rate->delete();
+        }
+        return redirect()->back();
     }
 
     /**
@@ -26,17 +100,11 @@ class ShipmentController extends Controller
      */
     public function packages()
     {
-        return view('admin.shipment.packages');
+        $packages = Shipment::all();
+        return view('admin.shipment.packages',compact('packages'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
@@ -45,24 +113,7 @@ class ShipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
 }

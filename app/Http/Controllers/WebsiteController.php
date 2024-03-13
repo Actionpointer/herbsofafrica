@@ -2,67 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\FlutterwaveTrait;
-use App\Http\Traits\GeoLocationTrait;
-use App\Models\Affiliate;
-use App\Models\Cart;
-use App\Models\Category;
 use App\Models\Post;
-use App\Models\Staff;
-use App\Models\Course;
+
 use App\Models\Product;
-use App\Models\Setting;
-use App\Models\Currency;
-use App\Models\Training;
-use App\Models\Testimonial;
-use App\Models\Registration;
+use App\Models\Category;
+
+use App\Models\Affiliate;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\ContactNotification;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\TrainingRegistrationNotification;
+
 
 
 class WebsiteController extends Controller
 {
-    use GeoLocationTrait,FlutterwaveTrait;
-    protected $affiliate;
 
     public function __construct()
     {
-        $this->affiliate = '';
         if(request()->domain){
-            $this->affiliate = Affiliate::where('username',request()->domain)->first();
+            $affiliate = Affiliate::where('username',request()->domain)->first();
+            session(['affiliate'=> $affiliate]);
         }
     }
+
     public function welcome(){
         $categories = Category::all();
         $products = Product::where('published',true)->where('featured',true)->get();
-        $affiliate = $this->affiliate;
-        return view('webpages.index',compact('products','categories','affiliate'));
+        return view('webpages.index',compact('products','categories'));
     }
 
     public function shop(){
         // request()->session()->flush();
-        $affiliate = '';
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
-        $affiliate = $this->affiliate;
-        return view('webpages.products.shop', compact('products','categories','affiliate'));
+        return view('webpages.products.shop', compact('products','categories'));
     }
 
     public function product(Product $product){
-        $affiliate = $this->affiliate;
-        return view('webpages.products.show',compact('product','affiliate'));
+        return view('webpages.products.show',compact('product'));
     }
 
-    public function categories(Category $category){
+    public function categories(Category $shopCategory){
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
-        $affiliate = $this->affiliate;
-        return view('webpages.products.shop')->with(['products'=> $products,'categories'=> $categories,'shopCategory'=> $category,'affiliate'=> $affiliate]);
+        return view('webpages.products.shop',compact('products','categories','shopCategory'));
     }
 
     public function contact(){
@@ -109,25 +95,7 @@ class WebsiteController extends Controller
         return view('webpages.posts.single', compact('post'));
     }
 
-    public function switch_currency(){
-        $currency = Currency::where('code',request()->currency)->first();
-        session(['currency'=> ['code'=> $currency->code,'symbol'=> $currency->symbol]]);
-        return response()->json(200);
-    }
-
-    public function getCountryStates($country_iso){
-        //dd($this->getStates($country_iso));
-        return $this->getStates($country_iso);
-    }
-
-    public function verify_account(Request $request){
-        $response = $this->resolveBankAccountByFlutter($request->bank_code,$request->account_number);
-        return response()->json(
-            ['message' => $response ? 'Account fetched Successfully':'Unable to verify bank account',
-            'name' => $response
-            ],200);
-        
-    }
+    
 
     
 }

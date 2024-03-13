@@ -1807,10 +1807,29 @@
             jQuery(this).parents('.dropdown-currency').find('input').attr('value', jQuery(this).attr('id'));
         });
         /*End Dropdown Menu*/
+        $('.currency_switcher').change(function(){
+        let currency = $(this).val()
+          $.ajax({
+              type:'GET',
+              async: false,
+              dataType: 'json',
+              url: "{{route('switch_currency')}}",
+              data:{
+                  'currency': currency,
+              },
+              success:function(data) {
+                  location.reload()
+              },
+              error: function (data, textStatus, errorThrown) {
+                  return false
+              },
+          })
+      })
     </script>
     @stack('scripts')
     <input type="hidden" id="currency_code" value="{{ session('currency')['code'] }}">
     <input type="hidden" id="currency_symbol" value="{{ session('currency')['symbol'] }}">
+    
 </body>
 
 

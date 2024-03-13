@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\Affiliate;
 use Laravel\Sanctum\HasApiTokens;
@@ -22,7 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name','last_name','email',
         'password',
-        'role'
+        'role','status'
     ];
 
     /**
@@ -62,6 +63,10 @@ class User extends Authenticatable
     }
 
     public function referrer(){
-        return $this->belongsTo(Affiliate::class);
+        return $this->belongsTo(Affiliate::class)->withDefault();
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
 }

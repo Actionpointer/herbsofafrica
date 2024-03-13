@@ -95,7 +95,7 @@
                                             <label class="">Download Link <span class="small text-muted">(optional)</span></label>
                                             <div class="">
                                                 <input type="text" name="download_link" placeholder="" class="form-control form-control-line" value="{{old('download_link')}}">
-                                                @error('duration')
+                                                @error('download_link')
                                                     <span class="text-danger">{{$message}}</span>
                                                 @enderror
                                             </div>

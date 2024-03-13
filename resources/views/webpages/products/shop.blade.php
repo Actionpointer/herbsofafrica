@@ -74,8 +74,8 @@
         @if(request()->domain)
         <div class="page-title whb-hidden-lg page-title-default title-size-small title-design-centered color-scheme-light title-shop" style="">
             <div class="container text-center">
-                <h1 class="entry-title title mb-0"> {{ucwords($affiliate->name)}} Shop </h1>
-                <h3>{{$affiliate->phone}}</h3>
+                <h1 class="entry-title title mb-0"> {{ucwords(session('affiliate')['name'])}} Shop </h1>
+                <h3>{{session('affiliate')['phone']}}</h3>
             </div>
         </div>
         @else

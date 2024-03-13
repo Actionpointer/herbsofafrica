@@ -9,7 +9,7 @@
     <div class="woocommerce-notices-wrapper"></div>
     <form method="post" class="login woocommerce-form woocommerce-form-login hidden-form" action="{{route('login')}}" style="display:none;">
         @csrf
-        <input type="hidden" name="current_route" value="{{Route::currentRouteName()}}">
+        <input type="hidden" name="current_route" value="{{url()->full()}}">
         <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide form-row-username">
             <label for="username">Email address&nbsp;<span class="required">*</span></label>
             <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="username" value="{{old('email')}}" required/>

@@ -46,8 +46,8 @@
                         <div class="wd-header-nav wd-header-main-nav text-center wd-design-1 text-success"
                             role="navigation" aria-label="Main navigation">
                             @if(request()->domain)
-                            <h1 class="mb-0 text-success">{{ucwords($affiliate->name)}} Shop</h1>
-                            <span>{{$affiliate->phone}}</span>
+                            <h1 class="mb-0 text-success">{{ucwords(session('affiliate')['name'])}} Shop</h1>
+                            <span>{{session('affiliate')['phone']}}</span>
                             @else
                             <ul id="menu-main-menu" class="menu wd-nav wd-nav-main wd-style-default wd-gap-l">
                                 <li id="menu-item-507"
@@ -185,11 +185,10 @@
                         </div>
 
                         <div class="wd-header-text set-cont-mb-s reset-last-child ">
-
-                            <select name="" id="">
-                                <option value="USD">USD</option>
-                                <option value="NGN">NGN</option>
-                                <option value="USD">USD</option>
+                            <select class="currency_switcher">
+                                @foreach ($currencies as $currency)
+                                    <option value="{{$currency->code}}" @if(session('currency')['code'] == $currency->code)  selected @endif>{{$currency->code}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -214,11 +213,12 @@
                         </div>
                     </div>
                     <div class="whb-column whb-mobile-right whb-hidden-lg">
-                        <select name="" id="" style="width: 80px;">
-                            <option value="USD">USD</option>
-                            <option value="NGN">NGN</option>
-                            <option value="USD">USD</option>
+                        <select class="currency_switcher"  style="width: 80px;">
+                            @foreach ($currencies as $currency) 
+                                <option value="{{$currency->code}}" @if(session('currency')['code'] == $currency->code)  selected @endif>{{$currency->code}}</option>
+                            @endforeach
                         </select>
+                        
                     </div>
                 </div>
             </div>

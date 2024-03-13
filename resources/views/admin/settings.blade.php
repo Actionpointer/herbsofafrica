@@ -34,7 +34,7 @@
                             <h4 class="card-title pb-3 pl-5">Add Currency</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form class="form-horizontal form-material" action="{{route('settings.currencies')}}" method="POST"> @csrf
+                                <form class="form-horizontal form-material" action="{{route('admin.settings.currencies')}}" method="POST"> @csrf
                                     <div class="form-group">
                                         <label class="col-md-12">Currency Name</label>
                                         <div class="col-md-12">
@@ -91,7 +91,7 @@
                                                         <a data-toggle="modal" href="#exampleModal{{$currency->id}}" class="btn btn-info mr-2">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <form action="{{route('settings.currencies')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Currency?')">@csrf
+                                                        <form action="{{route('admin.settings.currencies')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Currency?')">@csrf
                                                             <input type="hidden" name="currency_id" value="{{$currency->id}}">
                                                             <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                                 <i class="fa fa-trash"></i>
@@ -110,7 +110,7 @@
                                                       </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-horizontal form-material" action="{{route('settings.currencies')}}" method="POST"> @csrf
+                                                        <form class="form-horizontal form-material" action="{{route('admin.settings.currencies')}}" method="POST"> @csrf
                                                             <input type="hidden" name="currency_id" value="{{$currency->id}}">
                                                             <div class="form-group">
                                                                 <label class="col-md-12">Currency Name</label>
@@ -166,33 +166,16 @@
                             <h4 class="card-title text-center mt-5 pb-4">Settings</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form class="form-horizontal form-material" action="{{route('settings.counters')}}" method="POST"> @csrf
+                                <form class="form-horizontal form-material" action="{{route('admin.settings.counters')}}" method="POST"> @csrf
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="col-md-12">Number of Courses</label>
+                                                <label class="col-md-12">Affiliate Percentage</label>
                                                 <div class="col-md-12">
-                                                    <input type="number" name="courses" value="" placeholder="" class="form-control form-control-line" required>
+                                                    <input type="number" name="affiliate_percentage" value="" placeholder="" class="form-control form-control-line" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Number of Students</label>
-                                                <div class="col-md-12">
-                                                    <input type="number" name="students" value="" placeholder="" class="form-control form-control-line" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Number of Instructors</label>
-                                                <div class="col-md-12">
-                                                    <input type="number" name="teachers" value="" placeholder="" class="form-control form-control-line" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Number of Countries</label>
-                                                <div class="col-md-12">
-                                                    <input type="number" name="countries" value="" placeholder="" class="form-control form-control-line" required>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     

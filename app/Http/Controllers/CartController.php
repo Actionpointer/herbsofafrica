@@ -26,9 +26,9 @@ class CartController extends Controller
     
     public function __construct(){
         $this->middleware('auth')->only(['wishlist','addtowish','removefromwish']);
-        $this->affiliate = '';
         if(request()->domain){
-            $this->affiliate = Affiliate::where('username',request()->domain)->first();
+            $affiliate = Affiliate::where('username',request()->domain)->first();
+            session(['affiliate'=> $affiliate]);
         }
     }
 
@@ -37,15 +37,13 @@ class CartController extends Controller
         if(session('carts')){
             $carts = session('carts');
         }
-        $affiliate = $this->affiliate;
-        return view('webpages.cart',compact('carts','affiliate'));
+        return view('webpages.cart',compact('carts'));
     }
 
     public function wishlist(){
         $user = auth()->user();
         $wishlists = $user->wishlists;
-        $affiliate = $this->affiliate;
-        return view('webpages.wishlist',compact('wishlists','affiliate'));
+        return view('webpages.wishlist',compact('wishlists'));
     }
 
     public function addtocart(Request $request){
@@ -106,8 +104,7 @@ class CartController extends Controller
             return back();
         }
         $countries = Country::all();
-        $affiliate = $this->affiliate;
-        return view('webpages.checkout',compact('carts','countries','affiliate'));
+        return view('webpages.checkout',compact('carts','countries'));
     }    
 
 }

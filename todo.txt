@@ -1,30 +1,13 @@
-You have just been newly employed as a sales manager at a new online bookstore called Nolege Ventures.
-Your CEO has given you an allocation of 2 million naira to setup the online bookstore. 
-This setup includes
-1. purchase books of different kinds, in different
-quantities, host them on the online bookshelf and sell them.
-2. Hiring an online sales attendant to take orders from customers. You are to pay him/her not more than 20,000 naira monthly.
-3. Hire someone to setup the website and do some digital marketing
+After payment - flutterwave
+After payment - stripe
+Calculating affiliate commission
+paying affiliates 
+Affiliates - changing percentages
+Staff roles capabilities
 
 
-Prepare a single excel workbook for Nolege Ventures to represent the following
-
-1. how you spent the 2million naira
-2. book inventory
-3. sales record, showing what was purchased, dates of purchases, quantities purchased and amount
-
-The CEO in interested in knowing the following:
-1. Most Sold Items
-2. Oversold Items
-3. Least Sold Items
-4. Not Sold Items
-5. Profit made on each book
-6. Show percentage of the profit
-7. Total Revenue after a period of time
-8. Profit / Loss 
 
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^(.*)$ public/$1 [L]
-</IfModule>
+
+
+

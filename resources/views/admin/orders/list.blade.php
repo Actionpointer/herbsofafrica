@@ -50,9 +50,14 @@
                                     <tr>
                                         <td data-sort="{{strtotime( $order->created_at )}}">{{$order->created_at->format('d/m/Y')}}</td>
                                         <td>{{$order->reference}}</td>
-                                        <td>{{ucwords($order->status)}}</td>
-                                        <td>@if($order->dispatched) Completed @elseif($order->status == "success") Ready @else Awaiting Payment @endif</td>
-                                        <td>{{$order->currency->symbol}}{{$order->amount}}</td>
+                                        <td></td>
+                                        <td>
+                                            @if(!$order->ready_at) New 
+                                            @elseif(!$order->shipped_at) Ready 
+                                            @elseif(!$order->delivered_at) shipped_at
+                                            @else Delivered @endif
+                                        </td>
+                                        <td>{{$order->currency}}{{$order->amount}}</td>
                                         <td>
                                             <button type="button" data-toggle="modal" href="#exampleModal{{$order->id}}" class="btn btn-primary">View Details</button>
                                         </td>
@@ -89,7 +94,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('orders.dispatch')}}" method="POST" class="form-horizontal form-material">
+                <form action="{{route('admin.orders.dispatch')}}" method="POST" class="form-horizontal form-material">
                     @csrf
                     <input type="hidden" name="payment_id" value="{{$order->id}}">
                     <table class="table">
@@ -111,17 +116,13 @@
                         <tr>
                             <td colspan="2" class="font-weight-bold">COURSES</td>
                         </tr>
-                        @foreach ($order->carts as $cart)
-                        <tr>
-                            <td colspan="2" >{{$cart->course->title}}</td>
-                        </tr>
-                        @endforeach
+                        
                     </tbody>
                     </table>
                     <div class="text-right">
-                        @if(!$order->dispatched && $order->status == 'success')
+                        
                         <button type="submit" class="btn btn-primary">Dispatch</button>
-                        @endif
+                        
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                     

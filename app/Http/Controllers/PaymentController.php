@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Payment;
 use App\Models\Shipment;
+use App\Models\Affiliate;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Traits\OrderTrait;
@@ -16,20 +17,27 @@ class PaymentController extends Controller
 {
     use PaymentTrait,OrderTrait;
     
+    public function __construct(){
+        $this->middleware('auth');
+        if(request()->domain){
+            $affiliate = Affiliate::where('username',request()->domain)->first();
+            session(['affiliate'=> $affiliate]);
+        }
+    }
     public function index(){
         $orders = Payment::orderBy('created_at','desc')->get();
         return view('admin.orders.list',compact('orders'));
     }
 
     public function store(Request $request){
-
         $carts = session('carts');
-        $coupon = $this->obtainCouponValue($request->coupon);
-        $payment = Payment::create(['user_id'=> auth()->id(),"reference" => uniqid(),'currency'=> session('currency')['code'], "amount"=> $carts->sum('amount.'.session('currency')['code']), "coupon_id"=> $coupon['id'], "coupon_value"=> $coupon['value'], "vat", "shipment", "total", "status"]);
-        $order = Order::create(['user_id'=> auth()->id(), 'payment_id'=> $payment->id, 'currency'=> session('currency')['code'], 'total'=> $carts->sum('amount.'.session('currency')['code']), 'affiliate_order'=> auth()->user()->referrer_id ? $carts->sum('amount.'.auth()->user()->referrer->currency) : 0, "note" => $request->note]);
+        $coupon = $this->getCoupon($request->coupon);
+        $payment = Payment::create(['user_id'=> auth()->id(),"reference" => uniqid(),
+        'currency'=> session('currency')['code'], "amount"=> $carts->sum('amount.'.session('currency')['code']), 
+        "coupon_id"=> $coupon['id'], "coupon_value"=> $coupon['value'], "shipment"=> $request->shipment, "total"=> $request->total]);
+        $order = Order::create(['user_id'=> auth()->id(), 'payment_id'=> $payment->id, 'currency'=> session('currency')['code'], 'total'=> $carts->sum('amount.'.session('currency')['code']), 'affiliate_id'=> $request->affiliate_id, "note" => $request->note]);
         $this->createOrderItems($order->id); 
         $this->createShipment($request,$order->id);
-        dd('ready');
         $response = $this->initializePayment($payment);
         if (!$response){
             Alert::toast('Service Unavailable, Please Try Again Shortly', 'error');
@@ -38,32 +46,12 @@ class PaymentController extends Controller
         else return redirect()->to($response);
     }
 
-    protected function obtainCouponValue($code = null){
-        $carts = session('carts');
-        $coupon_id = null;
-        $coupon_value = 0;
-        if($code){
-            $coupon_value = $this->getCoupon($code,$carts->sum('amount.'.session('currency')['code']))['value'];
-            $coupon_id = Coupon::where('code',$code)->first()->id;
-        }
-        return ['id'=> $coupon_id,'value'=> $coupon_value];
-    }
-
-    protected function createOrderItems($order_id){
-        $carts = session('carts');
-        foreach($carts as $cart){            
-            OrderItem::create(['user_id'=> auth()->id(), 
-            'order_id'=> $order_id, "product_id"=> $cart['product_id'], "title"=> $cart['title'], 
-            "images"=> $cart['images'], 'category'=> $cart['category'], 'currency'=> session('currency')['code'], 'quantity'=> $cart['quantity'], 
-            'price'=> $cart['prices'][session('currency')['code']]]);
-        }
-        
-    }
+    
 
     protected function createShipment(Request $request,$order_id){
-        Shipment::create(['rate_id'=> $request->rate_id,'order_id'=> $order_id,
+        Shipment::create(['rate_id'=> $request->shipping_rate,'order_id'=> $order_id,
         'firstname'=> $request->firstname ,'lastname'=> $request->lastname,'email'=> $request->email,
-        'phone'=> $request->phone,'country'=> $request->country,'state'=> $request->state,
+        'phone'=> $request->phone,'country_id'=> $request->country,'state_id'=> $request->state,
         'city'=> $request->city,'street'=> $request->street,'postcode'=> $request->postcode]);
     }
 
@@ -105,6 +93,10 @@ class PaymentController extends Controller
         Alert::toast('Payment Successful', 'success');
         return redirect()->route('payment.response',['status'=> 'success']);
        
+    }
+
+    public function success(){ 
+        dd(request()->query());
     }
 
     public function response(){

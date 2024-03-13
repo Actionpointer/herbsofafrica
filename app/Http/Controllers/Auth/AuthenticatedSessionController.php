@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,10 +32,16 @@ class AuthenticatedSessionController extends Controller
                 'email' => trans('auth.failed'),
             ])->onlyInput('email');
         }
-
+        $user = User::where('email',$request->email)->first();
+        if(!$user->status){
+            Auth::logout();
+            return redirect()->route('login')->withErrors([
+                'email' => 'Account is disabled',
+            ])->onlyInput('email');
+        }
         $request->session()->regenerate();
         if($request->current_route){
-            return redirect()->route($request->current_route);
+            return redirect()->to($request->current_route);
         }
         return redirect()->intended(RouteServiceProvider::HOME);
     }

@@ -12,13 +12,13 @@ trait FlutterwaveTrait
     protected function initiateFlutterWave(Payment $payment){
         $response = Curl::to('https://api.flutterwave.com/v3/payments')
         ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
-        ->withData( array('customer' => ['email'=> $payment->email,'phonenumber'=> $payment->phone,'name'=> $payment->name],
-                        'tx_ref'=> $payment->reference,"currency" => $payment->currency->code,"payment_options"=>"card,account,ussd",
-                        "redirect_url"=> route('payment.callback'),'amount'=> $payment->amount,
+        ->withData( array('customer' => ['email'=> $payment->user->email,'name'=> $payment->user->name],
+                        'tx_ref'=> $payment->reference,"currency" => $payment->currency,"payment_options"=>"card,account,ussd",
+                        "redirect_url"=> route('payment.callback'),'amount'=> $payment->total,
                         "customizations"=> [
-                            "title" => "Havron",
+                            "title" => "Herbs of Africa",
                             "description" => "Payment",
-                            "logo" => asset('images/logo.png')
+                            "logo" => asset('wp-content/uploads/2023/08/new-logo.png')
                         ]) )
         ->asJson()
         ->post();

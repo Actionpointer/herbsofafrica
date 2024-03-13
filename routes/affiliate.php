@@ -13,6 +13,7 @@ Route::group(['prefix'=>'affiliate','as'=> 'affiliate.'],function(){
     Route::post('bank/account/store', [AffiliateController::class, 'storeBankAccount'])->name('bank.account.store');
     Route::get('connect/stripe', [AffiliateController::class, 'stripeOnboarding'])->name('connect.stripe');
     Route::get('dashboard', [AffiliateController::class, 'dashboard'])->name('dashboard');
+    Route::post('coupon',[AffiliateController::class,'coupon'])->name('coupon');
 });
 Route::group(['domain'=> '{domain}.'.config('app.url'),'as'=>'affiliate.'],function () {
     Route::get('/', [WebsiteController::class,'shop'])->name('shop');
@@ -28,4 +29,5 @@ Route::group(['domain'=> '{domain}.'.config('app.url'),'as'=>'affiliate.'],funct
     Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
     Route::post('checkout/pay', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('payment/redirect', [PaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('payment/success', [PaymentController::class, 'callback'])->name('payment.success');
 });

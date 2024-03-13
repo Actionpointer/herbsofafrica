@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebsiteController;
 
@@ -30,7 +31,7 @@ use App\Http\Controllers\WebsiteController;
     Route::view('cookie-policy', 'webpages.legal.cookie-policy')->name('cookie_policy');
     Route::view('return-policy', 'webpages.legal.return-policy')->name('return-policy');
     Route::view('privacy-policy', 'webpages.legal.privacy-policy')->name('privacy-policy');
-// Route::view('/', 'return-policy');
+    
 
     Route::get('articles', [WebsiteController::class, 'articles'])->name('articles');
     Route::get('articles/post', [WebsiteController::class, 'post'])->name('articles.post');
@@ -44,9 +45,14 @@ use App\Http\Controllers\WebsiteController;
     Route::post('contact/store', [WebsiteController::class, 'contact_store'])->name('contact.store');
     Route::get('post', [WebsiteController::class, 'news'])->name('news');
     Route::get('post/single/{slug}', [WebsiteController::class, 'post_single'])->name('post.single');
-    Route::get('currency-switcher', [WebsiteController::class, 'switch_currency'])->name('switch_currency');
-    Route::get('getCountryStates/{iso}', [WebsiteController::class, 'getCountryStates'])->name('getCountryStates');
-    Route::post('verify/account', [WebsiteController::class, 'verify_account'])->name('verify_account');
+
+
+    Route::get('currency-switcher', [HelperController::class, 'switch_currency'])->name('switch_currency');
+    Route::post('getCountryStates', [HelperController::class, 'getCountryStates'])->name('getCountryStates');
+    Route::post('getShipmentRates', [HelperController::class, 'getShipmentRates'])->name('getShipmentRates');
+    Route::post('applyCoupon', [HelperController::class, 'applyCoupon'])->name('applyCoupon');
+    Route::post('verify/account', [HelperController::class, 'verify_account'])->name('verify_account');
+
 
     Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::post('product/add-to-cart',[CartController::class,'addtocart'])->name('cart.add');
@@ -58,6 +64,7 @@ use App\Http\Controllers\WebsiteController;
     Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
     Route::post('checkout/pay', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('payment/redirect', [PaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('success', [PaymentController::class, 'callback'])->name('payment.success');
 
 
 require __DIR__.'/user.php';

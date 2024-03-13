@@ -11,10 +11,10 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-themecolor">Teacher</h3>
+                <h3 class="text-themecolor">Categories</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Teacher</li>
+                    <li class="breadcrumb-item active">Categories</li>
                 </ol>
             </div>
             {{-- <div class="col-md-7 align-self-center">
@@ -106,7 +106,7 @@
                                                     <a data-toggle="modal" href="#exampleModal{{$category->id}}" class="btn btn-info mr-2">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <form action="{{route('categories.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Teacher?')">@csrf
+                                                    <form action="{{route('categories.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Category?')">@csrf
                                                         <input type="hidden" name="category_id" value="{{$category->id}}">
                                                         <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                             <i class="fa fa-trash-o"></i>

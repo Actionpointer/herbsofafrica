@@ -127,22 +127,7 @@
                                                                             </label><br />
                                                                             <input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password_confirmation" id="reg_password2" value="" />
                                                                         </p>
-                                                                        
-                                                                        <p> 
-                                                                            {{-- <input type="hidden" name="wc_order_attribution_type" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_url" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_campaign" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_source" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_medium" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_content" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_id" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_utm_term" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_session_entry" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_session_start_time" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_session_pages" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_session_count" value="" />
-                                                                            <input type="hidden" name="wc_order_attribution_user_agent" value="" />  --}}
-                                                                        </p>
+                                                                    
                                                                         
                                                                         <div class="woocommerce-privacy-policy-text">
                                                                             <p>Your personal data will be used to support your experience
@@ -153,8 +138,7 @@
                                                                             </p>
                                                                         </div>
                                                                         <p class="woocommerce-form-row form-row">
-                                                                            {{-- <input type="hidden" id="_wpnonce" name="_wpnonce" value="6f8fa960ab" />
-                                                                            <input type="hidden" name="_wp_http_referer" value="/my-account/" />  --}}
+                                                                            <input type="hidden" name="referrer_id" value="{{Session::has('affiliate') ? session('affiliate')['id'] : ''}}" />
                                                                             <button type="submit" class="woocommerce-Button button" name="register" value="Register">Register</button>
                                                                         </p>
                                                                         </p>

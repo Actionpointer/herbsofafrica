@@ -36,6 +36,9 @@
                 href="https://herbsofafrica.com/my-account/payment-methods/">Payment
                 methods</a>
         </div> --}}
+        <div class="downloads-link">
+            <a href="{{route('affiliate.index')}}">Affiliate</a>
+        </div>
         <div class="edit-account-link">
             <a href="{{ route('profile') }}">Account details</a>
         </div>

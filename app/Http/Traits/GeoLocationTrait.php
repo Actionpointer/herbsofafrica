@@ -7,19 +7,19 @@ use Ixudra\Curl\Facades\Curl;
 
 trait GeoLocationTrait
 {
-    protected function getCountryByIso($iso){
-        $country = Country::where('iso',$iso)->first();
+    protected function getCountryById($country_id){
+        $country = Country::find($country_id);
         return $country;
     }
 
-    protected function getStates($country_iso){
-        $country = $this->getCountryByIso($country_iso);
-        $states = State::where('country_id',$country->id)->orderBy('name','asc')->get();
+    protected function getStates($country_id){
+        $country = $this->getCountryById($country_id);
+        $states = State::with('country:id,name')->where('country_id',$country->id)->orderBy('name','asc')->get();
         if($states->isEmpty()){
             $this->fetchStates($country);
-            $states = State::where('country_id',$country->id)->orderBy('name','asc')->get();
+            $states = State::with('country:id,name')->where('country_id',$country->id)->orderBy('name','asc')->get();
         }
-        return $states;
+        return ['country'=> $country->name,'states'=>$states];
     }
 
     protected function fetchStates(Country $country){

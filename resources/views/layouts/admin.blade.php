@@ -111,8 +111,8 @@
                                 <span class="hide-menu">Shipment</span>
                             </a>
                             <ul aria-expanded="false" class="collapse" >
-                                <li><a href="{{route('admin.shipment.rates')}}">Rates</a></li>
-                                <li><a href="#">Packages</a></li>
+                                <li><a href="{{route('admin.shipment.rates.index')}}">Rates</a></li>
+                                <li><a href="{{route('admin.shipment.packages')}}">Packages</a></li>
                                 
                             </ul>
                         </li>
@@ -121,11 +121,21 @@
                             <i class="fa fa-smile-o"></i><span class="hide-menu">Products</span>
                             </a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.index') }}" aria-expanded="false"><i class="fa fa-bookmark-o"></i><span class="hide-menu">Orders</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Customers</span></a></li>
-
-                        <li> <a class="waves-effect waves-dark" href="{{ route('settings.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Settings</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Staff</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.browse') }}" aria-expanded="false"><i class="fa fa-bookmark-o"></i><span class="hide-menu">Orders</span></a></li>
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="fa fa-user-circle-o"></i>
+                                <span class="hide-menu">Users</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" >
+                                <li><a href="{{ route('admin.users.customers') }}">Customers</a></li>
+                                <li><a href="{{route('admin.users.affiliates')}}">Affiliates</a></li>
+                                <li><a href="{{route('admin.users.staff')}}">Staff</a></li>
+                                
+                            </ul>
+                        </li>
+                       
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Settings</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.post.index') }}" aria-expanded="false"><i class="fa fa-question-circle"></i><span class="hide-menu">Post</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('profile') }}" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a></li>
                         
