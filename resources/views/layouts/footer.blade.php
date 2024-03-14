@@ -133,19 +133,19 @@
                         <ul id="menu-useful-links" class="menu">
                             <li id="menu-item-512"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-512">
-                                <a href="faqs/index.html">FAQs</a>
+                                <a href="{{route('faqs')}}">FAQs</a>
                             </li>
                             <li id="menu-item-498"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-498">
-                                <a href="shop/index.html">Browse Shop</a>
+                                <a href="{{route('shop')}}">Browse Shop</a>
                             </li>
                             <li id="menu-item-497"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-497">
-                                <a href="cart/index.html">Shopping Cart</a>
+                                <a href="{{route('cart')}}">Shopping Cart</a>
                             </li>
                             <li id="menu-item-513"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-513">
-                                <a href="my-account/index.html">My Account</a>
+                                <a href="{{route('dashboard')}}">My Account</a>
                             </li>
                         </ul>
                     </div>
@@ -158,27 +158,27 @@
                         <ul id="menu-information" class="menu">
                             <li id="menu-item-519"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519">
-                                <a href="terms-of-use/index.html">Terms of Use</a>
+                                <a href="{{route('terms_of_use')}}">Terms of Use</a>
                             </li>
                             <li id="menu-item-518"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-518">
-                                <a href="return-policy/index.html">Return Policy</a>
+                                <a href="{{route('return-policy')}}">Return Policy</a>
                             </li>
                             <li id="menu-item-499"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-499">
-                                <a href="cookie-policy/index.html">Cookie Policy</a>
+                                <a href="{{route('cookie_policy')}}">Cookie Policy</a>
                             </li>
                             <li id="menu-item-502"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-502">
-                                <a rel="privacy-policy" href="privacy-policy/index.html">Privacy Policy</a>
+                                <a rel="privacy-policy" href="{{route('privacy-policy')}}">Privacy Policy</a>
                             </li>
                             <li id="menu-item-501"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-501">
-                                <a href="organic-and-quality/index.html">Organic and Quality</a>
+                                <a href="{{route('organic_and_quality')}}">Organic and Quality</a>
                             </li>
                             <li id="menu-item-500"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-500">
-                                <a href="customer-reviews-policy/index.html">Customer Reviews Policy</a>
+                                <a href="{{route('customer-reviews-policy')}}">Customer Reviews Policy</a>
                             </li>
                         </ul>
                     </div>
@@ -191,7 +191,7 @@
         <div class="container">
             <div class="min-footer">
                 <div class="col-left set-cont-mb-s reset-last-child">
-                    <p>&copy; 2024 <a href="index.html">Herbs of Africa®</a>. All rights reserved</p>
+                    <p>&copy; 2024 <a href="{{url('/')}}">Herbs of Africa®</a>. All rights reserved</p>
                 </div>
                 <div class="col-right set-cont-mb-s reset-last-child">
                     <img src="{{ asset('wp-content/uploads/2023/08/Payment-Method.png') }}" alt="payments"

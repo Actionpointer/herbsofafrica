@@ -42,10 +42,12 @@ class WebsiteController extends Controller
         return view('webpages.products.show',compact('product'));
     }
 
-    public function categories(Category $shopCategory){
+    public function categories(Category $category){
+
         $prices = 'prices->'.session('currency')['code'];
-        $products = Product::where('published',true)->whereNotNull($prices)->where('category_id',$shopCategory->id)->get();
+        $products = Product::where('published',true)->whereNotNull($prices)->where('category_id',$category->id)->get();
         $categories = Category::orderBy('title','asc')->get();
+        $shopCategory = $category;
         return view('webpages.products.shop',compact('products','categories','shopCategory'));
     }
 

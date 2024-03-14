@@ -37,7 +37,7 @@
                 <div class="whb-flex-row whb-general-header-inner">
                     <div class="whb-column whb-col-left whb-visible-lg">
                         <div class="site-logo">
-                            <a href="index.html" class="wd-logo wd-main-logo" rel="home">
+                            <a href="{{url('/')}}" class="wd-logo wd-main-logo" rel="home">
                                 <img src="{{ asset('wp-content/uploads/2023/08/new-logo.png') }}"
                                     alt="Herbs of Africa®" style="max-width: 250px;" /> </a>
                         </div>
@@ -73,7 +73,7 @@
                                 </li>
                                 <li id="menu-item-509"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-509 item-level-0 menu-simple-dropdown wd-event-hover">
-                                    <a href="articles/index.html" class="woodmart-nav-link"><span
+                                    <a href="{{route('articles')}}" class="woodmart-nav-link"><span
                                             class="nav-link-text">The Journal</span></a>
                                 </li>
                             </ul>
