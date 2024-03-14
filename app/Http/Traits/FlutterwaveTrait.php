@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Traits;
-use App\Models\Settlement;
 use App\Models\Payment;
 use App\Models\Settlement;
 use Ixudra\Curl\Facades\Curl;

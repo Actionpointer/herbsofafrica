@@ -189,14 +189,14 @@
                         @empty
                         @endforelse
                     </div>
-                    <div class="wd-loop-footer products-footer">
+                    {{-- <div class="wd-loop-footer products-footer">
                         <a href="page/2/index.html" rel="nofollow noopener"
                             class="btn wd-load-more wd-products-load-more load-on-scroll"><span
                                 class="load-more-label">Load more products</span>
                         </a>
                         <div class="btn wd-load-more wd-load-more-loader"><span
                                 class="load-more-loading">Loading...</span></div>
-                    </div>
+                    </div> --}}
 
 
 
