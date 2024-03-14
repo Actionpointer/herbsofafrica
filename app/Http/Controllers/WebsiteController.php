@@ -31,9 +31,7 @@ class WebsiteController extends Controller
         return view('webpages.index',compact('products','categories'));
     }
 
-    public function shop(){
-        
-        // request()->session()->flush();
+    public function shop(){    
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
@@ -46,7 +44,7 @@ class WebsiteController extends Controller
 
     public function categories(Category $shopCategory){
         $prices = 'prices->'.session('currency')['code'];
-        $products = Product::where('published',true)->whereNotNull($prices)->get();
+        $products = Product::where('published',true)->whereNotNull($prices)->where('category_id',$shopCategory->id)->get();
         $categories = Category::orderBy('title','asc')->get();
         return view('webpages.products.shop',compact('products','categories','shopCategory'));
     }

@@ -101,13 +101,13 @@
                         <li> <a class="waves-effect waves-dark" href="{{route('admin.dashboard')}}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li> 
                             <a class="waves-effect waves-dark" href="{{ route('admin.categories.index') }}" aria-expanded="false">
-                                <i class="fa fa-globe"></i><span class="hide-menu">Categories</span>
+                                <i class="fa fa-universal-access"></i><span class="hide-menu">Categories</span>
                             </a>
                         </li>
                         
                         <li class="">
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                                <i class="fa fa-smile-o"></i>
+                                <i class="fa fa-truck"></i>
                                 <span class="hide-menu">Shipment</span>
                             </a>
                             <ul aria-expanded="false" class="collapse" >
@@ -118,10 +118,10 @@
                         </li>
                         <li> 
                             <a class="waves-effect waves-dark" href="{{ route('admin.products.index') }}" aria-expanded="false">
-                            <i class="fa fa-smile-o"></i><span class="hide-menu">Products</span>
+                                <i class="fa fa-medkit"></i> <span class="hide-menu">Products</span>
                             </a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.browse') }}" aria-expanded="false"><i class="fa fa-bookmark-o"></i><span class="hide-menu">Orders</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.browse') }}" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a></li>
                         <li class="">
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                                 <i class="fa fa-user-circle-o"></i>
@@ -136,7 +136,7 @@
                         </li>
                         <li class="">
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                                <i class="fa fa-user-circle-o"></i>
+                                <i class="fa fa-credit-card"></i>
                                 <span class="hide-menu">Transactions</span>
                             </a>
                             <ul aria-expanded="false" class="collapse" >
@@ -147,8 +147,8 @@
                             </ul>
                         </li>
                        
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Settings</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.post.index') }}" aria-expanded="false"><i class="fa fa-question-circle"></i><span class="hide-menu">Post</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.post.index') }}" aria-expanded="false"><i class="fa fa-newspaper-o"></i><span class="hide-menu">Post</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('profile') }}" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a></li>
                         
                     </ul>
