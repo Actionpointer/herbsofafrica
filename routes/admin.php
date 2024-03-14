@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TransactionsController;
 
 
 Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
@@ -84,9 +85,11 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
         });
 
 
-        Route::group(['prefix'=>'testimonials','as'=> 'testimonials.'],function(){
-            Route::get('/', [TestimonialController::class, 'index'])->name('index');
-            Route::post('manage', [TestimonialController::class, 'manage'])->name('manage');
+        Route::group(['prefix'=>'transactions','as'=> 'transactions.'],function(){
+            Route::get('payments', [TransactionsController::class, 'payments'])->name('payments');
+            Route::get('settlements', [TransactionsController::class, 'settlements'])->name('settlements');
+            Route::post('settlements', [TransactionsController::class, 'manage'])->name('settlements');
+            Route::get('revenues', [TransactionsController::class, 'revenues'])->name('revenues');
 
         });
 

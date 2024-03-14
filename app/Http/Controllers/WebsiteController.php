@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-
 use App\Models\Product;
 use App\Models\Category;
-
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 
 class WebsiteController extends Controller
 {
+
 
     public function __construct()
     {
@@ -33,6 +32,7 @@ class WebsiteController extends Controller
     }
 
     public function shop(){
+        
         // request()->session()->flush();
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();

@@ -134,6 +134,18 @@
                                 
                             </ul>
                         </li>
+                        <li class="">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="fa fa-user-circle-o"></i>
+                                <span class="hide-menu">Transactions</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse" >
+                                <li><a href="{{ route('admin.transactions.payments') }}">Payments</a></li>
+                                <li><a href="{{route('admin.transactions.settlements')}}">Settlements</a></li>
+                                <li><a href="{{route('admin.transactions.revenues')}}">Revenues</a></li>
+                                
+                            </ul>
+                        </li>
                        
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Settings</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.post.index') }}" aria-expanded="false"><i class="fa fa-question-circle"></i><span class="hide-menu">Post</span></a></li>

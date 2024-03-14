@@ -46,24 +46,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3"><b>Status :</b></div>
-                            <div class="col-md-3">@if($order->delivered_at) Delivered @elseif($order->shipped_at) Shipped @elseif($order->ready_at) Ready @else New @endif</div>
+                            <div class="col-md-3">
+                              @if($order->status == 'ready')
+                                  Ready for Shipment
+                              @elseif($order->status == 'processed')
+                                  Processing
+                              @else 
+                                  {{ucwords($order->status)}}
+                              @endif
+                            </div>
                         </div>
                         
                         <div class="row">
-                            @if($order->delivered_at) 
-                                <div class="col-md-3"><b> Delivered on :</b> </div> 
-                                <div class="col-md-3"> <i class="fa fa-calendar"></i> {{$order->delivered_at->format('jS M Y')}} </div>
-                            
-                            @elseif($order->shipped_at) 
-                                <div class="col-md-3"> <b>Shipped on :</b> </div> 
-                                <div class="col-md-3"> <i class="fa fa-calendar"></i> {{$order->shipped_at->format('jS M Y')}} </div>
-                            
-                            @elseif($order->ready_at) 
-                                <div class="col-md-3"><b>Ready on :</b></div> 
-                                <div class="col-md-3"><i class="fa fa-calendar"></i> {{$order->ready_at->format('jS M Y')}} </div>
-                            
-                            @endif
-                            
+                            <div class="col-md-3"><b> {{$order->status}} since :</b> </div> 
+                            <div class="col-md-3"> <i class="fa fa-calendar"></i> {{$order->status_time}} </div> 
                         </div>
                           
                       </div>
@@ -71,13 +67,13 @@
                         <h3 class="mb-3"><u>Delivery</u></h3>
                         <address>
                           
-                          <h4 class="font-bold">{{$order->shipment->name}}</h4>
+                          <h4 class="font-bold">{{$order->shipping->name}}</h4>
                           <p class="text-muted">
-                            {{$order->shipment->email}}, <br>
-                            {{$order->shipment->phone}} <br>
-                            {{$order->shipment->street.', '.$order->shipment->city}}, <br>
-                            Post Code: {{$order->shipment->postcode}}, <br>
-                            {{$order->shipment->state->name.', '.$order->shipment->country->name}}
+                            {{$order->shipping->email}}, <br>
+                            {{$order->shipping->phone}} <br>
+                            {{$order->shipping->street.', '.$order->shipping->city}}, <br>
+                            Post Code: {{$order->shipping->postcode}}, <br>
+                            {{$order->shipping->state->name.', '.$order->shipping->country->name}}
                           </p>
                           
                         </address>

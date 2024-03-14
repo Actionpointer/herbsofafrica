@@ -63,8 +63,9 @@ use App\Http\Controllers\WebsiteController;
 
     Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
     Route::post('checkout/pay', [PaymentController::class, 'store'])->name('payment.store');
+    Route::get('payment/retry/{payment}', [PaymentController::class, 'retry'])->name('payment.retry');
     Route::get('payment/redirect', [PaymentController::class, 'callback'])->name('payment.callback');
-    Route::get('success', [PaymentController::class, 'callback'])->name('payment.success');
+    Route::get('order/confirmation/{payment}', [CartController::class, 'confirmation']);
 
 
 require __DIR__.'/user.php';

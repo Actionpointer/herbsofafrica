@@ -29,5 +29,6 @@ Route::group(['domain'=> '{domain}.'.config('app.url'),'as'=>'affiliate.'],funct
     Route::get('checkout',[CartController::class,'checkout'])->name('checkout');
     Route::post('checkout/pay', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('payment/redirect', [PaymentController::class, 'callback'])->name('payment.callback');
-    Route::get('payment/success', [PaymentController::class, 'callback'])->name('payment.success');
+    Route::get('order/confirmation/{payment}', [CartController::class, 'confirmation']);
+    include('user.php');
 });

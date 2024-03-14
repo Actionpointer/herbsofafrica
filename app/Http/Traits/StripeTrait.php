@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 use App\Models\Payout;
 use App\Models\Payment;
 use App\Models\Affiliate;
+use App\Models\Settlement;
 use Ixudra\Curl\Facades\Curl;
 
 
@@ -28,37 +29,32 @@ trait StripeTrait
                             'quantity' => $item->quantity, 
                         ];
         }
-
-
         $response = Curl::to('https://api.stripe.com/v1/checkout/sessions')
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
             ->withData( array('customer_email' => 'magreat@gmail.com','currency'=> 'usd',
-                            'success_url'=> 'http://herbsofafrica.test/success',
+                            'success_url'=> route('payment.callback',with(['tx_ref'=> $payment->reference,'status'=> 'successful'])),
                             'client_reference_id'=> uniqid(),'mode'=> 'payment',
                             'line_items' => $items
                             ) )
             ->asJsonResponse()
             ->post();
         if($response && $response->url){
-            $payment->reference = $response->id;
+            $payment->stripe_session_id = $response->id;
             $payment->save();
             return $response->url;
         }
             
         else return false;
-
-          
       }
   
-      protected function verifyStripePayment($reference){
-        $response = Curl::to('https://api.stripe.com/v1/checkout/sessions/'.$reference)
+      protected function verifyStripePayment($stripe_session_id){
+        $response = Curl::to('https://api.stripe.com/v1/checkout/sessions/'.$stripe_session_id)
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
             ->asJsonResponse()
             ->get();
-        dd($response);
-        return ;
+        return $response;
     }
   
     public function connectStripe(Affiliate $affiliate){
@@ -90,25 +86,22 @@ trait StripeTrait
         }else return false;
     }
 
-
-    
-    // [
-    //     [ 
-    //         'price_data' => [ 'currency' => 'usd', 'unit_amount' => 2000, 
-    //                             'product_data' => [ 'name' => 'T-shirt',  'description' => 'Comfortable cotton t-shirt',
-    //                                                 'images' => ['https://store.nytimes.com/cdn/shop/products/mens-1619-shirt-back_1024x1024.jpg'] 
-    //                             ],
-    //         ], 'quantity' => 2, 
-    //     ],
-    //     [ 
-    //         'price_data' => [ 'currency' => 'usd', 'unit_amount' => 50000, 
-    //                             'product_data' => [ 'name' => 'Navy Blue Suit',  'description' => 'Bankers Suits for formal wears',
-    //                                                 'images' => ['https://dege-skinner.co.uk/wp-content/uploads/2020/12/navyblue400x400.jpg'] 
-    //                             ],
-    //         ], 'quantity' => 1, 
-    //     ],
-    // ],
-    
+    public function payoutStripe(Settlement $settlement){
+        $response = Curl::to('https://api.stripe.com/v1/payouts')
+            ->withHeader('Content-Type: application/x-www-form-urlencoded')
+            ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
+            ->withData( array('amount'=> $settlement->amount,'currency'=> $settlement->currency ,'destination'=> $settlement->affiliate->account_number))
+            ->asJsonResponse()
+            ->post();
+        if($response && $response->status && $response->status == 'pending'){
+            $settlement->status = 'paid'; 
+            $settlement->paid_at = now(); 
+            $settlement->save();
+        }else {
+            $settlement->status = 'failed';
+            $settlement->save();
+        }
+    }
 
 
 }

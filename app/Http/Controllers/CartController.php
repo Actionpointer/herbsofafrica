@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Country;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Currency;
 use App\Models\Wishlist;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
@@ -37,13 +38,13 @@ class CartController extends Controller
         if(session('carts')){
             $carts = session('carts');
         }
-        return view('webpages.cart',compact('carts'));
+        return view('webpages.sales.cart',compact('carts'));
     }
 
     public function wishlist(){
         $user = auth()->user();
         $wishlists = $user->wishlists;
-        return view('webpages.wishlist',compact('wishlists'));
+        return view('webpages.sales.wishlist',compact('wishlists'));
     }
 
     public function addtocart(Request $request){
@@ -104,7 +105,14 @@ class CartController extends Controller
             return back();
         }
         $countries = Country::all();
-        return view('webpages.checkout',compact('carts','countries'));
+        return view('webpages.sales.checkout',compact('carts','countries'));
     }    
+
+    public function confirmation(Payment $payment){
+        abort_if(!$payment,'404');
+        $currency = Currency::where('code',$payment->currency)->first();
+        // dd($payment->items);
+        return view('webpages.sales.confirmation',compact('payment','currency'));
+    }
 
 }

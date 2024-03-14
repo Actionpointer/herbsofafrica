@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\Testimonial;
+use App\Models\Payment;
+use App\Models\Revenue;
+use App\Models\Settlement;
 use Illuminate\Http\Request;
 
-class TestimonialController extends Controller
+class TransactionsController extends Controller
 {
-    public function index(){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
-        $testimonials = Testimonial::orderBy('created_at','desc')->paginate(20);
-        $courses = Course::all();
-        return view('admin.testimonial',compact('testimonials','courses'));
+
+    public function payments(){
+        $payments = Payment::orderBy('created_at','desc')->get();
+        return view('admin.transactions.payments',compact('payments'));
     }
+
+    public function settlements(){
+        $settlements = Settlement::orderBy('created_at','desc')->get();
+        return view('admin.transactions.settlements',compact('settlements'));
+    }
+
+    public function revenues(){
+        $revenues = Revenue::orderBy('created_at','desc')->get();
+        return view('admin.transactions.revenues',compact('revenues'));
+    }
+
 
     public function manage(Request $request){
         abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');

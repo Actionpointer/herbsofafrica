@@ -24,10 +24,6 @@ class PaymentController extends Controller
             session(['affiliate'=> $affiliate]);
         }
     }
-    public function index(){
-        $orders = Payment::orderBy('created_at','desc')->get();
-        return view('admin.orders.list',compact('orders'));
-    }
 
     public function store(Request $request){
         $carts = session('carts');
@@ -38,6 +34,16 @@ class PaymentController extends Controller
         $order = Order::create(['user_id'=> auth()->id(), 'payment_id'=> $payment->id, 'currency'=> session('currency')['code'], 'total'=> $carts->sum('amount.'.session('currency')['code']), 'affiliate_id'=> $request->affiliate_id, "note" => $request->note]);
         $this->createOrderItems($order->id); 
         $this->createShipment($request,$order->id);
+        $response = $this->initializePayment($payment);
+        if (!$response){
+            Alert::toast('Service Unavailable, Please Try Again Shortly', 'error');
+            return redirect()->back();
+        }
+        else return redirect()->to($response);
+    }
+
+    public function retry(Payment $payment){
+        
         $response = $this->initializePayment($payment);
         if (!$response){
             Alert::toast('Service Unavailable, Please Try Again Shortly', 'error');
@@ -57,9 +63,12 @@ class PaymentController extends Controller
 
 
     public function callback(){ 
-        dd(request()->query());
-        if(!request()->query('reference') && !request()->query('tx_ref')) \abort(404);
-        $reference = request()->query('reference') ?? request()->query('tx_ref');
+        if(!request()->query('tx_ref')) \abort(404);
+        if(request()->query('status') != 'successful'){
+            Alert::toast('Payment was not successful. Please try again', 'error');
+            return redirect()->route('payment.response',['status'=> 'failed']);
+        }
+        $reference = request()->query('tx_ref');
         $payment = Payment::where('reference',$reference)->first();
         if(!$payment){
             Alert::toast('Something went wrong. Please try again', 'error');
@@ -69,34 +78,25 @@ class PaymentController extends Controller
             Alert::toast('Payment was successful', 'success');
             return redirect()->route('payment.response',['status'=> 'success']);
         }
-        if($payment->currency->code == 'USD'){
-            $details = $this->verifyPaystackPayment($payment->reference);
-            if(!$details || !$details->status || !$details->data || $details->data->status != 'success' || $details->data->amount/100 < $payment->amount){
-                Alert::toast('Payment was not successful. Please try again', 'error');
-                return redirect()->route('payment.response',['status'=> 'failed']);
-            }
-            $payment->method = $details->data->channel;
-        }else{
-            if(request()->query('status') != 'successful'){
-                Alert::toast('Payment was not successful. Please try again', 'error');
-                return redirect()->route('payment.response',['status'=> 'failed']);
-            }
+        if($payment->currency == 'NGN'){
             $details = $this->verifyFlutterWavePayment($payment->reference);
             if(!$details || !$details->status || $details->status != 'success' || !$details->data || $details->data->status != 'successful' || $details->data->amount < $payment->amount){
                 Alert::toast('Payment was not successful. Please try again', 'error');
                 return redirect()->route('payment.response',['status'=> 'failed']);
             }
-            $payment->method = $details->data->payment_type;
+        }else{
+            $details = $this->verifyStripePayment($payment->stripe_session_id);
+            if(!$details || !$details->status || $details->status != 'complete' || $details->amount_total/100 < $payment->total){
+                Alert::toast('Payment was not successful. Please try again', 'error');
+                return redirect()->route('payment.response',['status'=> 'failed']);
+            }
+            
         }
         $payment->status = 'success';
         $payment->save();
         Alert::toast('Payment Successful', 'success');
         return redirect()->route('payment.response',['status'=> 'success']);
        
-    }
-
-    public function success(){ 
-        dd(request()->query());
     }
 
     public function response(){

@@ -35,215 +35,47 @@
             </tr>
         </thead>
         <tbody>
-            <tr
-                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
+            @forelse ($orders as $order)
+            <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
                     data-title="Order">
-                    <a
-                        href="{{route('orders.view')}}"><br>
-                        #2075 </a>
-                    <p></p>
+                    <a href="{{route('orders.view',$order)}}"><br> #{{$order->id}} </a>
+                    
                 </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-19T13:01:28+00:00">19
-                        October 2023</time>
-                    <p></p>
+                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date" data-title="Date">
+                    <time datetime="{{$order->created_at}}">{{$order->created_at->format('d F Y')}}</time>
+                    
                 </td>
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
                     data-title="Status">
-                    Cancelled
+                    @if($order->status == 'ready')
+                        Ready for Shipment
+                    @else 
+                        {{ucwords($order->status)}}
+                    @endif
+         
                 </td>
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
                     data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac78094ed6"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>47</span></span>
-                    for 1 item
+                    <span class="woocs_price_code">
+                        <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol">{{$currencies->firstWhere('code',$order->currency)->symbol}}</span>47
+                        </span>
+                    </span>
+                    for {{$order->items->count()}} item
                 </td>
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
                     data-title="Actions">
-                    <a href="{{route('orders.view')}}"
+                    <a href="{{route('orders.view',$order)}}"
                         class="woocommerce-button button view">View</a>
                 </td>
             </tr>
-            <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-processing order">
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                    data-title="Order">
-                    <a
-                        href="https://herbsofafrica.com/my-account/view-order/1754/"><br>
-                        #1754 </a>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-06T00:38:51+00:00">6
-                        October 2023</time>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                    data-title="Status">
-                    Processing
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                    data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac78096184"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>4</span></span>
-                    for 2 items
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                    data-title="Actions">
-                    <a href="https://herbsofafrica.com/my-account/view-order/1754/"
-                        class="woocommerce-button button view">View</a>
-                </td>
+            @empty 
+            <tr>
+                <td colspan="5" class="text-center">No Orders Yet</td>
             </tr>
-            <tr
-                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                    data-title="Order">
-                    <a
-                        href="https://herbsofafrica.com/my-account/view-order/1753/"><br>
-                        #1753 </a>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-06T00:35:48+00:00">6
-                        October 2023</time>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                    data-title="Status">
-                    Cancelled
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                    data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac780973b2"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>3</span></span>
-                    for 1 item
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                    data-title="Actions">
-                    <a href="https://herbsofafrica.com/my-account/view-order/1753/"
-                        class="woocommerce-button button view">View</a>
-                </td>
-            </tr>
-            <tr
-                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-processing order">
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                    data-title="Order">
-                    <a
-                        href="https://herbsofafrica.com/my-account/view-order/1752/"><br>
-                        #1752 </a>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-06T00:28:23+00:00">6
-                        October 2023</time>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                    data-title="Status">
-                    Processing
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                    data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac78098300"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>4</span></span>
-                    for 2 items
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                    data-title="Actions">
-                    <a href="https://herbsofafrica.com/my-account/view-order/1752/"
-                        class="woocommerce-button button view">View</a>
-                </td>
-            </tr>
-            <tr
-                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-processing order">
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                    data-title="Order">
-                    <a
-                        href="https://herbsofafrica.com/my-account/view-order/1747/"><br>
-                        #1747 </a>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-06T00:20:11+00:00">6
-                        October 2023</time>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                    data-title="Status">
-                    Processing
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                    data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac78099015"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>62</span></span>
-                    for 1 item
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                    data-title="Actions">
-                    <a href="https://herbsofafrica.com/my-account/view-order/1747/"
-                        class="woocommerce-button button view">View</a>
-                </td>
-            </tr>
-            <tr
-                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                    data-title="Order">
-                    <a
-                        href="https://herbsofafrica.com/my-account/view-order/1732/"><br>
-                        #1732 </a>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                    data-title="Date">
-                    <time
-                        datetime="2023-10-01T20:48:52+00:00">1
-                        October 2023</time>
-                    <p></p>
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                    data-title="Status">
-                    Cancelled
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                    data-title="Total">
-                    <span class="woocs_price_code"
-                        data-currency="USD"
-                        data-redraw-id="65bac78099cc2"><span
-                            class="woocommerce-Price-amount amount"><span
-                                class="woocommerce-Price-currencySymbol">$</span>62</span></span>
-                    for 1 item
-                </td>
-                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                    data-title="Actions">
-                    <a href="https://herbsofafrica.com/my-account/view-order/1732/"
-                        class="woocommerce-button button view">View</a>
-                </td>
-            </tr>
+            @endforelse
+            
         </tbody>
     </table>
 </div>

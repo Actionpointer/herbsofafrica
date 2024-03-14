@@ -17,9 +17,36 @@ class Order extends Model
 
     protected $casts = [
         'ready_at'=> 'datetime',
+        'cancelled_at'=> 'datetime',
         'shipped_at'=> 'datetime',
         'delivered_at'=> 'datetime',
     ];
+
+    public function getStatusAttribute(){
+        if($this->delivered_at)
+        return 'delivered';
+        elseif($this->shipped_at)
+        return 'shipped';
+        elseif($this->ready_at)
+        return 'ready';
+        elseif($this->cancelled_at)
+        return 'cancelled';
+        elseif($this->payment->status == 'success') 
+        return 'processing';
+        else return 'unpaid';
+    }
+
+    public function getStatusTimeAttribute(){
+        if($this->delivered_at)
+        return $this->delivered_at->format('jS F Y');
+        elseif($this->shipped_at)
+        return $this->shipped_at->format('jS F Y');
+        elseif($this->ready_at)
+        return $this->ready_at->format('jS F Y');
+        elseif($this->cancelled_at)
+        return $this->cancelled_at->format('jS F Y');
+        else return $this->created_at->format('jS F Y');
+    }
 
     public function payment(){
         return $this->belongsTo(Payment::class);
@@ -33,7 +60,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function shipment(){
+    public function shipping(){
         return $this->hasOne(Shipment::class);
     }
 

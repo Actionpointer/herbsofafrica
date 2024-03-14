@@ -2,8 +2,9 @@
 namespace App\Http\Traits;
 
 
-use App\Models\Coupon;
+use App\Models\Order;
 
+use App\Models\Coupon;
 use App\Models\Payment;
 use App\Models\OrderItem;
 
@@ -23,11 +24,10 @@ trait OrderTrait
         return $order;
     }
 
-    protected function getSubtotal(Array $cart){
-        // dd($cart);
+    protected function getOrderSubtotal(Order $order,$currency){
         $subtotal = 0; 
-        foreach($cart as $item){
-            $subtotal += $item['quantity'] * $item['amount'];
+        foreach($order->items as $item){
+            $subtotal = $subtotal + ($item->product->prices[$currency] * $item->quantity);
         }
         return $subtotal;
     }
@@ -49,6 +49,8 @@ trait OrderTrait
     
     
     protected function getCoupon($code){
+        if(!$code)
+        return ['id'=> null,'description'=> 'No Coupon','value'=> 0];
         $coupon = Coupon::where('code',$code)->first();
         $carts = session('carts');
         $amount = $carts->sum('amount.'.session('currency')['code']);

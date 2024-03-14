@@ -13,16 +13,20 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('user.order.index');
+        $orders = Order::where('user_id',auth()->id())->get();
+        $currencies = Currency::all();
+        return view('user.order.index',compact('orders','currencies'));
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Order $order)
     {
-        return view('user.order.view');
+        
+        $currency = Currency::where('code',$order->currency)->first();
+        return view('user.order.view',compact('order','currency'));
     }
 
     public function browse(){
@@ -38,6 +42,8 @@ class OrderController extends Controller
     public function edit(Request $request)
     {
         switch($request->status){
+            case 'cancelled':   Order::where('id',$request->order_id)->update(['cancelled_at'=> now()]);
+                break;
             case 'ready':       Order::where('id',$request->order_id)->update(['ready_at'=> now()]);
                 break;
             case 'shipped':     $order = Order::find($request->order_id);
@@ -50,8 +56,8 @@ class OrderController extends Controller
                                 if(!$order->shipped_at) $order->shipped_at = now();
                                 $order->delivered_at = now();
                                 $order->save();
-                                $order->shipment->status = true;
-                                $order->shipment->save();
+                                $order->shipping->status = true;
+                                $order->shipping->save();
                 break;  
         }
         return redirect()->back();

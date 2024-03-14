@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Traits;
-use App\Models\Payout;
+use App\Models\Settlement;
 use App\Models\Payment;
 use App\Models\Settlement;
 use Ixudra\Curl\Facades\Curl;
@@ -73,65 +73,65 @@ trait FlutterwaveTrait
         
     }
 
-    protected function payoutFlutterWave(Payout $payout){
+    protected function payoutFlutterWave(Settlement $settlement){
         
         $response = Curl::to('https://api.flutterwave.com/v3/transfers')
         ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
-        // ->withData( array('account_number'=> $payout->user->bankaccount->account_number,'account_bank'=> $payout->user->bankaccount->bank->code,'reference'=> $payout->reference
-        ->withData( array('account_number'=> '0690000032','account_bank'=> '044','amount'=> $payout->amount,
-                        'narration'=> "Vendor payout with reference $payout->reference",'reference'=> $payout->reference.'_PMCK',
-                        "currency"=> $payout->currency->iso,'destination_branch_code'=> $payout->user->bankaccount->branch ? $payout->user->bankaccount->branch->code :0,
+        // ->withData( array('account_number'=> $settlement->affiliate->account_number,'account_bank'=> $settlement->affiliate->bank_code,'reference'=> $settlement->reference
+        ->withData( array('account_number'=> '0690000032','account_bank'=> '044','amount'=> $settlement->amount,
+                        'narration'=> "Vendor payout with reference $settlement->reference",'reference'=> $settlement->reference.'_PMCK',
+                        "currency"=> $settlement->currency,'destination_branch_code'=> 0,
                         "customizations"=> [
-                            "title"=>"Expiring Soon",
-                            "description"=>"Payment",
-                            "logo"=> asset('src/images/logo.png')
+                            "title" => "Herbs of Africa",
+                            "description" => "Payment",
+                            "logo" => asset('wp-content/uploads/2023/08/new-logo.png')
                         ]) )
         ->asJson()
         ->post();
         if(!$response || $response->status == 'error' || $response->data->status == 'FAILED'){
-            $payout->transfer_id = $response->data->id ?? '';
-            $payout->status = 'failed';
-            $payout->save();
+            $settlement->transfer_id = $response->data->id ?? '';
+            $settlement->status = 'failed';
+            $settlement->save();
         }
         if($response && $response->status == 'success' && in_array($response->data->status,['PENDING','NEW'])){
-            $payout->transfer_id = $response->data->id ?? '';
-            $payout->status = 'processing';
-            $payout->save();
+            $settlement->transfer_id = $response->data->id ?? '';
+            $settlement->status = 'processing';
+            $settlement->save();
         }
         
     }
 
-    protected function verifyPayoutFlutterwave(Payout $payout){
-        $response = Curl::to("https://api.flutterwave.com/v3/transfers/$payout->transfer_id")
+    protected function verifyPayoutFlutterwave(Settlement $settlement){
+        $response = Curl::to("https://api.flutterwave.com/v3/transfers/$settlement->transfer_id")
             ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
             ->asJson()
             ->get(); 
             
             if(!$response || $response->status == 'error' || $response->data->status == 'FAILED'){
-                $payout->status = 'failed';
-                $payout->save();
+                $settlement->status = 'failed';
+                $settlement->save();
             }
             if($response && isset($response->status) && $response->status == 'success' && $response->data->status == 'SUCCESSFUL'){
-                $payout->status = 'paid'; 
-                $payout->paid_at = now(); 
-                $payout->save();
+                $settlement->status = 'paid'; 
+                $settlement->paid_at = now(); 
+                $settlement->save();
             }
     }
     
 
-    protected function retryPayoutFlutterWave(Payout $payout){
-        $response = Curl::to("https://api.flutterwave.com/v3/transfers/$payout->transfer_id/retries")
+    protected function retryPayoutFlutterWave(Settlement $settlement){
+        $response = Curl::to("https://api.flutterwave.com/v3/transfers/$settlement->transfer_id/retries")
             ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
             ->asJson()
             ->get();
             if(!$response || $response->status == 'error' || !isset($response->data->status) || $response->data->status == 'FAILED'){
-                $payout->status = 'failed';
-                $payout->save();
+                $settlement->status = 'failed';
+                $settlement->save();
             }
             if($response && isset($response->status) && $response->status == 'success' && $response->data->status == 'SUCCESSFUL'){
-                $payout->status = 'paid'; 
-                $payout->paid_at = now(); 
-                $payout->save();
+                $settlement->status = 'paid'; 
+                $settlement->paid_at = now(); 
+                $settlement->save();
             }
     }
 
