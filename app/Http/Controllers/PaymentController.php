@@ -64,39 +64,37 @@ class PaymentController extends Controller
 
     public function callback(){ 
         if(!request()->query('tx_ref')) \abort(404);
-        if(request()->query('status') != 'successful'){
-            Alert::toast('Payment was not successful. Please try again', 'error');
-            return redirect()->route('payment.response',['status'=> 'failed']);
-        }
         $reference = request()->query('tx_ref');
         $payment = Payment::where('reference',$reference)->first();
-        if(!$payment){
-            Alert::toast('Something went wrong. Please try again', 'error');
-            return redirect()->route('payment.response',['status'=> 'failed']);
-        }
+        abort_if(!$payment,503,'Payment does not exist');
         if($payment->status == 'success'){
-            Alert::toast('Payment was successful', 'success');
-            return redirect()->route('payment.response',['status'=> 'success']);
+            return redirect()->route('payment.confirmation',$payment);
         }
+        if(request()->query('status') == 'cancelled'){
+            $payment->status = 'cancelled';
+            $payment->save();
+            return redirect()->route('payment.confirmation',$payment);
+        }
+        
         if($payment->currency == 'NGN'){
             $details = $this->verifyFlutterWavePayment($payment->reference);
             if(!$details || !$details->status || $details->status != 'success' || !$details->data || $details->data->status != 'successful' || $details->data->amount < $payment->amount){
-                Alert::toast('Payment was not successful. Please try again', 'error');
-                return redirect()->route('payment.response',['status'=> 'failed']);
+                $payment->status = 'failed';
+                $payment->save();
+                return redirect()->route('payment.confirmation',$payment);
             }
         }else{
             $details = $this->verifyStripePayment($payment->stripe_session_id);
             if(!$details || !$details->status || $details->status != 'complete' || $details->amount_total/100 < $payment->total){
-                Alert::toast('Payment was not successful. Please try again', 'error');
-                return redirect()->route('payment.response',['status'=> 'failed']);
+                $payment->status = 'failed';
+                $payment->save();
+                return redirect()->route('payment.confirmation',$payment);
             }
             
         }
         $payment->status = 'success';
         $payment->save();
-        Alert::toast('Payment Successful', 'success');
-        return redirect()->route('payment.response',['status'=> 'success']);
-       
+        return redirect()->route('payment.confirmation',$payment);
     }
 
     public function response(){

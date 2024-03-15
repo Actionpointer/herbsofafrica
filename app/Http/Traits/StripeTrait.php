@@ -34,6 +34,7 @@ trait StripeTrait
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
             ->withData( array('customer_email' => 'magreat@gmail.com','currency'=> 'usd',
                             'success_url'=> route('payment.callback',with(['tx_ref'=> $payment->reference,'status'=> 'successful'])),
+                            'cancel_url'=> route('payment.callback',with(['tx_ref'=> $payment->reference,'status'=> 'cancelled'])),
                             'client_reference_id'=> uniqid(),'mode'=> 'payment',
                             'line_items' => $items
                             ) )

@@ -111,7 +111,6 @@ class CartController extends Controller
     public function confirmation(Payment $payment){
         abort_if(!$payment,'404');
         $currency = Currency::where('code',$payment->currency)->first();
-        // dd($payment->items);
         return view('webpages.sales.confirmation',compact('payment','currency'));
     }
 

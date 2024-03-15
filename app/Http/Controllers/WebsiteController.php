@@ -26,6 +26,8 @@ class WebsiteController extends Controller
     }
 
     public function welcome(){
+        // $payment = \App\Models\Payment::find(3);
+        // dd(route('payment.confirmation',$payment));
         $categories = Category::all();
         $products = Product::where('published',true)->where('featured',true)->get();
         return view('webpages.index',compact('products','categories'));

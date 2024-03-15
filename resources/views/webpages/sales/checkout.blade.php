@@ -144,7 +144,7 @@
                                                                 <select  name="state" id="shipping_state" class="state_select select2" autocomplete="address-level1"
                                                                     data-placeholder="Select an option"
                                                                     data-input-classes="" data-label="State">
-                                                                    <option value="">Select an option</option>
+                                                                    <option value="" >Select an option</option>
                                                                 </select>
                                                             </span>
                                                         </p>
