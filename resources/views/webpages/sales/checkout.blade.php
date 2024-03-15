@@ -333,10 +333,17 @@
                                                             <th>Shipping</th>
                                                             <td data-title="Shipping">
                                                                 <input type="hidden" id="shipping_fee" name="shipment" value="0">
-                                                                 <ul id="shipping_method" class="woocommerce-shipping-methods">
+                                                                @if($errors->has('shipping_rate'))
 
-                                                                    
-                                                                    <li>Select Location</li>       
+                                                                @enderror
+                                                                <ul id="shipping_method" class="woocommerce-shipping-methods">
+
+                                                                    @if($errors->has('shipping_rate'))
+                                                                    <li style="color:red;font-size:15px;">Select Different Location</li>
+                                                                    @else 
+                                                                    <li>Select Location</li>
+                                                                    @endif
+                                                                           
                                                                 </ul>    
                                                             </td>
                                                         </tr>
@@ -474,29 +481,33 @@
                     let currency = $('#current_currency').val()
                     let symbol = $('#current_currency_symbol').text()
                     let list = '';
-                    data.forEach(function(item,index){
-                        let amount = 0;
-                        if(item.method == 'flat-rate'){
-                            if(item.price_type == 'fixed-amount'){
-                                amount = item.prices[currency]
-                            }else{
-                                amount = item.percentage * parseInt($('#subtotal').val()) / 100
+                    if(data.length > 0){
+                        data.forEach(function(item,index){
+                            let amount = 0;
+                            if(item.method == 'flat-rate'){
+                                if(item.price_type == 'fixed-amount'){
+                                    amount = item.prices[currency]
+                                }else{
+                                    amount = item.percentage * parseInt($('#subtotal').val()) / 100
+                                }
                             }
-                        }
-                        list += `<li>
-                                    <input type="radio" required name="shipping_rate" data-index="${index}" data-pickup="${item.method == 'local-pickup'? true:false}" id="shipping_method_${index}" value="${item.id}" class="shipping_method">
-                                    <label for="shipping_method_0_flat_rate1">${item.name}: 
-                                        <span class="woocommerce-Price-amount amount">
-                                            <bdi>
-                                                <span class="woocommerce-Price-currencySymbol">{{session('currency')['symbol']}}</span>
-                                                <span id="shipping_amount_for${index}">${amount}</span>
-                                            </bdi>
-                                            <span class="warehouse" id="warehouse_for${index}" style="display:none">${item.warehouse}</span>
-                                        </span>
-                                    </label>
-                                </li>`
-                                
-                    })
+                            list += `<li>
+                                        <input type="radio" required name="shipping_rate" data-index="${index}" data-pickup="${item.method == 'local-pickup'? true:false}" id="shipping_method_${index}" value="${item.id}" class="shipping_method">
+                                        <label for="shipping_method_0_flat_rate1">${item.name}: 
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>
+                                                    <span class="woocommerce-Price-currencySymbol">{{session('currency')['symbol']}}</span>
+                                                    <span id="shipping_amount_for${index}">${amount}</span>
+                                                </bdi>
+                                                <span class="warehouse" id="warehouse_for${index}" style="display:none">${item.warehouse}</span>
+                                            </span>
+                                        </label>
+                                    </li>`
+                                    
+                        })
+                    }else{
+                        list = `<li style="color:red;font-size:15px;"> Shipping & Pickup are not available at selected location</li>`
+                    }
                     $('#shipping_method').append(list)
   
 				},

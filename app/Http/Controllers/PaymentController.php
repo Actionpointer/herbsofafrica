@@ -26,6 +26,9 @@ class PaymentController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'shipping_rate' => 'required',
+        ]);
         $carts = session('carts');
         $coupon = $this->getCoupon($request->coupon);
         $payment = Payment::create(['user_id'=> auth()->id(),"reference" => uniqid(), 'affiliate_id'=> $request->affiliate_id,
