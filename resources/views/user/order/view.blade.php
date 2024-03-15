@@ -45,7 +45,7 @@
     <div class="woocommerce-MyAccount-content">
         <div class="woocommerce-notices-wrapper"></div>
         <p>
-            Order #<mark class="order-number">{{$order->id}}</mark> was placed on <mark class="order-date">{{$order->created_at->format('d F Y')}}</mark>. and 
+            Order #<mark class="order-number">{{$order->reference}}</mark> was placed on <mark class="order-date">{{$order->created_at->format('d F Y')}}</mark>. and 
             @switch($order->status)
                 @case('delivered')
                     <mark class="order-status">has been delivered to you on {{$order->status_time}}</mark>.
@@ -54,7 +54,12 @@
                     <mark class="order-status">has been shipped on {{$order->status_time}} and will soon be delivered</mark>.
                 @break
                 @case('ready')
+                    @if($order->shipping->rate->method == 'local-pickup') 
+                    <mark class="order-status">is ready for pickup.</mark>.
+                    @else Shipment 
                     <mark class="order-status">is about to be shipped.</mark>.
+                    @endif
+                    
                 @break
                 @case('processing')
                     <mark class="order-status">is currently being processed</mark>.
@@ -152,23 +157,33 @@
             </div>
             <div class="col-md-6">
                 <div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address">
-                    <h2 class="woocommerce-column__title"> Shipping address</h2>
+                    <h2 class="woocommerce-column__title"> @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif Address</h2>
                     <address>
                         {{$order->shipping->name}}<br>
                         {{$order->shipping->email}}, <br>
                         {{$order->shipping->phone}} <br>
+                        @if($order->shipping->rate->method == 'local-pickup')
+                            {{$order->shipping->rate->warehouse}}
+                        @else
                         {{$order->shipping->street.', '.$order->shipping->city}}, <br>
                         Post Code: {{$order->shipping->postcode}}, <br>
                         {{$order->shipping->state->name.', '.$order->shipping->country->name}}
+                        @endif
                     </address>
                         
                 </div>
-                @if(!in_array($order->status,['cancelled','shipped','delivered']))
+                @if(!in_array($order->status,['cancelled','shipped','delivered','ready']))
                 <form action="{{route('orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order')">@csrf
                     <input type="hidden" name="order_id" value="{{$order->id}}">
                     <input type="hidden" name="status" value="cancelled">
                     <button type="submit" class="button bg-danger text-white">Cancel this Order</button>
                 </form>
+                @endif
+                @if($order->note)
+                <p class="border p-3 mt-2">
+                    <strong>Special Note:</strong><br>
+                    {{$order->note}}
+                </p>
                 @endif
             </div>
         </div>

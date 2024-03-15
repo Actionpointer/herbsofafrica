@@ -1,13 +1,10 @@
-After payment - flutterwave
-After payment - stripe
-Calculating affiliate commission
-paying affiliates 
+
+Paying affiliates 
+- payouts to affiliates on admin->affiliates
 Affiliates - changing percentages
 Staff roles capabilities
+payouts to 
 
-
-
-hjhkjk
 
 
 

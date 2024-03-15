@@ -98,7 +98,7 @@ class AffiliateController extends Controller
     
     public function dashboard()
     {
-        $orders = auth()->user()->affiliate->orders;
+        $orders = auth()->user()->affiliate->payments;
         $affiliate = auth()->user()->affiliate;
         return view('user.affiliate.overview',compact('orders','affiliate'));
     }

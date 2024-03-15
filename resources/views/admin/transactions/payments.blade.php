@@ -53,7 +53,7 @@
                                         <td>{{$payment->user->name}}</td>
                                         <td>
                                             @if($payment->status == 'ready')
-                                                Ready for Shipment
+                                                Ready for @if($payment->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif
                                             @elseif($payment->status == 'processed')
                                                 Processing
                                             @else 

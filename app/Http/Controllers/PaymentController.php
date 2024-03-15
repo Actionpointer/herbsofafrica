@@ -28,10 +28,10 @@ class PaymentController extends Controller
     public function store(Request $request){
         $carts = session('carts');
         $coupon = $this->getCoupon($request->coupon);
-        $payment = Payment::create(['user_id'=> auth()->id(),"reference" => uniqid(),
+        $payment = Payment::create(['user_id'=> auth()->id(),"reference" => uniqid(), 'affiliate_id'=> $request->affiliate_id,
         'currency'=> session('currency')['code'], "amount"=> $carts->sum('amount.'.session('currency')['code']), 
         "coupon_id"=> $coupon['id'], "coupon_value"=> $coupon['value'], "shipment"=> $request->shipment, "total"=> $request->total]);
-        $order = Order::create(['user_id'=> auth()->id(), 'payment_id'=> $payment->id, 'currency'=> session('currency')['code'], 'total'=> $carts->sum('amount.'.session('currency')['code']), 'affiliate_id'=> $request->affiliate_id, "note" => $request->note]);
+        $order = Order::create(['reference'=> $payment->reference,'user_id'=> auth()->id(), 'payment_id'=> $payment->id, 'currency'=> session('currency')['code'], 'total'=> $carts->sum('amount.'.session('currency')['code']), "note" => $request->note]);
         $this->createOrderItems($order->id); 
         $this->createShipment($request,$order->id);
         $response = $this->initializePayment($payment);
@@ -52,15 +52,12 @@ class PaymentController extends Controller
         else return redirect()->to($response);
     }
 
-    
-
     protected function createShipment(Request $request,$order_id){
         Shipment::create(['rate_id'=> $request->shipping_rate,'order_id'=> $order_id,
         'firstname'=> $request->firstname ,'lastname'=> $request->lastname,'email'=> $request->email,
         'phone'=> $request->phone,'country_id'=> $request->country,'state_id'=> $request->state,
         'city'=> $request->city,'street'=> $request->street,'postcode'=> $request->postcode]);
     }
-
 
     public function callback(){ 
         if(!request()->query('tx_ref')) \abort(404);
@@ -89,8 +86,7 @@ class PaymentController extends Controller
                 $payment->status = 'failed';
                 $payment->save();
                 return redirect()->route('payment.confirmation',$payment);
-            }
-            
+            } 
         }
         $payment->status = 'success';
         $payment->save();

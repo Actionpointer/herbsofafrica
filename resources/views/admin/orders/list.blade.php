@@ -49,18 +49,18 @@
                                     @forelse ($orders as $order)
                                     <tr>
                                         <td data-sort="{{strtotime( $order->created_at )}}">{{$order->created_at->format('d/m/Y')}}</td>
-                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->reference}}</td>
                                         <td>{{$order->user->name}}</td>
                                         <td>
                                             @if($order->status == 'ready')
-                                                Ready for Shipment
+                                                Ready for @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif
                                             @elseif($order->status == 'processed')
                                                 Processing
                                             @else 
                                                 {{ucwords($order->status)}}
                                             @endif
                                         </td>
-                                        <td>{{$order->currency}}{{$order->amount}}</td>
+                                        <td>{{$order->currency}}{{$order->total}}</td>
                                         <td>
                                             <a href="{{route('admin.orders.read',$order)}}" class="btn btn-primary">View Details</a>
                                         </td>

@@ -29,24 +29,14 @@ class PaymentObserver
 
         }
         if($payment->isDirty('status') && $payment->status == 'success'){
-            if($payment->affiliate_id || ($payment->user->payments->count() <= 1 && $payment->user->referred_id)){
+            if($payment->comission){
                 $affiliate = $payment->affiliate ?? $payment->user->referrer;
-                if($payment->currency == 'NGN'){
-                    $amount = $this->getOrderSubtotal($payment->order,'NGN');
-                    $coupon_value = $payment->coupon_value ? $payment->coupon->percentage * $amount : 0;
-                    $currency = 'NGN';
-                }else{
-                    $amount = $payment->amount;
-                    $coupon_value = $payment->coupon_value;
-                    $currency = $payment->currency;
-                }
-                $commission_percent = $affiliate->percentage * $amount / 100;
-                $commission = $commission_percent - $coupon_value;
-                
                 Settlement::create(['affiliate_id'=> $affiliate->id,'payment_id'=> $payment->id,
                 'order_id'=> $payment->order->id,'description'=> "$affiliate->percentage% Commission on order",
-                'amount'=> $commission,'currency'=> $currency,'reference'=> uniqid()]);
+                'amount'=> $payment->commission,'currency'=> $payment->commission_currency,'reference'=> uniqid()]);
             }
+            
+
         }
     }
 

@@ -22,8 +22,7 @@ class SettlementObserver
     public function updated(Settlement $settlement): void
     {
         if($settlement->isDirty('status') && $settlement->status == 'paid'){
-            Revenue::create(['payment_id'=> $settlement->payment_id,'currency_id'=> $settlement->currency,
-            'amount'=> $settlement->charges]);
+            
         }
 
         if($settlement->isDirty('status') && $settlement->status == 'withheld'){

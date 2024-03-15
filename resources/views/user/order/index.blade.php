@@ -39,7 +39,7 @@
             <tr class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
                     data-title="Order">
-                    <a href="{{route('orders.view',$order)}}"><br> #{{$order->id}} </a>
+                    <a href="{{route('orders.view',$order)}}"><br> #{{$order->reference}} </a>
                     
                 </td>
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date" data-title="Date">
@@ -49,7 +49,7 @@
                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
                     data-title="Status">
                     @if($order->status == 'ready')
-                        Ready for Shipment
+                        Ready for @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif
                     @else 
                         {{ucwords($order->status)}}
                     @endif
@@ -59,7 +59,7 @@
                     data-title="Total">
                     <span class="woocs_price_code">
                         <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol">{{$currencies->firstWhere('code',$order->currency)->symbol}}</span>47
+                            <span class="woocommerce-Price-currencySymbol">{{$currencies->firstWhere('code',$order->currency)->symbol}}</span>{{$order->total}}
                         </span>
                     </span>
                     for {{$order->items->count()}} item

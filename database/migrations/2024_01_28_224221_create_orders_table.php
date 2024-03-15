@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('payment_id');
+            $table->string('reference');
             $table->string('currency');
             $table->string('total');
             $table->string("note")->nullable();
+            $table->string("cancelled_at")->nullable();
             $table->string("ready_at")->nullable();
             $table->string("shipped_at")->nullable();
             $table->string("delivered_at")->nullable();

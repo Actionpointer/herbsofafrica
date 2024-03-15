@@ -121,27 +121,27 @@
                             <th>Date</th>
                             <th>Description</th>
                             <th>Amount</th>
-                            <th>Revenue</th>
+                            <th>Commission</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($orders as $order)
+                        @forelse ($payments as $payment)
                         <tr>
-                            <td data-sort="{{strtotime( $order->created_at )}}">{{$order->created_at->format('d/m/Y')}}</td>
-                            <td>{{$order->reference}}</td>
-                            <td>{{ucwords($order->status)}}</td>
-                            <td>@if($order->dispatched) Completed @elseif($order->status == "success") Ready @else Awaiting Payment @endif</td>
-                            <td>{{$order->currency->symbol}}{{$order->amount}}</td>
+                            <td data-sort="{{strtotime( $payment->created_at )}}">{{$payment->created_at->format('d/m/Y')}}</td>
+                            <td>{{$payment->reference}}</td>
+                            <td>{{$payment->currency}} {{$payment->amount}}</td>
+                            <td>{{$payment->settlement->currency}}{{$payment->settlement->amount}}</td>
+                            <td>{{ucwords($payment->settlement->status)}}</td>
                             <td>
-                                <button type="button" data-toggle="modal" href="#exampleModal{{$order->id}}" class="btn btn-primary">View Details</button>
+                                <button type="button" data-toggle="modal" href="#exampleModal{{$payment->id}}" class="btn btn-primary">View Details</button>
                             </td>
                         </tr>
                         
                         @empty 
                         <tr>
                             <td colspan="5">
-                                No Orders Yet
+                                No Sales Yet
                             </td>
                         </tr>
                         @endforelse
@@ -152,7 +152,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            Payments
+            Payouts
         </div>
         <div class="tab-pane fade" id="coupon" role="tabpanel" aria-labelledby="setting-tab">
             <div class="table-responsive mt-3">

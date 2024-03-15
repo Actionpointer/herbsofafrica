@@ -436,6 +436,7 @@
                 },
 				success:function(data) {
                     $('#shipping_state').children().remove()
+                    $('#shipping_state').append(`<option></option>`)
 					data.forEach(function(item){
                         let options = '';
                         item.states.forEach(function(value){

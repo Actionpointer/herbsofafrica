@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string("user_id");
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("affiliate_id")->nullable();
             $table->string("reference");
+            $table->string("stripe_session_id")->nullable();
             $table->string("currency");
             $table->string("amount")->default(0);
             $table->unsignedBigInteger("coupon_id")->nullable();
             $table->string("coupon_value")->default(0);
-            $table->string("vat")->default(0);
             $table->string("shipment")->default(0);
             $table->string("total")->default(0);
             $table->string("status")->default('pending');

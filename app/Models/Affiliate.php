@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Country;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,8 +23,8 @@ class Affiliate extends Model
         return $this->hasMany(User::class,'referrer_id');
     }
 
-    public function orders(){
-        return $this->hasMany(Order::class);
+    public function payments(){
+        return $this->hasMany(Payment::class);
     }
 
     public function country(){
