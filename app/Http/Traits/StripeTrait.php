@@ -15,7 +15,7 @@ trait StripeTrait
         $items = [];
         $items[] = [  'price_data' => 
                                 [ 'currency' => strtolower(session('currency')['code']), 'unit_amount' => $payment->shipment *100, 
-                                'product_data' => [ 'name' => 'Shipment',  'description' => $payment->order->shipment->rate->name,'images' => [] ],
+                                'product_data' => [ 'name' => 'Shipment',  'description' => $payment->order->shipping->rate->name,'images' => [] ],
                                 ], 
                                 'quantity' => 1, 
                             ];
