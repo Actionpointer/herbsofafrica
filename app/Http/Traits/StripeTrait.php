@@ -66,7 +66,6 @@ trait StripeTrait
             ->asJsonResponse()
             ->post();
         // acct_1OpTfgGgPcnGNIQ2
-        dd($response);
         if($response && $response->id){
             $affiliate->bank_name = 'stripe';
             $affiliate->account_number = $response->id;
@@ -79,7 +78,8 @@ trait StripeTrait
         $response = Curl::to('https://api.stripe.com/v1/account_links')
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
-            ->withData( array('account'=> $affiliate->account_number,'refresh_url'=> route('affiliate.connect.stripe') ,'return_url' => route('affiliate.index')))
+            ->withData( array('account'=> $affiliate->account_number,'type'=> 'account_onboarding',
+            'refresh_url'=> route('affiliate.connect.stripe') ,'return_url' => route('affiliate.index')))
             ->asJsonResponse()
             ->post();
         if($response && $response->url){
@@ -91,17 +91,32 @@ trait StripeTrait
         $response = Curl::to('https://api.stripe.com/v1/payouts')
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
-            ->withData( array('amount'=> $settlement->amount,'currency'=> $settlement->currency ,'destination'=> $settlement->affiliate->account_number))
+            ->withData( array('amount'=> $settlement->amount * 100,'currency'=> $settlement->currency ,'destination'=> $settlement->affiliate->account_number))
             ->asJsonResponse()
             ->post();
+        dd($response);
         if($response && $response->status && $response->status == 'pending'){
-            $settlement->status = 'paid'; 
-            $settlement->paid_at = now(); 
+            $settlement->transfer_id = $response->id; 
+            $settlement->status = 'processing'; 
             $settlement->save();
         }else {
+            $settlement->transfer_id = $response->id ?? '';
             $settlement->status = 'failed';
             $settlement->save();
         }
+    }
+
+    public function verifyPayoutStripe(Settlement $settlement){
+        $response = Curl::to("https://api.stripe.com/v1/payouts/$settlement->transfer_id")
+            ->withHeader('Content-Type: application/x-www-form-urlencoded')
+            ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
+            ->asJsonResponse()
+            ->get(); 
+            if($response && $response->status && $response->status == 'success'){
+                $settlement->status = 'paid';
+                $settlement->paid_at = now();
+                $settlement->save();
+            }
     }
 
 

@@ -24,10 +24,9 @@ class AffiliateController extends Controller
     }
     
     public function index()
-    {
-        
+    { 
         if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
-            return redirect()->route('affiliate.dashboard');
+            return redirect()->route('affiliate.overview');
         }
         $countries = Country::all();
         return view('user.affiliate.register',compact('countries'));
@@ -37,26 +36,16 @@ class AffiliateController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'affiliate_username' => ['required', 'string'],
+            'affiliate_name' => ['required', 'string'],
             'affiliate_email' => ['required', 'string','email','max:255'],
             'affiliate_phone' => ['required', 'string', 'max:255'],
             'affiliate_country' => ['required', 'string'],
         ]);
         $percentage = Setting::where('name','affiliate_percentage')->first()->value;
-        $affiliate = Affiliate::updateOrCreate(['user_id'=> auth()->id(),'username'=> $request->affiliate_username],
-                ['email'=> $request->affiliate_email,
+        $affiliate = Affiliate::updateOrCreate(['user_id'=> auth()->id(),'email'=> $request->affiliate_email],
+                ['name'=> $request->affiliate_name,
                 'phone'=> $request->affiliate_phone,
                 'country_id'=> $request->affiliate_country,'percentage'=> $percentage]);
-        
-        // $response = Curl::to('https://api.stripe.com/v1/accounts')
-        // ->withHeader('Content-Type: application/x-www-form-urlencoded')
-        // ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
-        // ->withData( array('type'=> 'express','country'=> $affiliate->country->iso ,'email' => $affiliate->email))
-        // ->asJsonResponse()
-        // ->get();
-
-        // dd($response);
-        
         if($affiliate->country->iso == "NG"){
             return redirect()->route('affiliate.bank.account');
         }else{
@@ -76,9 +65,7 @@ class AffiliateController extends Controller
     }
 
     public function bankAccountLink(){
-        // $banks = $this->banks(auth()->user()->affiliate->country->iso);
-        $response = $this->resolveBankAccountByFlutter('058','0051911523');
-        dd($response);
+        $banks = $this->banks(auth()->user()->affiliate->country->iso);
         return view('user.affiliate.bank_account',compact('banks'));
     }
 
@@ -98,9 +85,11 @@ class AffiliateController extends Controller
     
     public function dashboard()
     {
-        $orders = auth()->user()->affiliate->payments;
+        $payments = auth()->user()->affiliate->payments;
         $affiliate = auth()->user()->affiliate;
-        return view('user.affiliate.overview',compact('orders','affiliate'));
+        $currencies = Currency::all();
+        return redirect()->to($this->accountLink($affiliate));
+        return view('user.affiliate.overview',compact('payments','affiliate','currencies'));
     }
 
     public function coupon(Request $request){
@@ -124,18 +113,4 @@ class AffiliateController extends Controller
         return redirect()->back();
     }
 
-
-    
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    
-    public function destroy(string $id)
-    {
-        //
-    }
 }

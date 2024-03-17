@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use App\Models\Currency;
 use App\Models\Affiliate;
 use App\Models\OrderItem;
+use App\Models\Settlement;
 use App\Http\Traits\OrderTrait;
 use App\Observers\PaymentObserver;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,10 @@ class Payment extends Model
 
     public function order(){
         return $this->hasOne(Order::class);
+    }
+
+    public function settlement(){
+        return $this->hasOne(Settlement::class);
     }
 
     public function coupon(){

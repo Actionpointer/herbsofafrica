@@ -52,6 +52,7 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
             Route::post('staff', [UserController::class, 'staff'])->name('staff');
             Route::get('customers', [UserController::class, 'customers'])->name('customers');
             Route::get('affiliates', [UserController::class, 'affiliates'])->name('affiliates');
+            Route::post('affiliates', [UserController::class, 'affiliates_commission'])->name('affiliates');
             Route::post('manage', [UserController::class, 'manage'])->name('manage');
         });
 
@@ -89,6 +90,7 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
             Route::get('payments', [TransactionsController::class, 'payments'])->name('payments');
             Route::get('settlements', [TransactionsController::class, 'settlements'])->name('settlements');
             Route::post('settlements', [TransactionsController::class, 'manage'])->name('settlements');
+            Route::post('settlements/pay', [TransactionsController::class, 'pay'])->name('settlements.pay');
             Route::get('revenues', [TransactionsController::class, 'revenues'])->name('revenues');
 
         });

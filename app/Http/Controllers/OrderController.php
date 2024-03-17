@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Currency;
+use App\Models\Affiliate;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->only(['wishlist','addtowish','removefromwish']);
+        if(request()->domain){
+            $affiliate = Affiliate::where('username',request()->domain)->first();
+            session(['affiliate'=> $affiliate]);
+        }
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +34,6 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        
         $currency = Currency::where('code',$order->currency)->first();
         return view('user.order.view',compact('order','currency'));
     }

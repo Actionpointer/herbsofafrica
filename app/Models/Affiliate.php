@@ -6,14 +6,25 @@ use App\Models\User;
 use App\Models\Coupon;
 use App\Models\Country;
 use App\Models\Payment;
+use App\Models\Settlement;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Affiliate extends Model
 {
-    use HasFactory;
+    use HasFactory,Sluggable;
 
     protected $fillable = ['email','name','username','phone','user_id','currency','country_id','bank_code','bank_name','account_number','balance','status','percentage'];
+
+    public function sluggable(): array
+    {
+        return [
+            'username' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -33,6 +44,10 @@ class Affiliate extends Model
 
     public function coupons(){
         return $this->hasMany(Coupon::class);
+    }
+
+    public function settlements(){
+        return $this->hasMany(Settlement::class);
     }
 
     

@@ -16,7 +16,7 @@ class UserController extends Controller
         if(auth()->user()->role == 'admin')
         return redirect()->route('admin.dashboard');
         elseif(auth()->user()->role == 'affiliate')
-        return redirect()->route('affiliate.dashboard',['domain' => auth()->user()->affiliate->username]);
+        return redirect()->route('affiliate.overview');
         return view('user.dashboard');
     }
 
@@ -33,7 +33,12 @@ class UserController extends Controller
     public function affiliates(){
         $affiliates = Affiliate::all();
         $currencies = Currency::all();
-        return view('admin.user.affiliates',compact('customers','currencies'));
+        return view('admin.user.affiliates',compact('affiliates','currencies'));
+    }
+
+    public function affiliates_commission(Request $request){
+        Affiliate::where('id',$request->affiliate_id)->update(['percentage'=> $request->percentage]);
+        return redirect()->back();
     }
 
     public function staff(){

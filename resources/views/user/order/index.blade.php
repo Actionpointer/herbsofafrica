@@ -16,20 +16,15 @@
         class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
         <thead>
             <tr>
-                <th
-                    class="woocommerce-orders-table__header woocommerce-orders-table__header-order-number">
+                <th class="woocommerce-orders-table__header woocommerce-orders-table__header-order-number">
                     <span class="nobr">Order</span></th>
-                <th
-                    class="woocommerce-orders-table__header woocommerce-orders-table__header-order-date">
+                <th class="woocommerce-orders-table__header woocommerce-orders-table__header-order-date">
                     <span class="nobr">Date</span></th>
-                <th
-                    class="woocommerce-orders-table__header woocommerce-orders-table__header-order-status">
+                <th class="woocommerce-orders-table__header woocommerce-orders-table__header-order-status">
                     <span class="nobr">Status</span></th>
-                <th
-                    class="woocommerce-orders-table__header woocommerce-orders-table__header-order-total">
+                <th class="woocommerce-orders-table__header woocommerce-orders-table__header-order-total">
                     <span class="nobr">Total</span></th>
-                <th
-                    class="woocommerce-orders-table__header woocommerce-orders-table__header-order-actions">
+                <th class="woocommerce-orders-table__header woocommerce-orders-table__header-order-actions">
                     <span class="nobr">Actions</span>
                 </th>
             </tr>

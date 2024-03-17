@@ -34,19 +34,21 @@
                 <table class="pure-table">
                     <thead>
                         <tr>
-                            <th colspan="2">Account Summary</th>
+                            <th colspan="{{$currencies->count()}}">Account Balance</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Balance</td>
-                            <td><span>$0.00</span></td>
+                            @foreach ($currencies as $currency)
+                            <td>{{$currency->name}}</td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            @foreach ($currencies as $currency)
+                            <td><span>{{$currency->symbol}}{{$affiliate->settlements->where('currency',$currency->code)->sum('amount')}}</span></td>
+                            @endforeach
                         </tr>
                         
-                        <tr>
-                            <td>Commission Rate</td>
-                            <td>25.00% of each completed sale, pre-tax</td>
-                        </tr>
                         
                         
                     </tbody>
@@ -55,7 +57,7 @@
                 <table class="pure-table">
                     <thead>
                         <tr>
-                            <th colspan="2">Links</th>
+                            <th colspan="2">INFO</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +69,11 @@
                                     {{route('affiliate.shop',$affiliate->username)}}
                                 </a>
                             </td>
-                        </tr>         
+                        </tr> 
+                        <tr>
+                            <td>Commission Rate</td>
+                            <td>{{$affiliate->percentage}}% of each completed sale, pre-tax</td>
+                        </tr>        
                     </tbody>
                 </table>
                 

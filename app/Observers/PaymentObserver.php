@@ -29,7 +29,7 @@ class PaymentObserver
 
         }
         if($payment->isDirty('status') && $payment->status == 'success'){
-            if($payment->comission){
+            if($payment->commission){
                 $affiliate = $payment->affiliate ?? $payment->user->referrer;
                 Settlement::create(['affiliate_id'=> $affiliate->id,'payment_id'=> $payment->id,
                 'order_id'=> $payment->order->id,'description'=> "$affiliate->percentage% Commission on order",

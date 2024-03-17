@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
-use App\Models\Currency;
 use App\Models\Category;
-use App\Models\Registration;
+
+use App\Models\Affiliate;
+
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->only(['wishlist','addtowish','removefromwish']);
+        if(request()->domain){
+            $affiliate = Affiliate::where('username',request()->domain)->first();
+            session(['affiliate'=> $affiliate]);
+        }
+    }
 
     public function index(){
         $categories = Category::paginate(50);

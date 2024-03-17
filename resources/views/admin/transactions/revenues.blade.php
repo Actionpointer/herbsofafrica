@@ -48,7 +48,7 @@
                                     @forelse ($revenues as $revenue)
                                     <tr>
                                         <td data-sort="{{strtotime( $revenue->created_at )}}">{{$revenue->created_at->format('d/m/Y')}}</td>
-                                        <td>{{$revenue->payment->id}}</td>
+                                        <td>{{$revenue->payment_id}}</td>
                                         <td>{{$revenue->payment->amount}}</td>
                                         <td>
                                             {{$revenue->currency}}

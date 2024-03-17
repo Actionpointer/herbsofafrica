@@ -64,7 +64,6 @@ trait FlutterwaveTrait
             ->withData( json_encode(array("account_number" => $account_number,"account_bank" => $bank_code)) )
             ->asJson()
             ->post();
-        dd($response);
         if(!$response ||  !isset($response->status) || $response->status == "error"){
             return false;
         }
@@ -105,7 +104,6 @@ trait FlutterwaveTrait
             ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
             ->asJson()
             ->get(); 
-            
             if(!$response || $response->status == 'error' || $response->data->status == 'FAILED'){
                 $settlement->status = 'failed';
                 $settlement->save();

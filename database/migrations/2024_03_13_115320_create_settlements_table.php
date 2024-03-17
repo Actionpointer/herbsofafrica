@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description')->default('Commission');
             $table->string('amount')->default(0);
             $table->string('currency');
-            $table->string('status')->default('pending'); //paid, withheld
+            $table->string('status')->default('pending'); //pending, paid, withheld, 'failed, 
             $table->timestamps();
         });
     }

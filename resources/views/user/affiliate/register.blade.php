@@ -91,9 +91,9 @@
                                                                             * Required fields<br><br>
                                                                             <fieldset>
                                                                                 <div class="mb-3">
-                                                                                    <label for="affiliate_username">Affiliate Username *</label>
-                                                                                    <input type="text" id="affiliate_username" name="affiliate_username" value="{{old('affiliate_username')}}" required="">
-                                                                                    @error('affiliate_username')
+                                                                                    <label for="affiliate_username">Affiliate Business Name *</label>
+                                                                                    <input type="text" id="affiliate_username" name="affiliate_name" value="{{old('affiliate_name')}}" required="">
+                                                                                    @error('affiliate_name')
                                                                                     <div style="color: red;">{{$message}}</div>
                                                                                     @enderror
                                                                                 </div>

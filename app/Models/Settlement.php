@@ -13,7 +13,7 @@ class Settlement extends Model
     use HasFactory;
 
     protected $fillable = ['affiliate_id','reference','transfer_id','payment_id','order_id','description','amount','currency','status','paid_at'];
-    protected $casts = ['paid_at'=> 'array'];
+    protected $casts = ['paid_at'=> 'datetime'];
     public static function boot(){
         parent::boot();
         parent::observe(new SettlementObserver);

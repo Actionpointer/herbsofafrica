@@ -38,11 +38,10 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Referred By</th>
+                                        <th>Email</th>
                                         <th>Orders</th>
-                                        @foreach($currencies as $currency)
-                                        <th>{{$currency->name}}</th>
-                                        @endforeach
+                                        <th>Referred By</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -50,12 +49,10 @@
                                     @forelse ($customers as $customer)
                                     <tr>
                                         <td>{{$customer->name}}</td>
-                                        <td>{{$customer->referrer->username}}</td>
+                                        <td>{{$customer->email}}</td>
                                         <td>{{$customer->orders->count()}}</td>
-                                        @foreach($currencies as $currency)
-                                        <td>    {{$customer->orders->where('currency',$currency->code)->sum('total')}}</td>
-                                        @endforeach
-                                        
+                                        <td>{{$customer->referrer->username}}</td>
+                                        <td>@if($customer->status) Active @else Suspended @endif</td>
                                         <td>
                                             <button type="button" data-toggle="modal" href="#exampleModal{{$customer->id}}" class="btn btn-primary">View</button>
                                         </td>
@@ -86,7 +83,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Payment Details</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
