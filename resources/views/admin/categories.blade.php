@@ -35,7 +35,7 @@
                     <h4 class="card-title p-4">Add Category</h4>
                     <!-- Tab panes -->
                     <div class="card-body">
-                        <form action="{{route('categories.store')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">@csrf
+                        <form action="{{route('admin.categories.store')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">@csrf
 
                             <div class="form-group">
                                 <label class="col-md-12">Title</label>
@@ -106,7 +106,7 @@
                                                     <a data-toggle="modal" href="#exampleModal{{$category->id}}" class="btn btn-info mr-2">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <form action="{{route('categories.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Category?')">@csrf
+                                                    <form action="{{route('admin.categories.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Category?')">@csrf
                                                         <input type="hidden" name="category_id" value="{{$category->id}}">
                                                         <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                             <i class="fa fa-trash-o"></i>
@@ -125,7 +125,7 @@
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="form-horizontal form-material" method="POST" action="{{route('categories.update')}}">@csrf
+                                                    <form class="form-horizontal form-material" method="POST" action="{{route('admin.categories.update')}}">@csrf
                                                         <input type="hidden" name="category_id" value="{{$category->id}}">
                                                         <div class="form-group">
                                                             <label class="col-md-12">Title</label>

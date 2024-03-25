@@ -73,8 +73,10 @@ class ProductController extends Controller
             'stock' => 'required','prices'=> 'required|array','published' => 'required'
         ]);
         $faqs = collect([]);
-        foreach(array_filter($request->question) as $key => $question){
-            $faqs->push([$question => $request->answer[$key]]);
+        if($request->question){
+            foreach(array_filter($request->question) as $key => $question){
+                $faqs->push([$question => $request->answer[$key]]);
+            }
         }
         Product::where('id',$request->product_id)->update([
             'title' => $request->title,

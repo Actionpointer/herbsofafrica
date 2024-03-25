@@ -173,7 +173,7 @@
                         
                 </div>
                 @if(!in_array($order->status,['cancelled','shipped','delivered','ready']))
-                <form action="{{route('orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order')">@csrf
+                <form action="{{route('admin.orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order')">@csrf
                     <input type="hidden" name="order_id" value="{{$order->id}}">
                     <input type="hidden" name="status" value="cancelled">
                     <button type="submit" class="button bg-danger text-white">Cancel this Order</button>

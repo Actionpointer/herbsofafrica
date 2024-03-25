@@ -181,10 +181,10 @@
                                             @endforeach
                                             <div class="row faqs mb-2">
                                                 <div class="col-md-4">
-                                                    <input placeholder="Question" class="form-control" type="text" name="faqs[question][]" >
+                                                    <input placeholder="Question" class="form-control" type="text" name="question[]" >
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input placeholder="Answer" class="form-control" type="text" name="faqs[answer][]" > 
+                                                    <input placeholder="Answer" class="form-control" type="text" name="answer[]" > 
                                                 </div>
                                                 <div class="col-md-2">
                                                     <button type="button" class="btn btn-primary add_faq"><i class="fa fa-plus"></i></button>
