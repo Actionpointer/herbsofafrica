@@ -13,7 +13,6 @@
     <title>Herbs of Africa® | Buy African Natural Herbal Supplements 2023</title>
     <meta name="description"
         content="Discover the blend of tradition &amp; science at Herbs of Africa®. Our herbal solutions, rooted in African organic, natural wellness &amp; balance." />
-    <link rel="canonical" href="index.html" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Herbs of Africa® | Buy African Natural Herbal Supplements 2023" />

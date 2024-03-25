@@ -132,7 +132,7 @@
                                                                         <div class="woocommerce-privacy-policy-text">
                                                                             <p>Your personal data will be used to support your experience
                                                                                 throughout this website, to manage access to your account, and for other purposes described in our 
-                                                                                <a href="../privacy-policy/index.html" class="woocommerce-privacy-policy-link" target="_blank">
+                                                                                <a href="{{route('privacy-policy')}}" class="woocommerce-privacy-policy-link" target="_blank">
                                                                                     privacy policy
                                                                                 </a>.
                                                                             </p>

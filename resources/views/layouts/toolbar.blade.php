@@ -1,6 +1,6 @@
 <div class="wd-toolbar wd-toolbar-label-show">
     <div class="wd-toolbar-shop wd-toolbar-item wd-tools-element">
-        <a href="shop/index.html">
+        <a href="{{route('shop')}}">
             <span class="wd-tools-icon"></span>
             <span class="wd-toolbar-label">
                 Shop </span>
@@ -17,7 +17,7 @@
         </a>
     </div>
     <div class="wd-header-cart wd-tools-element wd-design-5 cart-widget-opener" title="My cart">
-        <a href="cart/index.html">
+        <a href="{{route('cart')}}">
             <span class="wd-tools-icon wd-icon-alt">
                 <span class="wd-cart-number wd-tools-count">0 <span>items</span></span>
             </span>
@@ -26,7 +26,7 @@
         </a>
     </div>
     <div class="wd-header-my-account wd-tools-element wd-style-icon  login-side-opener">
-        <a href="my-account/index.html">
+        <a href="{{route('dashboard')}}">
             <span class="wd-tools-icon"></span>
             <span class="wd-toolbar-label">
                 My account </span>

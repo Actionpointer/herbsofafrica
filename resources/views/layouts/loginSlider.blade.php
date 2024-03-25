@@ -23,12 +23,12 @@
         <p class="form-row">
             {{-- <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="40dad5bc83" />
                 <input type="hidden" name="_wp_http_referer" value="/" /> 
-            <input type="hidden" name="redirect" value="index.html" /> --}}
+            <input type="hidden" name="redirect" value="" /> --}}
             <button type="submit" class="button woocommerce-button woocommerce-form-login__submit" name="login" value="Log in">Log in</button>
         </p>
 
         <p class="login-form-footer">
-            <a href="my-account/lost-password/index.html" class="woocommerce-LostPassword lost_password">Lost your password?</a>
+            <a href="{{route('password.request')}}" class="woocommerce-LostPassword lost_password">Lost your password?</a>
             <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
                 <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" value="forever" title="Remember me" aria-label="Remember me" />
                 <span>Remember me</span>

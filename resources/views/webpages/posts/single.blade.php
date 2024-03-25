@@ -26,7 +26,7 @@
       <h3 class="entry-title title">Blog</h3>
 
 
-      <div class="breadcrumbs"><a href="../index.html" rel="v:url" property="v:title">Home</a> &raquo;
+      <div class="breadcrumbs"><a href="{{url('/')}}" rel="v:url" property="v:title">Home</a> &raquo;
         <span><a rel="v:url" href="../category/blog/index.html">Blog</a></span> &raquo; </div>
       <!-- .breadcrumbs -->
     </div>
@@ -224,7 +224,7 @@
             </a>
           </div>
 
-          <a href="index.html" class="back-to-archive wd-tooltip">Back to list</a>
+          <a href="{{url('/')}}" class="back-to-archive wd-tooltip">Back to list</a>
 
           <div class="wd-page-nav-btn next-btn">
             <a
@@ -243,7 +243,7 @@
 
           <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow"
-                  id="cancel-comment-reply-link" href="index.html#respond"
+                  id="cancel-comment-reply-link" href="{{url('/')}}#respond"
                   style="display:none;">Cancel reply</a></small></h3>
             <form action="https://herbsofafrica.com/wp-comments-post.php" method="post"
               id="commentform" class="comment-form" novalidate>
@@ -312,7 +312,7 @@
                       href="../the-healing-power-of-nature-unlocking-the-potential-of-organic-herbal-supplements/index.html">Here
                       is the Power of Nature through Organic Herbal Supplements</a></li>
                   <li><a class="wp-block-latest-posts__post-title"
-                      href="index.html">Harnessing the Healing Power of Nature: Organic
+                      href="{{url('/')}}">Harnessing the Healing Power of Nature: Organic
                       Herbal Supplements for Optimal Health</a></li>
                 </ul>
               </div>

@@ -18,7 +18,7 @@
                 Terms of Use </h1>
 
 
-            <div class="breadcrumbs"><a href="../index.html" rel="v:url" property="v:title">Home</a> &raquo;
+            <div class="breadcrumbs"><a href="{{url('/')}}" rel="v:url" property="v:title">Home</a> &raquo;
                 <span class="current">Terms of Use</span></div><!-- .breadcrumbs -->
         </div>
     </div>

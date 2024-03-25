@@ -21,7 +21,7 @@
                       <div class="home_title">Payment Response</div>
                       <div class="breadcrumbs">
                           <ul>
-                              <li><a href="index.html">Home</a></li>
+                              <li><a href="{{url('/')}}">Home</a></li>
                               <li>Response</li>
                           </ul>
                       </div>

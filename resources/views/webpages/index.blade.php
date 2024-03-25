@@ -116,10 +116,10 @@ media='all' />
                                                         <div class="elementor-widget-container">
                                                             <div class="wd-button-wrapper text-center">
                                                                 <a class="btn btn-style-default btn-style-round btn-size-extra-large btn-color-primary btn-icon-pos-right"
-                                                                    href="shop/index.html">
+                                                                    href="{{route('shop')}}">
                                                                     <span class="wd-btn-text"
                                                                         data-elementor-setting-key="text">
-                                                                        Shop All </span>
+                                                                        Shop Now </span>
 
                                                                 </a>
                                                             </div>
@@ -131,7 +131,7 @@ media='all' />
                                                         <div class="elementor-widget-container">
                                                             <div class="wd-button-wrapper text-center">
                                                                 <a class="btn btn-style-default btn-style-round btn-size-extra-large btn-color-alt btn-icon-pos-right"
-                                                                    href="who-we-are/index.html">
+                                                                    href="{{route('about')}}">
                                                                     <span class="wd-btn-text"
                                                                         data-elementor-setting-key="text">
                                                                         Who we Are </span>
@@ -265,7 +265,7 @@ media='all' />
                                             <div class="elementor-widget-container">
                                                 <div class="wd-button-wrapper text-left">
                                                     <a class="btn btn-style-default btn-style-round btn-size-large btn-color-primary btn-icon-pos-right"
-                                                        href="who-we-are/index.html">
+                                                        href="{{route('about')}}">
                                                         <span class="wd-btn-text"
                                                             data-elementor-setting-key="text">
                                                             Read More </span>
@@ -297,16 +297,10 @@ media='all' />
                                             data-id="311e092" data-element_type="widget"
                                             data-widget_type="wd_title.default">
                                             <div class="elementor-widget-container">
-                                                <div
-                                                    class="title-wrapper set-mb-s reset-last-child wd-title-color-alt wd-title-style-simple wd-title-size-default text-left">
-
-
+                                                <div class="title-wrapper set-mb-s reset-last-child wd-title-color-alt wd-title-style-simple wd-title-size-default text-left">
                                                     <div class="liner-continer">
-                                                        <h4
-                                                            class="woodmart-title-container title wd-fontsize-l">
-                                                            Find Solution</h4>
+                                                        <h4 class="woodmart-title-container title wd-fontsize-l"> Find Solution</h4>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -350,17 +344,13 @@ media='all' />
                                                 <div class="owl-carousel wd-owl info-box-carousel owl-items-lg-4 owl-items-md-4 owl-items-sm-3 owl-items-xs-1">
                                                     @foreach ($categories as $category)
                                                     <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-83030a4 cursor-pointer"
-                                                            onclick="window.location.href='product-category/blood-health/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
+                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-83030a4 cursor-pointer">
+                                                            <div class="box-icon-wrapper  box-with-icon box-icon-simple">
                                                                 <div class="info-box-icon">
-                                                                    <img decoding="async" width="579"
-                                                                        height="359"
-                                                                        src="{{$category->image}}"
-                                                                        class="attachment-full size-full wp-image-1564"
-                                                                        alt=""
-                                                                        />
+                                                                    <a href="{{route('shop.category',$category)}}">
+                                                                        <img decoding="async" width="579" height="359" src="{{$category->image}}" class="attachment-full size-full wp-image-1564" alt="" />
+                                                                    </a>
+                                                                    
                                                                 </div>
                                                             </div>
 
@@ -368,7 +358,7 @@ media='all' />
 
                                                                 <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
                                                                     data-elementor-setting-key="title">
-                                                                    {{$category->title}} </h4>
+                                                                    <a href="{{route('shop.category',$category)}}">{{$category->title}}</a> </h4>
 
                                                                 <div class="info-box-inner set-cont-mb-s reset-last-child"
                                                                     data-elementor-setting-key="content">
@@ -378,209 +368,6 @@ media='all' />
                                                         </div>
                                                     </div>
                                                     @endforeach
-                                                    {{-- <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-e8b4ff3 cursor-pointer"
-                                                            onclick="window.location.href='product-category/cardiovascular-health/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img decoding="async" width="579"
-                                                                        height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-22.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1566"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-22.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-22-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-22-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Cardiovascular </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-a7687f4 cursor-pointer"
-                                                            onclick="window.location.href='product-category/sexual-health/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-23.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1567"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-23.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-23-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-23-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Sexual Health </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-7544907 cursor-pointer"
-                                                            onclick="window.location.href='product-category/gut-health/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-24.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1568"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-24.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-24-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-24-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Gut Health </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-1af394e cursor-pointer"
-                                                            onclick="window.location.href='product-category/weight-management/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-25.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1569"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-25.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-25-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-25-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Weight Loss </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-747e2f8 cursor-pointer"
-                                                            onclick="window.location.href='product-category/cancer-care/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-26.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1570"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-26.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-26-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-26-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Cancer Care </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-69f3a30 cursor-pointer"
-                                                            onclick="window.location.href='product-category/joint-health/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-27.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1571"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-27.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-27-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-27-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Joints Health </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="info-box-wrapper">
-                                                        <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-028ffc6 cursor-pointer"
-                                                            onclick="window.location.href='product-category/asthma/index.html'">
-                                                            <div
-                                                                class="box-icon-wrapper  box-with-icon box-icon-simple">
-                                                                <div class="info-box-icon">
-                                                                    <img loading="lazy" decoding="async"
-                                                                        width="579" height="359"
-                                                                        src="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-28.webp')}}"
-                                                                        class="attachment-full size-full wp-image-1572"
-                                                                        alt=""
-                                                                        srcset="{{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-28.webp')}} 579w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-28-300x186.webp')}} 300w, {{asset('wp-content/uploads/2023/09/ezgif.com-gif-maker-28-150x93.webp')}} 150w"
-                                                                        sizes="(max-width: 579px) 100vw, 579px" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="info-box-content">
-
-                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m"
-                                                                    data-elementor-setting-key="title">
-                                                                    Asthma </h4>
-
-                                                                <div class="info-box-inner set-cont-mb-s reset-last-child"
-                                                                    data-elementor-setting-key="content">
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -947,7 +734,7 @@ media='all' />
                                             <div class="elementor-widget-container">
                                                 <div class="wd-button-wrapper text-left">
                                                     <a class="btn btn-style-link btn-style- btn-size-extra-large btn-color-primary btn-icon-pos-right"
-                                                        href="shop/index.html">
+                                                        href="{{route('shop')}}">
                                                         <span class="wd-btn-text"
                                                             data-elementor-setting-key="text">
                                                             View Products </span>
@@ -1053,7 +840,7 @@ media='all' />
                                             <div class="elementor-widget-container">
                                                 <div class="wd-button-wrapper text-right">
                                                     <a class="btn btn-style-default btn-style-round btn-size-large btn-color-alt btn-icon-pos-right"
-                                                        href="shop/index.html">
+                                                        href="{{route('shop')}}">
                                                         <span class="wd-btn-text"
                                                             data-elementor-setting-key="text">
                                                             View More </span>
@@ -1094,16 +881,15 @@ media='all' />
                                                             </div>
                                                         </div>
                                                         @endforeach
-                                                    </div> <!-- end product-items -->
-                                                </div> <!-- end #carousel-296 -->
+                                                    </div> 
+                                                </div> 
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <section
-                                class="wd-negative-gap elementor-section elementor-inner-section elementor-element elementor-element-506b37d8 elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled elementor-invisible"
+                            <section class="wd-negative-gap elementor-section elementor-inner-section elementor-element elementor-element-506b37d8 elementor-section-boxed elementor-section-height-default elementor-section-height-default wd-section-disabled elementor-invisible"
                                 data-id="506b37d8" data-element_type="section"
                                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeIn&quot;}"
                                 data-e-bg-lazyload="">
@@ -1139,41 +925,26 @@ media='all' />
                                                                         }
                                                                     })();
                                                                 </script>
-                                                                <!-- Mailchimp for WordPress v4.9.11 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
-                                                                <form id="mc4wp-form-1"
-                                                                    class="mc4wp-form mc4wp-form-315  color-scheme-light text-center"
-                                                                    method="post" data-id="315"
-                                                                    data-name="Newsletter">
+                                                                
+                                                                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-315  color-scheme-light text-center" method="post" data-id="315" data-name="Newsletter">
                                                                     <div class="mc4wp-form-fields">
                                                                         <p>
                                                                             <label>
-                                                                                <input type="email"
-                                                                                    name="EMAIL"
-                                                                                    placeholder="Your email address"
-                                                                                    required />
+                                                                                <input type="email" name="EMAIL" placeholder="Your email address" required />
                                                                             </label>
                                                                         </p>
 
                                                                         <p>
-                                                                            <input type="submit"
-                                                                                value="Sign up"
-                                                                                style="width:100%;background-color:#e5a406 !important;color:white" />
+                                                                            <input type="submit" value="Sign up" style="width:100%;background-color:#e5a406 !important;color:white" />
                                                                         </p>
-                                                                    </div><label
-                                                                        style="display: none !important;">Leave
-                                                                        this field empty if you're human: <input
-                                                                            type="text"
-                                                                            name="_mc4wp_honeypot"
-                                                                            value="" tabindex="-1"
-                                                                            autocomplete="off" /></label><input
-                                                                        type="hidden"
-                                                                        name="_mc4wp_timestamp"
-                                                                        value="1705916510" /><input
-                                                                        type="hidden" name="_mc4wp_form_id"
-                                                                        value="315" /><input
-                                                                        type="hidden"
-                                                                        name="_mc4wp_form_element_id"
-                                                                        value="mc4wp-form-1" />
+                                                                    </div>
+                                                                    <label style="display: none !important;">
+                                                                        Leave this field empty if you're human: 
+                                                                        <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+                                                                    </label>
+                                                                    <input type="hidden" name="_mc4wp_timestamp" value="1705916510" />
+                                                                    <input type="hidden" name="_mc4wp_form_id" value="315" />
+                                                                    <input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
                                                                     <div class="mc4wp-response"></div>
                                                                 </form><!-- / Mailchimp for WordPress Plugin -->
                                                             </div>
@@ -1552,8 +1323,7 @@ media='all' />
                                                                     d="M160 288h-16c-35.35 0-64 28.7-64 64.12v63.76c0 35.41 28.65 64.12 64 64.12h16c17.67 0 32-14.36 32-32.06V320.06c0-17.71-14.33-32.06-32-32.06zm208 0h-16c-17.67 0-32 14.35-32 32.06v127.88c0 17.7 14.33 32.06 32 32.06h16c35.35 0 64-28.71 64-64.12v-63.76c0-35.41-28.65-64.12-64-64.12zM256 32C112.91 32 4.57 151.13 0 288v112c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V288c0-114.67 93.33-207.8 208-207.82 114.67.02 208 93.15 208 207.82v112c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V288C507.43 151.13 399.09 32 256 32z">
                                                                 </path>
                                                             </svg> </span>
-                                                        <span class="elementor-icon-list-text">Online
-                                                            Support</span>
+                                                        <span class="elementor-icon-list-text">Online Support</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1564,7 +1334,7 @@ media='all' />
                                             <div class="elementor-widget-container">
                                                 <div class="wd-button-wrapper text-left">
                                                     <a class="btn btn-style-default btn-style-round btn-size-large btn-color-primary btn-full-width btn-icon-pos-right"
-                                                        href="shop/index.html">
+                                                        href="{{route('shop')}}">
                                                         <span class="wd-btn-text"
                                                             data-elementor-setting-key="text">
                                                             Shop Now </span>
@@ -1593,14 +1363,9 @@ media='all' />
                                                 data-id="0d4a510" data-element_type="widget"
                                                 data-widget_type="wd_title.default">
                                                 <div class="elementor-widget-container">
-                                                    <div
-                                                        class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-bordered wd-title-size-default text-center">
-
-
+                                                    <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-bordered wd-title-size-default text-center">
                                                         <div class="liner-continer">
-                                                            <h4
-                                                                class="woodmart-title-container title wd-fontsize-l">
-                                                                Latest Blog</h4>
+                                                            <h4 class="woodmart-title-container title wd-fontsize-l"> Latest Blog</h4>
                                                         </div>
 
                                                     </div>
@@ -1616,8 +1381,7 @@ media='all' />
                                                         data-source="shortcode">
 
 
-                                                        <article id="post-11"
-                                                            class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-11 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
+                                                        <article id="post-11" class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-11 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
                                                             <div class="article-inner">
                                                                 <header class="entry-header">
 
@@ -1630,16 +1394,11 @@ media='all' />
                                                                         data-mobile="1">
 
                                                                         <div class="post-img-wrapp">
-                                                                            <a
-                                                                                href="unlocking-the-secrets-of-nature-harnessing-the-healing-power-of-organic-herbal-supplements/index.html">
-                                                                                <img loading="lazy"
-                                                                                    decoding="async"
-                                                                                    width="1024"
-                                                                                    height="683"
+                                                                            <a href="#">
+                                                                                <img loading="lazy" decoding="async" width="1024" height="683"
                                                                                     src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp')}}"
                                                                                     class="attachment-large size-large wp-image-1605"
-                                                                                    alt=""
-                                                                                    srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp')}} 1024w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-300x200.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-768x512.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1536x1024.webp')}} 1536w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-2048x1365.webp')}} 2048w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-600x400.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-150x100.webp')}} 150w"
+                                                                                    alt="" srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp')}} 1024w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-300x200.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-768x512.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1536x1024.webp')}} 1536w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-2048x1365.webp')}} 2048w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-600x400.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-150x100.webp')}} 150w"
                                                                                     sizes="(max-width: 1024px) 100vw, 1024px" />
                                                                             </a>
                                                                         </div>
@@ -1658,31 +1417,24 @@ media='all' />
                                                                             Aug </span>
                                                                     </div>
 
-                                                                </header><!-- .entry-header -->
+                                                                </header>
 
                                                                 <div class="article-body-container">
-
-
-                                                                    <h3
-                                                                        class="wd-entities-title title post-title">
-                                                                        <a href="unlocking-the-secrets-of-nature-harnessing-the-healing-power-of-organic-herbal-supplements/index.html"
-                                                                            rel="bookmark">Organic Herbal
-                                                                            Supplements: Harnessing the Healing
-                                                                            Power of the land</a>
+                                                                    <h3 class="wd-entities-title title post-title">
+                                                                        <a href="#" rel="bookmark">
+                                                                            Organic Herbal Supplements: Harnessing the Healing Power of the land
+                                                                        </a>
                                                                     </h3>
 
-
-                                                                    <div
-                                                                        class="entry-content wd-entry-content">
+                                                                    <div class="entry-content wd-entry-content">
                                                                         The Healing Potential of Nature
-                                                                        In this fast-paced modern world, it's
-                                                                        easy to overlook the incredible healing
-                                                                        potential that nature pro...<p
-                                                                            class="read-more-section"><a
-                                                                                class="btn-read-more more-link"
-                                                                                href="unlocking-the-secrets-of-nature-harnessing-the-healing-power-of-organic-herbal-supplements/index.html">Continue
-                                                                                reading</a></p>
-                                                                    </div><!-- .entry-content -->
+                                                                        In this fast-paced modern world, it's easy to overlook the incredible healing potential that nature pro...
+                                                                        <p class="read-more-section">
+                                                                            <a class="btn-read-more more-link" href="#">Continue
+                                                                                reading
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
 
 
                                                                 </div>
@@ -1691,22 +1443,14 @@ media='all' />
 
 
 
-                                                        <article id="post-464"
-                                                            class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 first  post-464 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
+                                                        <article id="post-464" class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 first  post-464 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
                                                             <div class="article-inner">
                                                                 <header class="entry-header">
 
-                                                                    <figure id="carousel-550"
-                                                                        class="entry-thumbnail"
-                                                                        data-owl-carousel
-                                                                        data-hide_pagination_control="yes"
-                                                                        data-desktop="1" data-tablet="1"
-                                                                        data-tablet_landscape="1"
-                                                                        data-mobile="1">
+                                                                    <figure id="carousel-550" class="entry-thumbnail" data-owl-carousel data-hide_pagination_control="yes" data-desktop="1" data-tablet="1" data-tablet_landscape="1" data-mobile="1">
 
                                                                         <div class="post-img-wrapp">
-                                                                            <a
-                                                                                href="navigating-the-world-of-natural-herbal-supplements/index.html">
+                                                                            <a href="#">
                                                                                 <img loading="lazy"
                                                                                     decoding="async"
                                                                                     width="1024"
@@ -1721,67 +1465,45 @@ media='all' />
                                                                         <div class="post-image-mask">
                                                                             <span></span>
                                                                         </div>
-
-
                                                                     </figure>
 
-                                                                    <div class="post-date wd-post-date wd-style-with-bg"
-                                                                        onclick="">
+                                                                    <div class="post-date wd-post-date wd-style-with-bg" onclick="">
                                                                         <span class="post-date-day">
-                                                                            18 </span>
+                                                                            18 
+                                                                        </span>
                                                                         <span class="post-date-month">
-                                                                            Aug </span>
+                                                                            Aug 
+                                                                        </span>
                                                                     </div>
 
-                                                                </header><!-- .entry-header -->
+                                                                </header>
 
                                                                 <div class="article-body-container">
-
-
-                                                                    <h3
-                                                                        class="wd-entities-title title post-title">
-                                                                        <a href="navigating-the-world-of-natural-herbal-supplements/index.html"
-                                                                            rel="bookmark">Navigating the
-                                                                            World
-                                                                            of Natural Herbal Supplements</a>
+                                                                    <h3 class="wd-entities-title title post-title">
+                                                                        <a href="#" rel="bookmark">
+                                                                            Navigating the World of Natural Herbal Supplements
+                                                                        </a>
                                                                     </h3>
-
-
-                                                                    <div
-                                                                        class="entry-content wd-entry-content">
-                                                                        In a world filled with pharmaceuticals
-                                                                        and synthetic compounds, the allure of
-                                                                        natural solutions has never been
-                                                                        stronger. At Herbs of Af...<p
-                                                                            class="read-more-section"><a
-                                                                                class="btn-read-more more-link"
-                                                                                href="navigating-the-world-of-natural-herbal-supplements/index.html">Continue
-                                                                                reading</a></p>
-                                                                    </div><!-- .entry-content -->
-
-
+                                                                    <div class="entry-content wd-entry-content">
+                                                                        In a world filled with pharmaceuticals and synthetic compounds, the allure of natural solutions has never been stronger. At Herbs of Af...
+                                                                        <p class="read-more-section">
+                                                                            <a class="btn-read-more more-link" href="#">Continue reading</a>
+                                                                        </p>
+                                                                    </div> 
                                                                 </div>
                                                             </div>
-                                                        </article><!-- #post -->
+                                                        </article> 
 
 
 
-                                                        <article id="post-506"
-                                                            class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-506 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
+                                                        <article id="post-506" class="blog-design-mask blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-506 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
                                                             <div class="article-inner">
                                                                 <header class="entry-header">
 
-                                                                    <figure id="carousel-410"
-                                                                        class="entry-thumbnail"
-                                                                        data-owl-carousel
-                                                                        data-hide_pagination_control="yes"
-                                                                        data-desktop="1" data-tablet="1"
-                                                                        data-tablet_landscape="1"
-                                                                        data-mobile="1">
+                                                                    <figure id="carousel-410" class="entry-thumbnail" data-owl-carousel data-hide_pagination_control="yes" data-desktop="1" data-tablet="1" data-tablet_landscape="1" data-mobile="1">
 
                                                                         <div class="post-img-wrapp">
-                                                                            <a
-                                                                                href="the-science-behind-african-herbal-medicine/index.html">
+                                                                            <a href="#">
                                                                                 <img loading="lazy"
                                                                                     decoding="async"
                                                                                     width="1024"
@@ -1811,33 +1533,22 @@ media='all' />
                                                                 </header><!-- .entry-header -->
 
                                                                 <div class="article-body-container">
-
-
-                                                                    <h3
-                                                                        class="wd-entities-title title post-title">
-                                                                        <a href="the-science-behind-african-herbal-medicine/index.html"
-                                                                            rel="bookmark">The Science Behind
-                                                                            African Herbal Medicine on our
-                                                                            Illness.</a>
+                                                                    <h3 class="wd-entities-title title post-title">
+                                                                        <a href="#" rel="bookmark">The Science Behind African Herbal Medicine on our Illness.</a>
                                                                     </h3>
-
-
                                                                     <div
                                                                         class="entry-content wd-entry-content">
-                                                                        In the pursuit of wellness, the marriage
-                                                                        of tradition and science can yield
-                                                                        remarkable results. At Herbs of Africa®,
-                                                                        we are proud to bl...<p
-                                                                            class="read-more-section"><a
-                                                                                class="btn-read-more more-link"
-                                                                                href="the-science-behind-african-herbal-medicine/index.html">Continue
-                                                                                reading</a></p>
-                                                                    </div><!-- .entry-content -->
+                                                                        In the pursuit of wellness, the marriage of tradition and science can yield remarkable results. At Herbs of Africa®,
+                                                                        we are proud to bl...
+                                                                        <p class="read-more-section">
+                                                                            <a class="btn-read-more more-link" href="#">Continue reading</a>
+                                                                        </p>
+                                                                    </div>
 
 
                                                                 </div>
                                                             </div>
-                                                        </article><!-- #post -->
+                                                        </article>
 
 
 
@@ -1851,7 +1562,7 @@ media='all' />
                                                 <div class="elementor-widget-container">
                                                     <div class="wd-button-wrapper text-center">
                                                         <a class="btn btn-style-default btn-style-round btn-size-large btn-color-alt btn-icon-pos-right"
-                                                            href="articles/index.html">
+                                                            href="{{route('articles')}}">
                                                             <span class="wd-btn-text"
                                                                 data-elementor-setting-key="text">
                                                                 View More </span>

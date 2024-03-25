@@ -746,7 +746,7 @@
                                                                             to review &ldquo;Cartis&rdquo; <small><a
                                                                                     rel="nofollow"
                                                                                     id="cancel-comment-reply-link"
-                                                                                    href="index.html#respond"
+                                                                                    href="{{url('/')}}#respond"
                                                                                     style="display:none;">Cancel
                                                                                     reply</a></small></span>
                                                                         <form action="" method="post"

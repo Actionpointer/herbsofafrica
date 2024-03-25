@@ -13,7 +13,6 @@
     <title>Herbs of Africa® | Buy African Natural Herbal Supplements 2023</title>
     <meta name="description"
         content="Discover the blend of tradition &amp; science at Herbs of Africa®. Our herbal solutions, rooted in African organic, natural wellness &amp; balance." />
-    <link rel="canonical" href="index.html" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Herbs of Africa® | Buy African Natural Herbal Supplements 2023" />
@@ -1121,7 +1120,7 @@
                         <div class="whb-flex-row whb-general-header-inner">
                             <div class="whb-column whb-col-left whb-visible-lg">
                                 <div class="site-logo">
-                                    <a href="index.html" class="wd-logo wd-main-logo" rel="home">
+                                    <a href="{{url('/')}}" class="wd-logo wd-main-logo" rel="home">
                                         <img src="{{ asset('wp-content/uploads/2023/08/new-logo.png') }}"
                                             alt="Herbs of Africa®" style="max-width: 250px;" /> </a>
                                 </div>
@@ -1367,7 +1366,7 @@
                             <div class="wd-shop-tools">
                                 <div class="wd-breadcrumbs">
                                     <nav class="woocommerce-breadcrumb" aria-label="Breadcrumb"> <a
-                                            href="../index.html" class="breadcrumb-link breadcrumb-link-last">
+                                            href="{{url('/')}}" class="breadcrumb-link breadcrumb-link-last">
                                             Home </a>
                                         <span class="breadcrumb-last">
                                             Shop </span>
