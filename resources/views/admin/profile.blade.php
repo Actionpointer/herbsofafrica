@@ -47,7 +47,7 @@
                 <div class="card">
                     <!-- Tab panes -->
                     <div class="card-body">
-                        <form method="POST" action="{{route('password_update')}}" class="form-horizontal form-material">
+                        <form method="POST" action="{{route('admin.password_update')}}" class="form-horizontal form-material">
                             @csrf
                             <div class="form-group">
                                 <label class="col-md-12">Current Password</label>

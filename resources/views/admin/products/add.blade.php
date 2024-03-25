@@ -37,7 +37,7 @@
                         <h4 class="card-title  p-3">Add Product</h4>
                         <!-- Tab panes -->
                         <div class="card-body">
-                            <form action="{{route('products.store')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
+                            <form action="{{route('admin.products.store')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">

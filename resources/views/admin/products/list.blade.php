@@ -14,7 +14,7 @@
                         </ol>
                     </div>
                     <div class="col-md-7 align-self-center">
-                        <a href="{{route('products.create')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> New Product</a>
+                        <a href="{{route('admin.products.create')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> New Product</a>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -61,10 +61,10 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="{{route('products.edit',$product)}}" class="btn btn-info mr-2">
+                                                            <a href="{{route('admin.products.edit',$product)}}" class="btn btn-info mr-2">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
-                                                            <form action="{{route('products.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Product?')">@csrf
+                                                            <form action="{{route('admin.products.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Product?')">@csrf
                                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                                 <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                                     <i class="fa fa-trash-o"></i>

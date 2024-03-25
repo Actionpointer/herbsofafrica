@@ -149,7 +149,7 @@
                        
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.settings.index') }}" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.post.index') }}" aria-expanded="false"><i class="fa fa-newspaper-o"></i><span class="hide-menu">Post</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('profile') }}" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.profile') }}" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span></a></li>
                         
                     </ul>
                     <form method="POST" action="{{ route('logout') }}">

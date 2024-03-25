@@ -53,7 +53,7 @@ class ProductController extends Controller
             'published' => $request->published,
         ]);
         // dd($request->all());
-        return redirect()->route('products.index');
+        return redirect()->route('admin.products.index');
 
     }
 
@@ -94,13 +94,13 @@ class ProductController extends Controller
             'published' => $request->published,
         ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('admin.products.index');
 
     }
 
     public function delete(Request $request){
         //Cart::where('ipaddress', request()->ip())->where('product_id', $request->product_id)->delete();
         Product::where('id', $request->product_id)->delete();
-        return redirect()->route('products.index');
+        return redirect()->route('admin.products.index');
     }
 }

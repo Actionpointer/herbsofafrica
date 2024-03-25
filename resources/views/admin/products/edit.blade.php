@@ -37,7 +37,7 @@
                         <h4 class="card-title  p-3">Edit Product</h4>
                         <!-- Tab panes -->
                         <div class="card-body">
-                            <form action="{{route('products.update')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
+                            <form action="{{route('admin.products.update')}}" method="POST" class="form-horizontal form-material" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{$product->id}}">
 
