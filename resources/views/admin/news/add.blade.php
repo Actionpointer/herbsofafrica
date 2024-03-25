@@ -39,7 +39,7 @@
                             <h4 class="card-title text-center pt-3">Add News</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data"> @csrf
+                                <form method="post" action="{{route('admin.post.store')}}" enctype="multipart/form-data"> @csrf
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-md-8">

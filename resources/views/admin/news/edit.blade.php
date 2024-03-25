@@ -37,7 +37,7 @@
                             <h4 class="card-title text-center pt-3">Edit News</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
-                                <form method="post" action="{{route('post.update')}}" enctype="multipart/form-data"> @csrf
+                                <form method="post" action="{{route('admin.post.update')}}" enctype="multipart/form-data"> @csrf
                                     <input type="hidden" name="post_id" value="{{$post->id}}">
                                     <fieldset>
                                         <div class="row">

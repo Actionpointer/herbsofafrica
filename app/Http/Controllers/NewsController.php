@@ -46,7 +46,7 @@ class NewsController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('post.index');
+        return redirect()->route('admin.post.index');
 
     }
 
@@ -70,13 +70,13 @@ class NewsController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('post.index');
+        return redirect()->route('admin.post.index');
 
     }
 
     public function delete(Request $request){
         abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
         Post::where('id', $request->post_id)->delete();
-        return redirect()->route('post.index');
+        return redirect()->route('admin.post.index');
     }
 }

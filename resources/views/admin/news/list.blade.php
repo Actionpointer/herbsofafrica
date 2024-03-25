@@ -13,7 +13,7 @@
                 </ol>
             </div>
             <div class="col-md-7 align-self-center">
-                <a href="{{route('post.create')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> New Article</a>
+                <a href="{{route('admin.post.create')}}" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down"> New Article</a>
             </div>
         </div>
         <div class="row">
@@ -53,10 +53,10 @@
                                             
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{route('post.edit',$post)}}" class="btn btn-info mr-2">
+                                                    <a href="{{route('admin.post.edit',$post)}}" class="btn btn-info mr-2">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <form action="{{route('post.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Post?')">@csrf
+                                                    <form action="{{route('admin.post.delete')}}" method="post" onsubmit="return confirm('Are you sure you want to delete Post?')">@csrf
                                                         <input type="hidden" name="post_id" value="{{$post->id}}">
                                                         <button type="submit" name="action" value="delete" class="btn btn-danger">
                                                             <i class="fa fa-trash-o"></i>
