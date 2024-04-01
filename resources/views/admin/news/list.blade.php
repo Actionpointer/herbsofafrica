@@ -30,14 +30,13 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
-
                                     @forelse ($posts as $post)
                                         <tr>
                                             <td class="card-user">
                                                 <img src="{{$post->image}}" class="avatar rounded imgthumbnail">
                                             </td>
                                             <td>
-                                                <h4 class="mt-0"><a href="{{route('post.single',$post)}}">{{$post->title}}</a>
+                                                <h4 class="mt-0"><a href="{{route('articles.post',$post)}}">{{$post->title}}</a>
                                                     {{-- <a href="{{route('admin.post.preview',$post)}}" class="small text-muted"> <small>Preview</small> </a> --}}
                                                 </h4>
                                                 <h5>{{$post->excerpt}}</h5>
@@ -73,7 +72,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-
                         </div>
                         @include('layouts.pagination',['data'=> $posts])
                     </div>

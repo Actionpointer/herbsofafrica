@@ -15,6 +15,10 @@
     <link rel='stylesheet' id='wd-mod-sticky-sidebar-opener-css'
 		href="{{ asset('wp-content/themes/woodmart/css/parts/mod-sticky-sidebar-opener.minc30a.css?ver=7.2.4') }}" type='text/css'
 		media='all' />
+    <link rel='stylesheet' id='el-social-icons-css'
+		href="{{ asset('wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css') }}" type='text/css'
+		media='all' />
+  
 
 @endpush
 @section('main')
@@ -27,7 +31,7 @@
 
 
       <div class="breadcrumbs"><a href="{{url('/')}}" rel="v:url" property="v:title">Home</a> &raquo;
-        <span><a rel="v:url" href="../category/blog/index.html">Blog</a></span> &raquo; </div>
+        <span><a rel="v:url" href="{{route('articles')}}">Blog</a></span> &raquo; </div>
       <!-- .breadcrumbs -->
     </div>
   </div>
@@ -42,109 +46,57 @@
 
 
 
-        <article id="post-6"
-          class="post-single-page post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
+        <article id="post-6" class="post-single-page post-6 post type-post status-publish format-standard has-post-thumbnail hentry category-blog">
           <div class="article-inner">
-            <div class="meta-post-categories wd-post-cat wd-style-with-bg"><a
-                href="../category/blog/index.html" rel="category tag">Blog</a></div>
+            @foreach (explode(',',$post->tags) as $tag)
+            <div class="meta-post-categories wd-post-cat wd-style-with-bg">
+              <a href="{{route('articles')}}?tag={{$tag}}" rel="category tag">{{ucwords($tag)}}</a>
+            </div>
+            @endforeach
+            
+            
 
-            <h1 class="wd-entities-title title post-title">Harnessing the Healing Power of Nature:
-              Organic Herbal Supplements for Optimal Health</h1>
+            <h1 class="wd-entities-title title post-title">{{ucwords($post->title)}}</h1>
 
             <div class="entry-meta wd-entry-meta">
               <ul class="entry-meta-list">
                 <li class="modified-date">
-                  <time class="updated" datetime="2023-08-19T13:17:09+01:00">
-                    19 August 2023 </time>
+                  <time class="updated" datetime="{{$post->created_at}}">
+                    {{$post->created_at->format('d F Y')}} 
+                  </time>
                 </li>
-
-
-                <li class="meta-author">
-                  <span>
-                    Posted by </span>
-
-                  <img alt='author-avatar'
-                    src='https://secure.gravatar.com/avatar/0185514ce431eeea7ec2fd1c1a03446c?s=32&amp;d=mm&amp;r=g'
-                    srcset='https://secure.gravatar.com/avatar/0185514ce431eeea7ec2fd1c1a03446c?s=64&#038;d=mm&#038;r=g 2x'
-                    class='avatar avatar-32 photo' height='32' width='32'
-                    decoding='async' />
-                  <a href="../author/herbsofafrica-com/index.html" rel="author">
-                    <span class="vcard author author_name">
-                      <span class="fn">herbsofafrica.com</span>
-                    </span>
-                  </a>
-                </li>
-
-
               </ul>
-            </div><!-- .entry-meta -->
+            </div>
             <header class="entry-header">
 
               <figure id="carousel-724" class="entry-thumbnail" data-owl-carousel
                 data-hide_pagination_control="yes" data-desktop="1" data-tablet="1"
                 data-tablet_landscape="1" data-mobile="1">
                 <img width="2560" height="1463"
-                  src="../wp-content/uploads/2023/08/202312930_m_normal_none-copy-scaled.jpg"
+                  src="{{$post->image}}"
                   class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
                   decoding="async"
-                  srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-scaled.jpg 2560w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-300x171.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-1024x585.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-768x439.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-1536x878.jpg 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-2048x1170.jpg 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-600x343.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-150x86.jpg 150w"
                   sizes="(max-width: 2560px) 100vw, 2560px" />
               </figure>
 
-              <div class="post-date wd-post-date wd-style-with-bg" onclick="">
+              <div class="post-date wd-post-date wd-style-with-bg">
                 <span class="post-date-day">
-                  19 </span>
+                  {{$post->created_at->format('d')}} </span>
                 <span class="post-date-month">
-                  Aug </span>
+                  {{$post->created_at->format('M')}} </span>
               </div>
 
-            </header><!-- .entry-header -->
+            </header>
 
             <div class="article-body-container">
 
               <div class="entry-content wd-entry-content">
-                <h2>Discover the Incredible Healing Potential of Nature</h2>
-                <p>At our brand, we believe in the power of nature to heal and restore our
-                  bodies. We are dedicated to harnessing the incredible healing potential of
-                  nature to develop organic herbal supplements and medicines that address a
-                  broad range of health challenges.</p>
-                <p>Through extensive research and collaboration with experts in traditional
-                  medicine, we have carefully curated a range of products that are designed to
-                  optimize your overall well-being. From boosting your immune system to
-                  reducing inflammation, our organic herbal supplements are formulated with
-                  the highest quality ingredients to provide natural solutions for your health
-                  needs.</p>
-                <h2>Experience the Benefits of Organic Herbal Supplements</h2>
-                <p>Why choose organic herbal supplements over conventional medications? The
-                  answer lies in the remarkable benefits they offer:</p>
-                <p><strong>1. Natural Healing:</strong> Our supplements are derived from
-                  plant-based ingredients that have been used for centuries in traditional
-                  medicine. By tapping into the wisdom of nature, you can experience gentle
-                  and effective healing.</p>
-                <p><strong>2. Holistic Approach:</strong> Organic herbal supplements take a
-                  holistic approach to health, addressing not just the symptoms but also the
-                  underlying causes of ailments. They work in harmony with your body to
-                  promote overall wellness.</p>
-                <p><strong>3. Fewer Side Effects:</strong> Unlike synthetic medications, organic
-                  herbal supplements are generally free from harsh chemicals and toxins. They
-                  are well-tolerated by the body, resulting in minimal side effects and a
-                  reduced risk of adverse reactions.</p>
-                <h2>Optimize Your Health Naturally with Our Organic Herbal Supplements</h2>
-                <p>Ready to take your health to the next level? Our range of organic herbal
-                  supplements is designed to support your body&#8217;s natural healing
-                  processes. Whether you are struggling with chronic pain, digestive issues,
-                  or low energy levels, our products can help you regain balance and vitality.
-                </p>
-                <p>Explore our website to discover our full range of organic herbal supplements
-                  and find the perfect solution for your unique health needs. Embrace the
-                  power of nature and experience the incredible healing potential it offers.
-                </p>
-              </div><!-- .entry-content -->
-
+                {!! $post->content !!}
+              </div>
 
             </div>
           </div>
-        </article><!-- #post -->
+        </article>
 
 
 
@@ -152,10 +104,7 @@
         <div class="wd-single-footer">
           <div class="single-post-social">
 
-            <div
-              class="wd-social-icons icons-design-colored icons-size-default color-scheme-dark social-share social-form-circle text-center">
-
-
+            <div class="wd-social-icons icons-design-colored icons-size-default color-scheme-dark social-share social-form-circle text-center">
               <a rel="noopener noreferrer nofollow"
                 href="https://www.facebook.com/sharer/sharer.php?u=https://herbsofafrica.com/harnessing-the-healing-power-of-nature-organic-herbal-supplements-for-optimal-health/"
                 target="_blank" class=" wd-social-icon social-facebook"
@@ -213,33 +162,11 @@
           </div>
         </div>
 
-        <div class="wd-page-nav">
-          <div class="wd-page-nav-btn prev-btn">
-            <a
-              href="../the-healing-power-of-nature-unlocking-the-potential-of-organic-herbal-supplements/index.html">
-              <span class="wd-label">Newer</span>
-              <span class="wd-entities-title">Here is the Power of Nature through Organic Herbal
-                Supplements</span>
-              <span class="wd-page-nav-icon"></span>
-            </a>
-          </div>
-
-          <a href="{{url('/')}}" class="back-to-archive wd-tooltip">Back to list</a>
-
-          <div class="wd-page-nav-btn next-btn">
-            <a
-              href="../unlocking-the-power-of-nature-organic-herbal-supplements-for-optimal-health/index.html">
-              <span class="wd-label">Older</span>
-              <span class="wd-entities-title">Unlocking the Power of Nature: Organic Herbal
-                Supplements for Optimal Health</span>
-              <span class="wd-page-nav-icon"></span>
-            </a>
-          </div>
-        </div>
+        
 
 
 
-        <div id="comments" class="comments-area">
+        {{-- <div id="comments" class="comments-area mt-5">
 
           <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow"
@@ -276,20 +203,21 @@
             </form>
           </div><!-- #respond -->
 
-        </div><!-- #comments -->
+        </div><!-- #comments --> --}}
 
 
       </div><!-- .site-content -->
 
 
 
-      <aside class="sidebar-container col-lg-3 col-md-3 col-12 order-last sidebar-right area-sidebar-1">
+      <aside class="sidebar-container col-lg-3 col-md-3 col-12 order-last sidebar-right area-sidebar-1 d-none d-md-block">
         <div class="wd-heading">
           <div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
             <a href="#" rel="nofollow noopener">Close</a>
           </div>
         </div>
         <div class="widget-area">
+          @if($recents->isNotEmpty())
           <div id="block-3" class="wd-widget widget sidebar-widget widget_block">
             <div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
               <div class="wp-block-group__inner-container">
@@ -297,27 +225,17 @@
 
 
                 <ul class="wp-block-latest-posts__list wp-block-latest-posts">
-                  <li><a class="wp-block-latest-posts__post-title"
-                      href="../unlocking-the-secrets-of-nature-harnessing-the-healing-power-of-organic-herbal-supplements/index.html">Organic
-                      Herbal Supplements: Harnessing the Healing Power of the land</a>
-                  </li>
-                  <li><a class="wp-block-latest-posts__post-title"
-                      href="../unleashing-the-healing-power-of-nature-a-journey-to-optimal-health/index.html">Optimal
-                      Health: Through the Healing Power of Natural supplements</a></li>
-                  <li><a class="wp-block-latest-posts__post-title"
-                      href="../unlocking-natures-healing-power-harnessing-the-magic-of-organic-herbal-supplements/index.html">Unlocking
-                      Nature&#8217;s Healing Power: Harnessing the Magic of Organic Herbal
-                      Supplements</a></li>
-                  <li><a class="wp-block-latest-posts__post-title"
-                      href="../the-healing-power-of-nature-unlocking-the-potential-of-organic-herbal-supplements/index.html">Here
-                      is the Power of Nature through Organic Herbal Supplements</a></li>
-                  <li><a class="wp-block-latest-posts__post-title"
-                      href="{{url('/')}}">Harnessing the Healing Power of Nature: Organic
-                      Herbal Supplements for Optimal Health</a></li>
+                    @foreach ($recents as $recent)
+                      <li>
+                          <a class="wp-block-latest-posts__post-title" href="{{route('articles.post',$recent)}}">{{$recent->title}}
+                          </a>
+                      </li>
+                    @endforeach
                 </ul>
               </div>
             </div>
           </div>
+          @endif
           <div id="block-6" class="wd-widget widget sidebar-widget widget_block">
             <div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
               <div class="wp-block-group__inner-container"></div>

@@ -25,9 +25,9 @@ class AffiliateController extends Controller
     
     public function index()
     { 
-        if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
-            return redirect()->route('affiliate.overview');
-        }
+        // if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
+        //     return redirect()->route('affiliate.overview');
+        // }
         $countries = Country::all();
         return view('user.affiliate.register',compact('countries'));
     }

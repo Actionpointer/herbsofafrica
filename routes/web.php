@@ -34,7 +34,8 @@ use App\Http\Controllers\WebsiteController;
     
 
     Route::get('articles', [WebsiteController::class, 'articles'])->name('articles');
-    Route::get('articles/post', [WebsiteController::class, 'post'])->name('articles.post');
+    Route::get('articles/{post}', [WebsiteController::class, 'post'])->name('articles.post');
+    
     Route::get('services', [WebsiteController::class, 'services'])->name('services');
     Route::get('training', [WebsiteController::class, 'trainings'])->name('training');
     Route::get('training/{training}', [WebsiteController::class, 'training_single'])->name('training.single');
@@ -43,8 +44,7 @@ use App\Http\Controllers\WebsiteController;
     Route::get('product/{product}', [WebsiteController::class, 'product'])->name('product.show');
     Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
     Route::post('contact/store', [WebsiteController::class, 'contact_store'])->name('contact.store');
-    Route::get('post', [WebsiteController::class, 'news'])->name('news');
-    Route::get('post/single/{slug}', [WebsiteController::class, 'post_single'])->name('post.single');
+    
 
 
     Route::get('currency-switcher', [HelperController::class, 'switch_currency'])->name('switch_currency');

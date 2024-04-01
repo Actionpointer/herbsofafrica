@@ -118,52 +118,38 @@
                         data-id="4fc614e" data-element_type="widget"
                         data-widget_type="wd_title.default">
                         <div class="elementor-widget-container">
-                          <div
-                            class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-bordered wd-title-size-default text-center">
-
-
+                          <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-bordered wd-title-size-default text-center">
                             <div class="liner-continer">
-                              <h4
-                                class="woodmart-title-container title wd-fontsize-l">
-                                Latest Blog</h4>
+                              <h4 class="woodmart-title-container title wd-fontsize-l">
+                                Latest Blog
+                              </h4>
                             </div>
 
                           </div>
                         </div>
                       </div>
-                      <div class="elementor-element elementor-element-f097cc4 elementor-widget elementor-widget-wd_blog"
-                        data-id="f097cc4" data-element_type="widget"
-                        data-widget_type="wd_blog.default">
+                      <div class="elementor-element elementor-element-f097cc4 elementor-widget elementor-widget-wd_blog" data-id="f097cc4" data-element_type="widget" data-widget_type="wd_blog.default">
                         <div class="elementor-widget-container">
                           <div class="wd-blog-holder blog-shortcode blog-pagination-more-btn masonry-container wd-spacing-30 row"
                             id="65ae38848e9fc" data-paged="1"
                             data-atts="{&quot;post_type&quot;:&quot;post&quot;,&quot;items_per_page&quot;:100,&quot;include&quot;:null,&quot;taxonomies&quot;:&quot;&quot;,&quot;offset&quot;:&quot;&quot;,&quot;orderby&quot;:&quot;menu_order&quot;,&quot;order&quot;:&quot;DESC&quot;,&quot;meta_key&quot;:null,&quot;exclude&quot;:&quot;&quot;,&quot;parts_media&quot;:true,&quot;parts_title&quot;:&quot;1&quot;,&quot;parts_meta&quot;:&quot;&quot;,&quot;parts_text&quot;:&quot;1&quot;,&quot;parts_btn&quot;:&quot;1&quot;,&quot;img_size&quot;:&quot;large&quot;,&quot;blog_design&quot;:&quot;masonry&quot;,&quot;blog_carousel_design&quot;:null,&quot;blog_columns&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:3,&quot;sizes&quot;:[]},&quot;blog_columns_tablet&quot;:{&quot;size&quot;:&quot;&quot;},&quot;blog_columns_mobile&quot;:{&quot;size&quot;:&quot;&quot;},&quot;blog_spacing&quot;:30,&quot;pagination&quot;:&quot;more-btn&quot;,&quot;speed&quot;:null,&quot;slides_per_view&quot;:null,&quot;slides_per_view_tablet&quot;:{&quot;size&quot;:&quot;&quot;},&quot;slides_per_view_mobile&quot;:{&quot;size&quot;:&quot;&quot;},&quot;wrap&quot;:null,&quot;autoplay&quot;:null,&quot;hide_pagination_control&quot;:null,&quot;hide_prev_next_buttons&quot;:null,&quot;scroll_per_page&quot;:null,&quot;lazy_loading&quot;:&quot;no&quot;,&quot;scroll_carousel_init&quot;:null,&quot;ajax_page&quot;:&quot;&quot;,&quot;custom_sizes&quot;:false,&quot;elementor&quot;:true}"
                             data-source="shortcode">
 
-
-                            <article id="post-457"
-                              class="blog-design-masonry blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-457 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
+                            @forelse($posts as $post)
+                            <article id="post-{{$post->id}}" class="blog-design-masonry blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 post-457 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
                               <div class="article-inner">
                                 <header class="entry-header">
 
-                                  <figure id="carousel-256"
-                                    class="entry-thumbnail"
-                                    data-owl-carousel
-                                    data-hide_pagination_control="yes"
-                                    data-desktop="1" data-tablet="1"
-                                    data-tablet_landscape="1"
-                                    data-mobile="1">
+                                  <figure id="carousel-256" class="entry-thumbnail" data-owl-carousel data-hide_pagination_control="yes"
+                                    data-desktop="1" data-tablet="1" data-tablet_landscape="1" data-mobile="1">
 
                                     <div class="post-img-wrapp">
-                                      <a
-                                        href="../the-rich-tradition-of-african-herbal-medicine/index.html">
+                                      <a href="{{route('articles.post',$post)}}">
                                         <img fetchpriority="high"
                                           decoding="async"
                                           width="1024" height="683"
-                                          src="../wp-content/uploads/2023/08/150941563_m_normal_none-1024x683.jpg"
+                                          src="{{$post->image}}"
                                           class="attachment-large size-large wp-image-463"
-                                          alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-1024x683.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-150x100.jpg 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-600x400.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-300x200.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-768x512.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-1536x1024.jpg 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/150941563_m_normal_none-2048x1365.jpg 2048w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -177,9 +163,9 @@
                                   <div class="post-date wd-post-date wd-style-with-bg"
                                     onclick="">
                                     <span class="post-date-day">
-                                      18 </span>
+                                      {{$post->created_at->format('d')}} </span>
                                     <span class="post-date-month">
-                                      Aug </span>
+                                      {{$post->created_at->format('M')}} </span>
                                   </div>
 
                                 </header><!-- .entry-header -->
@@ -189,30 +175,26 @@
 
                                   <h3
                                     class="wd-entities-title title post-title">
-                                    <a href="../the-rich-tradition-of-african-herbal-medicine/index.html"
-                                      rel="bookmark">The Rich Tradition of
-                                      African Herbal Medicine</a>
+                                    <a href="{{route('articles.post',$post)}}"
+                                      rel="bookmark">{{ucwords($post->title)}}</a>
                                   </h3>
 
 
                                   <div class="entry-content wd-entry-content">
-                                    Africa is a continent known for its
-                                    diverse cultures, landscapes, and
-                                    traditions. Among its many treasures is
-                                    a centuries-old practice ...<p
-                                      class="read-more-section"><a
-                                        class="btn-read-more more-link"
-                                        href="../the-rich-tradition-of-african-herbal-medicine/index.html">Continue
-                                        reading</a></p>
+                                    {{$post->excerpt}}
+                                    <p class="read-more-section">
+                                      <a class="btn-read-more more-link" href="{{route('articles.post',$post)}}">Continue reading</a>
+                                    </p>
                                   </div><!-- .entry-content -->
 
 
                                 </div>
                               </div>
-                            </article><!-- #post -->
+                            </article>
+                            @empty
 
-
-
+                            @endforelse
+                            {{--
                             <article id="post-464"
                               class="blog-design-masonry blog-post-loop blog-style-bg wd-add-shadow  col-lg-4 col-md-4 col-sm-6 col-12 first  post-464 post type-post status-publish format-standard has-post-thumbnail hentry category-news">
                               <div class="article-inner">
@@ -253,7 +235,7 @@
                                       Aug </span>
                                   </div>
 
-                                </header><!-- .entry-header -->
+                                </header>
 
                                 <div class="article-body-container">
 
@@ -280,7 +262,7 @@
 
                                 </div>
                               </div>
-                            </article><!-- #post -->
+                            </article>
 
 
 
@@ -329,8 +311,7 @@
                                 <div class="article-body-container">
 
 
-                                  <h3
-                                    class="wd-entities-title title post-title">
+                                  <h3 class="wd-entities-title title post-title">
                                     <a href="../the-science-behind-african-herbal-medicine/index.html"
                                       rel="bookmark">The Science Behind
                                       African Herbal Medicine on our
@@ -795,7 +776,7 @@
                                 </div>
                               </div>
                             </article><!-- #post -->
-
+                            --}}
 
 
                           </div>

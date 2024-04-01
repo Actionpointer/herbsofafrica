@@ -71,19 +71,9 @@ class WebsiteController extends Controller
     }
 
     public function articles(){
-        
-        return view('webpages.posts.list');
-    }
-
-    public function post(){
-        return view('webpages.posts.single');
-    }
-
-    public function news(Request $request){
-        $tag = '';
+        $tag = request()->query('tag') ?? null;
         $posts = Post::orderBy('created_at','desc');
-        if(request()->query() && request()->query('tag')){
-            $tag = request()->query('tag');
+        if($tag){
             $posts = $posts->where('tags','LIKE',"%$tag%");
         }
         $posts = $posts->paginate(10);
@@ -92,9 +82,9 @@ class WebsiteController extends Controller
         return view('webpages.posts.list', compact('posts','categories','tag'));
     }
 
-    public function post_single(Request $request, $slug){
-        $post = Post::findBySlug($slug);
-        return view('webpages.posts.single', compact('post'));
+    public function post(Post $post){
+        $recents = Post::where('id','!=',$post->id)->orderBy('created_at','asc')->take(10)->get();
+        return view('webpages.posts.single', compact('post','recents'));
     }
 
     
