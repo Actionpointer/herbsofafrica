@@ -25,9 +25,9 @@ class AffiliateController extends Controller
     
     public function index()
     { 
-        // if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
-        //     return redirect()->route('affiliate.overview');
-        // }
+        if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
+            return redirect()->route('affiliate.overview');
+        }
         $countries = Country::all();
         return view('user.affiliate.register',compact('countries'));
     }
@@ -71,9 +71,9 @@ class AffiliateController extends Controller
 
     public function storeBankAccount(Request $request){
         $request->validate([
-            'bank_code' => ['required', 'string','unique:affiliates,username'],
-            'bank_name' => ['required', 'string','email','max:255'],
-            'account_number' => ['required', 'string', 'max:255'],
+            'bank_code' => ['required', 'string'],
+            'bank_name' => ['required', 'string'],
+            'account_number' => ['required', 'string'],
         ]);
         $affiliate = auth()->user()->affiliate;
         $affiliate->bank_code = $request->bank_code;
@@ -88,7 +88,6 @@ class AffiliateController extends Controller
         $payments = auth()->user()->affiliate->payments;
         $affiliate = auth()->user()->affiliate;
         $currencies = Currency::all();
-        return redirect()->to($this->accountLink($affiliate));
         return view('user.affiliate.overview',compact('payments','affiliate','currencies'));
     }
 

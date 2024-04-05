@@ -87,7 +87,7 @@
 
                                                                     <div class="col-12 col-md-6 col-register">
                                                                         
-                                                                        <form action="#wpam-reg-form" method="post" id="mainForm" class="pure-form pure-form-stacked">
+                                                                        <form action="{{route('affiliate.bank.account.store')}}" method="post" id="mainForm" class="pure-form pure-form-stacked">@csrf
                                                                             * Required fields<br><br>
                                                                             <fieldset>
                                                                                 <div class="mb-3">
@@ -110,9 +110,12 @@
                                                                                     <input type="text" id="account_number" name="account_number" value="" required="">
                                                                                 </div>
                                                                                 
-                                                                                <div class="mb-3">
+                                                                                <div class="mb-3" id="account_name_field" style="display: none">
                                                                                     <label for="account_name">Account Name *</label>
                                                                                     <input type="text" id="account_name" name="account_name" value="" disabled="">
+                                                                                </div>
+                                                                                <div class="text-danger text-center" id="incorrect" style="display: none">
+                                                                                    <p>Unable to fetch Bank Account Details</p>
                                                                                 </div>
                                                                                 
                                                                                 
@@ -152,7 +155,7 @@
         $(document).on('select2:select','#bank_code',function(e){
             let data = e.params.data;
             $('#bank_name').val(data.text)
-            console.log(data.text)
+            //console.log(data.text)
         })
 
         $('#verify_account').click(function(){
@@ -168,13 +171,23 @@
                     'bank_code': bank_code,
                     'account_number': account_number,
                 },
+                beforeSend: function() {$('#verify_account').text('checking...')},
                 success:function(data) {
                     console.log(data)
-                    if(data.name)
+                    if(data.name){
                         $('#account_name').val(data.name)
+                        $('#account_name_field').show()
+                        $('#incorrect').hide()
+                        $('#verify_account').text('Verify').hide()
+                        $('#submit').show()
                         
-                    else
-                        $('#correct').attr('disabled',true)
+                    }   
+                    else{
+                        $('#incorrect').show()
+                        $('#verify_account').show()
+                        $('#submit').hide()
+                    }
+                        
                     
                 },
                 error: function (data, textStatus, errorThrown) {

@@ -61,7 +61,7 @@ trait FlutterwaveTrait
     protected function resolveBankAccountByFlutter($bank_code,$account_number){
         $response = Curl::to('https://api.flutterwave.com/v3/accounts/resolve')
             ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
-            ->withData( json_encode(array("account_number" => $account_number,"account_bank" => $bank_code)) )
+            ->withData( ["account_number" => $account_number,"account_bank" => $bank_code] )
             ->asJson()
             ->post();
         if(!$response ||  !isset($response->status) || $response->status == "error"){

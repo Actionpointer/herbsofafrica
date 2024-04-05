@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
+use Ixudra\Curl\Facades\Curl;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Notifications\ContactNotification;
 use Illuminate\Support\Facades\Notification;
@@ -30,6 +31,13 @@ class WebsiteController extends Controller
         // dd($payment->commission_currency);
         $categories = Category::all();
         $products = Product::where('published',true)->where('featured',true)->get();
+
+        $response = Curl::to('https://api.flutterwave.com/v3/accounts/resolve')
+            ->withHeader('Authorization: Bearer '.config('services.flutter.secret'))
+            ->withData( ["account_number" => '0690000031',"account_bank" => '044'])
+            ->asJson()
+            ->post();
+            dd($response);
         return view('webpages.index',compact('products','categories'));
     }
 
