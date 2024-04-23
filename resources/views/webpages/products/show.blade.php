@@ -60,6 +60,22 @@
     <link rel='stylesheet' id='wd-woo-single-prod-el-reviews-style-1-css'
         href="{{ asset('wp-content/themes/woodmart/css/parts/woo-single-prod-el-reviews-style-1.minc30a.css?ver=7.2.4') }}"
         type='text/css' media='all' />
+
+        <link rel='stylesheet' id='el-social-icons-css'
+		href="{{ asset('wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css') }}" type='text/css'
+		media='all' />
+    <style>
+        .nav-tabs { border-bottom: 2px solid #DDD; }
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+        .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+        .tab-pane { padding: 15px 0; }
+        .tab-content{padding:20px}
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: re; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+        /* .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }  */
+    </style>
+  
 @endpush
 @section('main')
     <div class="main-page-wrapper">
@@ -72,8 +88,7 @@
                     <div class="container"> </div>
 
 
-                    <div id="product-655"
-                        class="single-product-page single-product-content product-design-default tabs-location-standard tabs-type-tabs meta-location-add_to_cart reviews-location-tabs product-no-bg product type-product post-655 status-publish first instock product_cat-joint-health has-post-thumbnail shipping-taxable purchasable product-type-simple">
+                    <div id="product-655" class="single-product-page single-product-content product-design-default tabs-location-standard tabs-type-tabs meta-location-add_to_cart reviews-location-tabs product-no-bg product type-product post-655 status-publish first instock product_cat-joint-health has-post-thumbnail shipping-taxable purchasable product-type-simple">
 
                         <div class="container">
 
@@ -325,9 +340,9 @@
                                                 <div class="product_meta">
 
 
-                                                    <span class="posted_in"><span class="meta-label">Category:</span> <a
-                                                            href="../../product-category/joint-health/index.html"
-                                                            rel="tag">Joint Health</a></span>
+                                                    <span class="posted_in">
+                                                        <span class="meta-label">Category:</span> 
+                                                            <a href="{{route('shop.category',$product->category)}}" rel="tag">{{$product->category->title}}</a></span>
 
                                                 </div>
 
@@ -386,33 +401,37 @@
 
 
                         </div>
-                        {{-- <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                                <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>Disabled</button>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                                This is home
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                                This is Profile
-                            </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                                This is contact
-                            </div>
+                        <div class="d-flex justify-content-center">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="active" role="presentation">
+                              <a class="active" id="home-tab" data-bs-toggle="tab" data-bs-target="#homes"  role="tab" aria-controls="home" aria-selected="true">Home</a>
+                            </li>
+                            <li role="presentation">
+                              <a class="" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profiles"  role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                            </li>
+                            <li  role="presentation">
+                              <a class="" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contacts"  role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                            </li>
+                          </ul>
+                        </div>
                         
-                        </div> --}}
+                        
+                          <!-- Tab panes -->
+                          
 
-                        <div class="product-tabs-wrapper" style="border-bottom:0px">
+                          
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">a...</div>
+                            <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">b...</div>
+                            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">c...</div>
+                          </div>
+
+
+                        {{-- <div class="product-tabs-wrapper" style="border-bottom:0px">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 poduct-tabs-inner">
-                                        <div class="woocommerce-tabs wc-tabs-wrapper tabs-layout-tabs" data-state="first"
-                                            data-layout="tabs">
+                                        <div class="woocommerce-tabs wc-tabs-wrapper tabs-layout-tabs" data-state="first" data-layout="tabs">
                                             <div class="wd-nav-wrapper wd-nav-tabs-wrapper text-center">
                                                 <ul class="wd-nav wd-nav-tabs wd-icon-pos-left tabs wc-tabs wd-style-underline-reverse"
                                                     role="tablist">
@@ -1106,7 +1125,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <div class="container related-and-upsells"></div>
@@ -1174,10 +1193,10 @@
     <script type="text/javascript" src="{{ asset('wp-includes/js/comment-reply.min1e39.js?ver=6.4.2') }}"
         id="comment-reply-js" async="async" data-wp-strategy="async"></script>
 
-    <script type="text/javascript"
+    {{-- <script type="text/javascript"
         src="{{ asset('wp-content/themes/woodmart/js/scripts/wc/singleProductTabsAccordion.minc30a.js?ver=7.2.4') }}"
-        id="wd-single-product-tabs-accordion-js"></script>
+        id="wd-single-product-tabs-accordion-js"></script> --}}
 
-    <script type="text/javascript" src="{{ asset('wp-content/themes/woodmart/js/scripts/elements/accordion.minc30a.js?ver=7.2.4') }}"
-        id="wd-accordion-element-js"></script>
+    {{-- <script type="text/javascript" src="{{ asset('wp-content/themes/woodmart/js/scripts/elements/accordion.minc30a.js?ver=7.2.4') }}"
+        id="wd-accordion-element-js"></script> --}}
 @endpush

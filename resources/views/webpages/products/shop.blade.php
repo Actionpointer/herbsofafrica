@@ -206,8 +206,6 @@
     </div>
 @endsection
 @push('scripts')
-    {{-- <script type="text/javascript" src="{{asset('wp-content/themes/woodmart/js/libs/pjax.minc30a.js?ver=7.2.4')}}"
-        id="wd-pjax-library-js"></script> --}}
     <script type="text/javascript"
         src="{{ asset('wp-content/themes/woodmart/js/scripts/wc/ajaxFilters.minc30a.js?ver=7.2.4') }}"
         id="wd-ajax-filters-js"></script>
