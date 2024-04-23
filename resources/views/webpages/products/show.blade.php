@@ -401,6 +401,7 @@
 
 
                         </div>
+                        {{--
                         <div class="d-flex justify-content-center">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="active" role="presentation">
@@ -414,20 +415,16 @@
                             </li>
                           </ul>
                         </div>
-                        
-                        
-                          <!-- Tab panes -->
-                          
 
                           
-                          <div class="tab-content" id="myTabContent">
+                        <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">a...</div>
                             <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">b...</div>
                             <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">c...</div>
-                          </div>
+                        </div>
+                        --}}
 
-
-                        {{-- <div class="product-tabs-wrapper" style="border-bottom:0px">
+                        <div class="product-tabs-wrapper" style="border-bottom:0px">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 poduct-tabs-inner">
@@ -1125,7 +1122,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
 
                         <div class="container related-and-upsells"></div>
