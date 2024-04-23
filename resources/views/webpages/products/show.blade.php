@@ -65,7 +65,7 @@
 		href="{{ asset('wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css') }}" type='text/css'
 		media='all' />
     <style>
-        .nav-tabs { border-bottom: 2px solid #DDD; }
+        .nav-tabs { border-top: 2px solid #DDD;border-bottom:none }
         .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
         .nav-tabs > li > a { border: none; color: #666; }
         .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
@@ -401,7 +401,7 @@
 
 
                         </div>
-                        {{--
+                        
                         <div class="d-flex justify-content-center">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="active" role="presentation">
@@ -422,7 +422,7 @@
                             <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">b...</div>
                             <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">c...</div>
                         </div>
-                        --}}
+                        
 
                         <div class="product-tabs-wrapper" style="border-bottom:0px">
                             <div class="container">

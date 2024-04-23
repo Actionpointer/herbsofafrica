@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coupon;
 use App\Models\Country;
+use App\Models\Payment;
 use App\Models\Setting;
 use App\Models\Currency;
 use App\Models\Affiliate;
@@ -85,7 +86,8 @@ class AffiliateController extends Controller
     
     public function dashboard()
     {
-        $payments = auth()->user()->affiliate->payments;
+        // $payments = auth()->user()->affiliate->payments;
+        $payments = Payment::where('affiliate_id',auth()->user()->affiliate_id)->whereHas('settlement')->get();
         $affiliate = auth()->user()->affiliate;
         $currencies = Currency::all();
         return view('user.affiliate.overview',compact('payments','affiliate','currencies'));
