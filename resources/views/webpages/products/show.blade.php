@@ -65,14 +65,16 @@
 		href="{{ asset('wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css') }}" type='text/css'
 		media='all' />
     <style>
-        .nav-tabs { border-top: 2px solid #DDD;border-bottom:none }
+        .nav-tabs { border-bottom:none }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: var(--nav-color-hover); background: transparent; }
         .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
-        .nav-tabs > li > a { border: none; color: #666; }
-        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li {position: relative;}
+        .nav-tabs > li > a { border: none; color: var(--nav-color);font-weight:600;cursor: pointer;}
+        .nav-tabs > li > a::after { content: ""; background: var(--wd-primary-color); height: 2px; position: absolute; width: 100%; left: 0px; top: -24px; transition: all 250ms ease 0s; transform: scale(0); }
         .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
         .tab-pane { padding: 15px 0; }
         .tab-content{padding:20px}
-        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: re; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+        
         /* .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }  */
     </style>
   
@@ -402,464 +404,367 @@
 
                         </div>
                         
-                        <div class="d-flex justify-content-center">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="active" role="presentation">
-                              <a class="active" id="home-tab" data-bs-toggle="tab" data-bs-target="#homes"  role="tab" aria-controls="home" aria-selected="true">Home</a>
-                            </li>
-                            <li role="presentation">
-                              <a class="" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profiles"  role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-                            </li>
-                            <li  role="presentation">
-                              <a class="" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contacts"  role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                            </li>
-                          </ul>
+                        <div class="d-flex justify-content-center border-top">
+                            <ul class="nav nav-tabs pt-4 product_tabs" id="myTab" role="tablist">
+                                <li class="active" role="presentation">
+                                    <a class="active" id="home-tab" data-bs-toggle="tab" data-bs-target="#homes"  role="tab" aria-controls="home" aria-selected="true">DESCRIPTION</a>
+                                </li>
+                                <li role="presentation" class="mx-4">
+                                    <a class="" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profiles"  role="tab" aria-controls="profile" aria-selected="false">REVIEWS</a>
+                                </li>
+                                <li  role="presentation">
+                                    <a class="" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contacts"  role="tab" aria-controls="contact" aria-selected="false">FAQ</a>
+                                </li>
+                            </ul>
                         </div>
 
                           
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">a...</div>
-                            <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">b...</div>
-                            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">c...</div>
-                        </div>
-                        
+                            <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">
+                                <div data-elementor-type="wp-post" data-elementor-id="655" class="elementor elementor-655">
+                                    <div class="wd-negative-gap elementor-element elementor-element-0fe49f0 e-flex e-con-boxed wd-section-disabled e-con e-parent"
+                                        data-id="0fe49f0" data-element_type="container"
+                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
+                                        data-core-v316-plus="true">
+                                        <div class="e-con-inner">
+                                            <div class="wd-negative-gap elementor-element elementor-element-29df872 wd-section-stretch e-flex e-con-boxed e-con e-child"
+                                                data-id="29df872" data-element_type="container"
+                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                                <div class="e-con-inner">
+                                                    <div class="elementor-element elementor-element-633b37f e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="633b37f"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        <div class="elementor-element elementor-element-6a4aa44 elementor-widget elementor-widget-wd_title"
+                                                            data-id="6a4aa44"
+                                                            data-element_type="widget"
+                                                            data-widget_type="wd_title.default">
+                                                            <div class="elementor-widget-container">
+                                                                <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
 
-                        <div class="product-tabs-wrapper" style="border-bottom:0px">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 poduct-tabs-inner">
-                                        <div class="woocommerce-tabs wc-tabs-wrapper tabs-layout-tabs" data-state="first" data-layout="tabs">
-                                            <div class="wd-nav-wrapper wd-nav-tabs-wrapper text-center">
-                                                <ul class="wd-nav wd-nav-tabs wd-icon-pos-left tabs wc-tabs wd-style-underline-reverse"
-                                                    role="tablist">
-                                                    <li class="description_tab active" id="tab-title-description"
-                                                        role="tab" aria-controls="tab-description">
-                                                        <a class="wd-nav-link" href="#tab-description">
-                                                            <span class="nav-link-text wd-tabs-title">
-                                                                Description </span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="reviews_tab" id="tab-title-reviews" role="tab"
-                                                        aria-controls="tab-reviews">
-                                                        <a class="wd-nav-link" href="#tab-reviews">
-                                                            <span class="nav-link-text wd-tabs-title">
-                                                                Reviews (0) </span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="wd_additional_tab_tab" id="tab-title-wd_additional_tab"
-                                                        role="tab" aria-controls="tab-wd_additional_tab">
-                                                        <a class="wd-nav-link" href="#tab-wd_additional_tab">
-                                                            <span class="nav-link-text wd-tabs-title">
-                                                                FAQs </span>
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-
-                                            <div class="wd-accordion-item">
-                                                <div id="tab-item-title-description"
-                                                    class="wd-accordion-title wd-opener-pos-right tab-title-description wd-active"
-                                                    data-accordion-index="description">
-                                                    <div class="wd-accordion-title-text">
-                                                        <span>
-                                                            Description </span>
-                                                    </div>
-
-                                                    <span class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                </div>
-
-                                                <div class="entry-content woocommerce-Tabs-panel woocommerce-Tabs-panel--description wd-active panel wc-tab"
-                                                    id="tab-description" role="tabpanel"
-                                                    aria-labelledby="tab-title-description"
-                                                    data-accordion-index="description">
-                                                    <div class="wc-tab-inner">
-
-
-                                                        <div data-elementor-type="wp-post" data-elementor-id="655"
-                                                            class="elementor elementor-655">
-                                                            <div class="wd-negative-gap elementor-element elementor-element-0fe49f0 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                                                data-id="0fe49f0" data-element_type="container"
-                                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                                                data-core-v316-plus="true">
-                                                                <div class="e-con-inner">
-                                                                    <div class="wd-negative-gap elementor-element elementor-element-29df872 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                                        data-id="29df872" data-element_type="container"
-                                                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-                                                                        <div class="e-con-inner">
-                                                                            <div class="elementor-element elementor-element-633b37f e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="633b37f"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                <div class="elementor-element elementor-element-6a4aa44 elementor-widget elementor-widget-wd_title"
-                                                                                    data-id="6a4aa44"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="wd_title.default">
-                                                                                    <div
-                                                                                        class="elementor-widget-container">
-                                                                                        <div
-                                                                                            class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
-
-                                                                                            <div
-                                                                                                class="title-subtitle subtitle-color-primary subtitle-style-default wd-fontsize-xs">
-                                                                                                Introduction </div>
-
-                                                                                            <div class="liner-continer">
-                                                                                                <h4 class="woodmart-title-container title wd-fontsize-l">{{$product->section1['title']}}</h4>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="elementor-element elementor-element-57e50ab color-scheme-inherit text-left elementor-widget elementor-widget-text-editor"
-                                                                                    data-id="57e50ab"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="text-editor.default">
-                                                                                    <div class="elementor-widget-container">
-                                                                                        <style>
-                                                                                            /*! elementor - v3.18.0 - 20-12-2023 */
-                                                                                            .elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap {
-                                                                                                background-color: #69727d;
-                                                                                                color: #fff
-                                                                                            }
-
-                                                                                            .elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap {
-                                                                                                color: #69727d;
-                                                                                                border: 3px solid;
-                                                                                                background-color: transparent
-                                                                                            }
-
-                                                                                            .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap {
-                                                                                                margin-top: 8px
-                                                                                            }
-
-                                                                                            .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter {
-                                                                                                width: 1em;
-                                                                                                height: 1em
-                                                                                            }
-
-                                                                                            .elementor-widget-text-editor .elementor-drop-cap {
-                                                                                                float: left;
-                                                                                                text-align: center;
-                                                                                                line-height: 1;
-                                                                                                font-size: 50px
-                                                                                            }
-
-                                                                                            .elementor-widget-text-editor .elementor-drop-cap-letter {
-                                                                                                display: inline-block
-                                                                                            }
-                                                                                        </style>
-                                                                                        <p>
-                                                                                            {!! $product->section1['content'] !!}
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                    <div class="title-subtitle subtitle-color-primary subtitle-style-default wd-fontsize-xs">
+                                                                        Introduction 
                                                                     </div>
+
+                                                                    <div class="liner-continer">
+                                                                        <h4 class="woodmart-title-container title wd-fontsize-l">{{$product->section1['title']}}</h4>
+                                                                    </div>
+
                                                                 </div>
                                                             </div>
-                                                            <div class="wd-negative-gap elementor-element elementor-element-a188198 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                                                data-id="a188198" data-element_type="container"
-                                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                                                data-core-v316-plus="true">
-                                                                <div class="e-con-inner">
-                                                                    <div class="wd-negative-gap elementor-element elementor-element-f1186f8 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                                        data-id="f1186f8" data-element_type="container"
-                                                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-                                                                        <div class="e-con-inner">
-                                                                            <div class="elementor-element elementor-element-9e1e8ff e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="9e1e8ff"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                <div class="elementor-element elementor-element-1449cef elementor-widget elementor-widget-image"
-                                                                                    data-id="1449cef"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="image.default">
-                                                                                    <div
-                                                                                        class="elementor-widget-container">
-                                                                                        <style>
-                                                                                            /*! elementor - v3.18.0 - 20-12-2023 */
-                                                                                            .elementor-widget-image {
-                                                                                                text-align: center
-                                                                                            }
-
-                                                                                            .elementor-widget-image a {
-                                                                                                display: inline-block
-                                                                                            }
-
-                                                                                            .elementor-widget-image a img[src$=".svg"] {
-                                                                                                width: 48px
-                                                                                            }
-
-                                                                                            .elementor-widget-image img {
-                                                                                                vertical-align: middle;
-                                                                                                display: inline-block
-                                                                                            }
-                                                                                        </style> 
-                                                                                        <img loading="lazy"
-                                                                                            decoding="async"
-                                                                                            width="800" height="800"
-                                                                                            src="{{$product->section2['image']}}"
-                                                                                            class="attachment-large size-large wp-image-661"
-                                                                                            alt="" />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="elementor-element elementor-element-59dff9a e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="59dff9a"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                <div class="elementor-element elementor-element-db18292 elementor-widget elementor-widget-wd_title"
-                                                                                    data-id="db18292"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="wd_title.default">
-                                                                                    <div class="elementor-widget-container">
-                                                                                        <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
-
-
-                                                                                            <div class="liner-continer">
-                                                                                                <h4 class="woodmart-title-container title wd-fontsize-l"> {{$product->section2['title']}}</h4>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                {!! $product->section2['content'] !!}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wd-negative-gap elementor-element elementor-element-81e9f67 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                                                data-id="81e9f67" data-element_type="container"
-                                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                                                data-core-v316-plus="true">
-                                                                <div class="e-con-inner">
-                                                                    <div class="wd-negative-gap elementor-element elementor-element-dba6e20 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                                        data-id="dba6e20" data-element_type="container"
-                                                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-                                                                        <div class="e-con-inner">
-                                                                            <div class="elementor-element elementor-element-8f150c1 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="8f150c1"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                <div class="elementor-element elementor-element-edca2b7 elementor-widget elementor-widget-image"
-                                                                                    data-id="edca2b7"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="image.default">
-                                                                                    <div
-                                                                                        class="elementor-widget-container">
-                                                                                        <img loading="lazy"
-                                                                                            decoding="async"
-                                                                                            width="800" height="800"
-                                                                                            src="{{$product->section3['image']}}"
-                                                                                            class="attachment-large size-large wp-image-660"
-                                                                                            alt=""
-                                                                                            />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="elementor-element elementor-element-a760338 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="a760338"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                <div class="elementor-element elementor-element-4ee8500 elementor-widget elementor-widget-wd_title"
-                                                                                    data-id="4ee8500"
-                                                                                    data-element_type="widget"
-                                                                                    data-widget_type="wd_title.default">
-                                                                                    <div
-                                                                                        class="elementor-widget-container">
-                                                                                        <div
-                                                                                            class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
-
-
-                                                                                            <div class="liner-continer">
-                                                                                                <h4
-                                                                                                    class="woodmart-title-container title wd-fontsize-l">
-                                                                                                    {{$product->section3['title']}}</h4>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                {!! $product->section3['content'] !!}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wd-negative-gap elementor-element elementor-element-c67293b e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                                                data-id="c67293b" data-element_type="container"
-                                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                                                data-core-v316-plus="true">
-                                                                <div class="e-con-inner">
-                                                                    <div class="wd-negative-gap elementor-element elementor-element-aa9e993 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                                        data-id="aa9e993" data-element_type="container"
-                                                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-                                                                        <div class="e-con-inner">
-                                                                            <div class="elementor-element elementor-element-4d91142 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                                                data-id="4d91142"
-                                                                                data-element_type="container"
-                                                                                data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                                                
-                                                                                {!! $product->section4['content'] !!}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        <div class="elementor-element elementor-element-57e50ab color-scheme-inherit text-left elementor-widget elementor-widget-text-editor"
+                                                            data-id="57e50ab"
+                                                            data-element_type="widget"
+                                                            data-widget_type="text-editor.default">
+                                                            <div class="elementor-widget-container">
+                                                                <style>
+                                                                    /*! elementor - v3.18.0 - 20-12-2023 */
+                                                                    .elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap {
+                                                                        background-color: #69727d;
+                                                                        color: #fff
+                                                                    }
 
-                                            <div class="wd-accordion-item">
-                                                <div id="tab-item-title-reviews"
-                                                    class="wd-accordion-title wd-opener-pos-right tab-title-reviews"
-                                                    data-accordion-index="reviews">
-                                                    <div class="wd-accordion-title-text">
-                                                        <span>
-                                                            Reviews (0) </span>
-                                                    </div>
+                                                                    .elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap {
+                                                                        color: #69727d;
+                                                                        border: 3px solid;
+                                                                        background-color: transparent
+                                                                    }
 
-                                                    <span class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                </div>
+                                                                    .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap {
+                                                                        margin-top: 8px
+                                                                    }
 
-                                                <div class="entry-content woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel wc-tab wd-single-reviews wd-layout-two-column"
-                                                    id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews"
-                                                    data-accordion-index="reviews">
-                                                    <div class="wc-tab-inner">
-                                                        <div id="reviews" class="woocommerce-Reviews"
-                                                            data-product-id="655">
+                                                                    .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter {
+                                                                        width: 1em;
+                                                                        height: 1em
+                                                                    }
 
-                                                            <div id="comments">
-                                                                <div class="wd-reviews-heading">
-                                                                    <div class="wd-reviews-tools">
-                                                                        <h2 class="woocommerce-Reviews-title">
-                                                                            Reviews </h2>
+                                                                    .elementor-widget-text-editor .elementor-drop-cap {
+                                                                        float: left;
+                                                                        text-align: center;
+                                                                        line-height: 1;
+                                                                        font-size: 50px
+                                                                    }
 
-                                                                    </div>
-
-                                                                </div>
-
-                                                                <div class="wd-reviews-content wd-sticky">
-                                                                    <p class="woocommerce-noreviews">There are no
-                                                                        reviews yet.</p>
-                                                                </div>
-
-                                                                <div class="wd-loader-overlay wd-fill"></div>
-                                                            </div>
-
-                                                            <div id="review_form_wrapper" class="wd-form-pos-after">
-                                                                <div id="review_form">
-                                                                    <div id="respond" class="comment-respond">
-                                                                        <span id="reply-title"
-                                                                            class="comment-reply-title">Be the first
-                                                                            to review &ldquo;Cartis&rdquo; <small><a
-                                                                                    rel="nofollow"
-                                                                                    id="cancel-comment-reply-link"
-                                                                                    href="{{url('/')}}#respond"
-                                                                                    style="display:none;">Cancel
-                                                                                    reply</a></small></span>
-                                                                        <form action="" method="post"
-                                                                            id="commentform" class="comment-form"
-                                                                            novalidate>
-                                                                            <p class="comment-notes"><span
-                                                                                    id="email-notes">Your email
-                                                                                    address will not be
-                                                                                    published.</span> <span
-                                                                                    class="required-field-message">Required
-                                                                                    fields are marked <span
-                                                                                        class="required">*</span></span>
-                                                                            </p>
-                                                                            <div class="comment-form-rating"><label
-                                                                                    for="rating">Your
-                                                                                    rating&nbsp;<span
-                                                                                        class="required">*</span></label><select
-                                                                                    name="rating" id="rating"
-                                                                                    required>
-                                                                                    <option value="">Rate&hellip;
-                                                                                    </option>
-                                                                                    <option value="5">Perfect
-                                                                                    </option>
-                                                                                    <option value="4">Good</option>
-                                                                                    <option value="3">Average
-                                                                                    </option>
-                                                                                    <option value="2">Not that bad
-                                                                                    </option>
-                                                                                    <option value="1">Very poor
-                                                                                    </option>
-                                                                                </select></div>
-                                                                            <p class="comment-form-comment"><label
-                                                                                    for="comment">Your
-                                                                                    review&nbsp;<span
-                                                                                        class="required">*</span></label>
-                                                                                <textarea id="comment" name="comment" cols="45" rows="8" required></textarea>
-                                                                            </p>
-                                                                            <p class="comment-form-author"><label
-                                                                                    for="author">Name&nbsp;<span
-                                                                                        class="required">*</span></label><input
-                                                                                    id="author" name="author"
-                                                                                    type="text" value=""
-                                                                                    size="30" required /></p>
-                                                                            <p class="comment-form-email"><label
-                                                                                    for="email">Email&nbsp;<span
-                                                                                        class="required">*</span></label><input
-                                                                                    id="email" name="email"
-                                                                                    type="email" value=""
-                                                                                    size="30" required /></p>
-                                                                            <p class="comment-form-cookies-consent">
-                                                                                <input id="wp-comment-cookies-consent"
-                                                                                    name="wp-comment-cookies-consent"
-                                                                                    type="checkbox" value="yes" />
-                                                                                <label
-                                                                                    for="wp-comment-cookies-consent">Save
-                                                                                    my name, email, and website in
-                                                                                    this browser for the next time I
-                                                                                    comment.</label>
-                                                                            </p>
-                                                                            <p class="form-submit"><input name="submit"
-                                                                                    type="submit" id="submit"
-                                                                                    class="submit" value="Submit" />
-                                                                                <input type='hidden'
-                                                                                    name='comment_post_ID' value='655'
-                                                                                    id='comment_post_ID' />
-                                                                                <input type='hidden'
-                                                                                    name='comment_parent'
-                                                                                    id='comment_parent' value='0' />
-                                                                            </p>
-                                                                        </form>
-                                                                    </div><!-- #respond -->
-                                                                </div>
+                                                                    .elementor-widget-text-editor .elementor-drop-cap-letter {
+                                                                        display: inline-block
+                                                                    }
+                                                                </style>
+                                                                <p>
+                                                                    {!! $product->section1['content'] !!}
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="wd-negative-gap elementor-element elementor-element-a188198 e-flex e-con-boxed wd-section-disabled e-con e-parent"
+                                        data-id="a188198" data-element_type="container"
+                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
+                                        data-core-v316-plus="true">
+                                        <div class="e-con-inner">
+                                            <div class="wd-negative-gap elementor-element elementor-element-f1186f8 wd-section-stretch e-flex e-con-boxed e-con e-child"
+                                                data-id="f1186f8" data-element_type="container"
+                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                                <div class="e-con-inner">
+                                                    <div class="elementor-element elementor-element-9e1e8ff e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="9e1e8ff"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        <div class="elementor-element elementor-element-1449cef elementor-widget elementor-widget-image"
+                                                            data-id="1449cef"
+                                                            data-element_type="widget"
+                                                            data-widget_type="image.default">
+                                                            <div
+                                                                class="elementor-widget-container">
+                                                                <style>
+                                                                    /*! elementor - v3.18.0 - 20-12-2023 */
+                                                                    .elementor-widget-image {
+                                                                        text-align: center
+                                                                    }
 
-                                            <div class="wd-accordion-item">
-                                                <div id="tab-item-title-wd_additional_tab"
-                                                    class="wd-accordion-title wd-opener-pos-right tab-title-wd_additional_tab"
-                                                    data-accordion-index="wd_additional_tab">
-                                                    <div class="wd-accordion-title-text">
-                                                        <span>
-                                                            FAQs </span>
+                                                                    .elementor-widget-image a {
+                                                                        display: inline-block
+                                                                    }
+
+                                                                    .elementor-widget-image a img[src$=".svg"] {
+                                                                        width: 48px
+                                                                    }
+
+                                                                    .elementor-widget-image img {
+                                                                        vertical-align: middle;
+                                                                        display: inline-block
+                                                                    }
+                                                                </style> 
+                                                                <img loading="lazy"
+                                                                    decoding="async"
+                                                                    width="800" height="800"
+                                                                    src="{{$product->section2['image']}}"
+                                                                    class="attachment-large size-large wp-image-661"
+                                                                    alt="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-59dff9a e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="59dff9a"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        <div class="elementor-element elementor-element-db18292 elementor-widget elementor-widget-wd_title"
+                                                            data-id="db18292"
+                                                            data-element_type="widget"
+                                                            data-widget_type="wd_title.default">
+                                                            <div class="elementor-widget-container">
+                                                                <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
+
+
+                                                                    <div class="liner-continer">
+                                                                        <h4 class="woodmart-title-container title wd-fontsize-l"> {{$product->section2['title']}}</h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {!! $product->section2['content'] !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wd-negative-gap elementor-element elementor-element-81e9f67 e-flex e-con-boxed wd-section-disabled e-con e-parent"
+                                        data-id="81e9f67" data-element_type="container"
+                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
+                                        data-core-v316-plus="true">
+                                        <div class="e-con-inner">
+                                            <div class="wd-negative-gap elementor-element elementor-element-dba6e20 wd-section-stretch e-flex e-con-boxed e-con e-child"
+                                                data-id="dba6e20" data-element_type="container"
+                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                                <div class="e-con-inner">
+                                                    <div class="elementor-element elementor-element-8f150c1 e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="8f150c1"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        <div class="elementor-element elementor-element-edca2b7 elementor-widget elementor-widget-image"
+                                                            data-id="edca2b7"
+                                                            data-element_type="widget"
+                                                            data-widget_type="image.default">
+                                                            <div
+                                                                class="elementor-widget-container">
+                                                                <img loading="lazy"
+                                                                    decoding="async"
+                                                                    width="800" height="800"
+                                                                    src="{{$product->section3['image']}}"
+                                                                    class="attachment-large size-large wp-image-660"
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-a760338 e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="a760338"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        <div class="elementor-element elementor-element-4ee8500 elementor-widget elementor-widget-wd_title"
+                                                            data-id="4ee8500"
+                                                            data-element_type="widget"
+                                                            data-widget_type="wd_title.default">
+                                                            <div
+                                                                class="elementor-widget-container">
+                                                                <div
+                                                                    class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
+
+
+                                                                    <div class="liner-continer">
+                                                                        <h4
+                                                                            class="woodmart-title-container title wd-fontsize-l">
+                                                                            {{$product->section3['title']}}</h4>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {!! $product->section3['content'] !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wd-negative-gap elementor-element elementor-element-c67293b e-flex e-con-boxed wd-section-disabled e-con e-parent"
+                                        data-id="c67293b" data-element_type="container"
+                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
+                                        data-core-v316-plus="true">
+                                        <div class="e-con-inner">
+                                            <div class="wd-negative-gap elementor-element elementor-element-aa9e993 wd-section-stretch e-flex e-con-boxed e-con e-child"
+                                                data-id="aa9e993" data-element_type="container"
+                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                                <div class="e-con-inner">
+                                                    <div class="elementor-element elementor-element-4d91142 e-con-full e-flex wd-section-disabled e-con e-child"
+                                                        data-id="4d91142"
+                                                        data-element_type="container"
+                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                        
+                                                        {!! $product->section4['content'] !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">
+                                <div id="reviews" class="woocommerce-Reviews" data-product-id="655">
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div id="comments" class="col-md-6">
+                                                <div class="wd-reviews-heading">
+                                                    <div class="wd-reviews-tools">
+                                                        <h2 class="woocommerce-Reviews-title">
+                                                            Reviews </h2>
+
                                                     </div>
 
-                                                    <span class="wd-accordion-opener wd-opener-style-arrow"></span>
                                                 </div>
 
-                                                <div class="entry-content woocommerce-Tabs-panel woocommerce-Tabs-panel--wd_additional_tab panel wc-tab"
-                                                    id="tab-wd_additional_tab" role="tabpanel"
-                                                    aria-labelledby="tab-title-wd_additional_tab"
-                                                    data-accordion-index="wd_additional_tab">
-                                                    <div class="wc-tab-inner">
+                                                <div class="wd-reviews-content wd-sticky">
+                                                    <p class="woocommerce-noreviews">There are no
+                                                        reviews yet.</p>
+                                                </div>
 
-                                                        <div data-elementor-type="wp-post" data-elementor-id="918"
+                                                <div class="wd-loader-overlay wd-fill"></div>
+                                            </div>
+
+                                            <div id="review_form_wrapper" class="wd-form-pos-after col-md-6">
+                                                <div id="review_form">
+                                                    <div id="respond" class="comment-respond">
+                                                        <span id="reply-title"
+                                                            class="comment-reply-title">Be the first
+                                                            to review &ldquo;Cartis&rdquo; <small><a
+                                                                    rel="nofollow"
+                                                                    id="cancel-comment-reply-link"
+                                                                    href="{{url('/')}}#respond"
+                                                                    style="display:none;">Cancel
+                                                                    reply</a></small></span>
+                                                        <form action="" method="post"
+                                                            id="commentform" class="comment-form"
+                                                            novalidate>
+                                                            <p class="comment-notes"><span
+                                                                    id="email-notes">Your email
+                                                                    address will not be
+                                                                    published.</span> <span
+                                                                    class="required-field-message">Required
+                                                                    fields are marked <span
+                                                                        class="required">*</span></span>
+                                                            </p>
+                                                            <div class="comment-form-rating"><label
+                                                                    for="rating">Your
+                                                                    rating&nbsp;<span
+                                                                        class="required">*</span></label><select
+                                                                    name="rating" id="rating"
+                                                                    required>
+                                                                    <option value="">Rate&hellip;
+                                                                    </option>
+                                                                    <option value="5">Perfect
+                                                                    </option>
+                                                                    <option value="4">Good</option>
+                                                                    <option value="3">Average
+                                                                    </option>
+                                                                    <option value="2">Not that bad
+                                                                    </option>
+                                                                    <option value="1">Very poor
+                                                                    </option>
+                                                                </select></div>
+                                                            <p class="comment-form-comment"><label
+                                                                    for="comment">Your
+                                                                    review&nbsp;<span
+                                                                        class="required">*</span></label>
+                                                                <textarea id="comment" name="comment" cols="45" rows="8" required></textarea>
+                                                            </p>
+                                                            <p class="comment-form-author"><label
+                                                                    for="author">Name&nbsp;<span
+                                                                        class="required">*</span></label><input
+                                                                    id="author" name="author"
+                                                                    type="text" value=""
+                                                                    size="30" required /></p>
+                                                            <p class="comment-form-email"><label
+                                                                    for="email">Email&nbsp;<span
+                                                                        class="required">*</span></label><input
+                                                                    id="email" name="email"
+                                                                    type="email" value=""
+                                                                    size="30" required /></p>
+                                                            <p class="comment-form-cookies-consent">
+                                                                <input id="wp-comment-cookies-consent"
+                                                                    name="wp-comment-cookies-consent"
+                                                                    type="checkbox" value="yes" />
+                                                                <label
+                                                                    for="wp-comment-cookies-consent">Save
+                                                                    my name, email, and website in
+                                                                    this browser for the next time I
+                                                                    comment.</label>
+                                                            </p>
+                                                            <p class="form-submit"><input name="submit"
+                                                                    type="submit" id="submit"
+                                                                    class="submit" value="Submit" />
+                                                                <input type='hidden'
+                                                                    name='comment_post_ID' value='655'
+                                                                    id='comment_post_ID' />
+                                                                <input type='hidden'
+                                                                    name='comment_parent'
+                                                                    id='comment_parent' value='0' />
+                                                            </p>
+                                                        </form>
+                                                    </div><!-- #respond -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">
+                                <div data-elementor-type="wp-post" data-elementor-id="918"
                                                             class="elementor elementor-918">
                                                             <section
                                                                 class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-ce04372 wd-section-stretch elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -1114,17 +1019,9 @@
                                                                 </div>
                                                             </section>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-
-
+                        
                         <div class="container related-and-upsells"></div>
 
                     </div><!-- #product-655 -->
@@ -1189,11 +1086,16 @@
 
     <script type="text/javascript" src="{{ asset('wp-includes/js/comment-reply.min1e39.js?ver=6.4.2') }}"
         id="comment-reply-js" async="async" data-wp-strategy="async"></script>
-
     {{-- <script type="text/javascript"
         src="{{ asset('wp-content/themes/woodmart/js/scripts/wc/singleProductTabsAccordion.minc30a.js?ver=7.2.4') }}"
         id="wd-single-product-tabs-accordion-js"></script> --}}
 
-    {{-- <script type="text/javascript" src="{{ asset('wp-content/themes/woodmart/js/scripts/elements/accordion.minc30a.js?ver=7.2.4') }}"
-        id="wd-accordion-element-js"></script> --}}
+    <script type="text/javascript" src="{{ asset('wp-content/themes/woodmart/js/scripts/elements/accordion.minc30a.js?ver=7.2.4') }}"
+        id="wd-accordion-element-js"></script>
+    <script>
+        $('.product_tabs a').click(function(){
+            $('.product_tabs li').removeClass('active')
+            $(this).parent().addClass('active')
+        });
+    </script>
 @endpush
