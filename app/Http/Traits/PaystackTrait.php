@@ -13,11 +13,10 @@ trait PaystackTrait
     public function initiatePaystack(Payment $payment){
       $response = Curl::to('https://api.paystack.co/transaction/initialize')
         ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
-        ->withData( array('email' => $payment->email,'currency'=> strtoupper($payment->currency->code),
-        'amount'=> $payment->amount * 100,'callback_url'=> route('payment.callback'),'reference'=> $payment->reference) )
+        ->withData( array('email' => $payment->user->email,'currency'=> strtoupper($payment->currency),
+        'amount'=> $payment->total * 100,'callback_url'=> route('payment.callback'),'reference'=> $payment->reference) )
         ->asJson()
         ->post();
-        // dd($response);
         if($response && $response->status)
             return $response->data->authorization_url;
         else return false;
@@ -31,10 +30,10 @@ trait PaystackTrait
       return $paymentDetails;
   }
 
-    protected function refundPaystack(Settlement $settlement){
+    protected function refundPaystack(Payment $payment){
         $response = Curl::to('https://api.paystack.co/refund')
          ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
-         ->withData( array('transaction'=> $settlement->order->payment_item->payment->reference,'amount'=> $settlement->amount*100 ) )
+         ->withData( array('transaction'=> $payment->reference,'amount'=> $payment->amount*100 ) )
          ->asJson()
          ->post();
          if($response &&  isset($response->status) && $response->status)
@@ -70,70 +69,70 @@ trait PaystackTrait
     }
 
 
-    public function payoutPaystack(Payout $payout){
+    public function payoutPaystack(Settlement $settlement){
         
         $response = Curl::to('https://api.paystack.co/transfer')
         ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
         ->withHeader('Content-Type: application/json')
-        ->withData( array("source" => "balance", "reason"=> "Withdrawal Payout", "amount"=> $payout->amount * 100, "recipient"=> $payout->user->payout_account,
-        "currency"=> $payout->currency->code,"reference"=> $payout->reference ) )
+        ->withData( array("source" => "balance", "reason"=> "Withdrawal Payout", "amount"=> $settlement->amount * 100, "recipient"=> $settlement->affiliate->account_number,
+        "currency"=> $settlement->currency,"reference"=> $settlement->reference ) )
         ->asJson()                
         ->post();
         
         
       if(!$response || !$response->status || $response->data->status == 'failed'){
-          $payout->transfer_id = $response->data->transfer_code ?? '';
-          $payout->status = 'failed';
-          $payout->save();
+          $settlement->transfer_id = $response->data->transfer_code ?? '';
+          $settlement->status = 'failed';
+          $settlement->save();
       }
       if($response && $response->status && in_array($response->data->status,['success','pending'])){
-          $payout->transfer_id = $response->data->transfer_code ?? '';
-          $payout->status = 'processing';
-          $payout->save();
+          $settlement->transfer_id = $response->data->transfer_code ?? '';
+          $settlement->status = 'processing';
+          $settlement->save();
       }
     }
 
-    protected function verifyPayoutPaystack(Payout $payout){
-      $response = Curl::to("https://api.paystack.co/transfer/verify/$payout->reference")
+    protected function verifyPayoutPaystack(Settlement $settlement){
+      $response = Curl::to("https://api.paystack.co/transfer/verify/$settlement->transfer_id")
           ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
           ->asJson()
           ->get();
           if(!$response || !$response->status || $response->data->status == 'failed'){
-                $payout->status = 'failed';
-                $payout->save();
+                $settlement->status = 'failed';
+                $settlement->save();
           }
           if($response && $response->status && $response->data->status == 'success'){
-                $payout->status = 'paid'; 
-                $payout->paid_at = now(); 
-                $payout->save();
+                $settlement->status = 'paid'; 
+                $settlement->paid_at = now(); 
+                $settlement->save();
           }
     }
     
     
 
-    protected function retryPayoutPaystack(Payout $payout){
-        if($payout->status == 'failed'){
-          $payout->reference = uniqid();
-          $payout->save();
+    protected function retryPayoutPaystack(Settlement $settlement){
+        if($settlement->status == 'failed'){
+          $settlement->reference = uniqid();
+          $settlement->save();
         } 
         $response = Curl::to('https://api.paystack.co/transfer')
         ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
         ->withHeader('Content-Type: application/json')
-        ->withData( array("source" => "balance", "reason"=> "Withdrawal Payout", "amount"=> $payout->amount * 100, "recipient"=> $payout->user->payout_account,
-        "currency"=> $payout->currency->code,"reference"=> $payout->reference ) )
+        ->withData( array("source" => "balance", "reason"=> "Withdrawal Payout", "amount"=> $settlement->amount * 100, "recipient"=> $settlement->affiliate->account_number,
+        "currency"=> $settlement->currency,"reference"=> $settlement->reference ) )
         ->asJson()                
         ->post();
         // dd($response);
         
         if(!$response || !$response->status || $response->data->status == 'failed'){
-            $payout->transfer_id = $response->data->transfer_code ?? '';
-            $payout->status = 'failed';
-            $payout->save();
+            $settlement->transfer_id = $response->data->transfer_code ?? '';
+            $settlement->status = 'failed';
+            $settlement->save();
         }
         if($response && $response->status && in_array($response->data->status,['success','pending'])){
-            $payout->transfer_id = $response->data->transfer_code ?? '';
-            $payout->status = 'processing';
-            $payout->save();
+            $settlement->transfer_id = $response->data->transfer_code ?? '';
+            $settlement->status = 'processing';
+            $settlement->save();
         }
     }
 
@@ -153,9 +152,13 @@ trait PaystackTrait
         return $response->data->account_name;
     }
 
-    protected function getBanksByPaystack(){
+    protected function getBanksByPaystack($value){
+      $response = Curl::to('https://api.paystack.co/bank/country=nigeria')
+        ->withHeader('Authorization: Bearer '.config('services.paystack.secret'))
+         ->asJson()
+         ->get();
+       return $response->data;
         
     }
-
 
 }

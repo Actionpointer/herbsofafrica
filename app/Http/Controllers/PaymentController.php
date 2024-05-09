@@ -40,6 +40,7 @@ class PaymentController extends Controller
         $response = $this->initializePayment($payment);
         if (!$response){
             Alert::toast('Service Unavailable, Please Try Again Shortly', 'error');
+            dd('no response');
             return redirect()->back();
         }
         else return redirect()->to($response);
@@ -63,22 +64,22 @@ class PaymentController extends Controller
     }
 
     public function callback(){ 
-        if(!request()->query('tx_ref')) \abort(404);
-        $reference = request()->query('tx_ref');
+        if(!request()->query('reference')) \abort(404);
+        $reference = request()->query('reference');
         $payment = Payment::where('reference',$reference)->first();
         abort_if(!$payment,503,'Payment does not exist');
         if($payment->status == 'success'){
             return redirect()->route('payment.confirmation',$payment);
         }
-        if(request()->query('status') == 'cancelled'){
-            $payment->status = 'cancelled';
-            $payment->save();
-            return redirect()->route('payment.confirmation',$payment);
-        }
+        // if(request()->query('status') == 'cancelled'){
+        //     $payment->status = 'cancelled';
+        //     $payment->save();
+        //     return redirect()->route('payment.confirmation',$payment);
+        // }
         
         if($payment->currency == 'NGN'){
-            $details = $this->verifyFlutterWavePayment($payment->reference);
-            if(!$details || !$details->status || $details->status != 'success' || !$details->data || $details->data->status != 'successful' || $details->data->amount < $payment->amount){
+            $details = $this->verifyPaystackPayment($payment->reference);
+            if(!$details || !$details->status || !$details->data || $details->data->status != 'success' || $details->data->amount < ($payment->total * 100)){
                 $payment->status = 'failed';
                 $payment->save();
                 return redirect()->route('payment.confirmation',$payment);

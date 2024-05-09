@@ -3,35 +3,35 @@
 <link rel='stylesheet' id='elementor-post-35-css'
         href="{{asset('wp-content/uploads/elementor/css/post-359840.css?ver=1704940943')}}" type='text/css' media='all' />
 <link rel='stylesheet' id='wd-social-icons-css'
-href='wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/el-social-icons.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-testimonial-old-css'
-href='wp-content/themes/woodmart/css/parts/el-testimonial-old.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/el-testimonial-old.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-blog-base-css'
-href='wp-content/themes/woodmart/css/parts/blog-base.minc30a.css?ver=7.2.4' type='text/css' media='all' />
+href="{{asset('wp-content/themes/woodmart/css/parts/blog-base.minc30a.css?ver=7.2.4')}}" type='text/css' media='all' />
 <link rel='stylesheet' id='wd-blog-loop-base-old-css'
-href='wp-content/themes/woodmart/css/parts/blog-loop-base-old.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/blog-loop-base-old.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-blog-loop-design-mask-css'
-href='wp-content/themes/woodmart/css/parts/blog-loop-design-mask.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/blog-loop-design-mask.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 
 
 <link rel='stylesheet' id='wd-product-loop-css'
-href='wp-content/themes/woodmart/css/parts/woo-product-loop.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/woo-product-loop.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-product-loop-quick-css'
-href='wp-content/themes/woodmart/css/parts/woo-product-loop-quick.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/woo-product-loop-quick.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-woo-mod-add-btn-replace-css'
-href='wp-content/themes/woodmart/css/parts/woo-mod-add-btn-replace.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-add-btn-replace.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-woo-mod-product-labels-css'
-href='wp-content/themes/woodmart/css/parts/woo-mod-product-labels.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-product-labels.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 <link rel='stylesheet' id='wd-woo-mod-product-labels-round-css'
-href='wp-content/themes/woodmart/css/parts/woo-mod-product-labels-round.minc30a.css?ver=7.2.4' type='text/css'
+href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-product-labels-round.minc30a.css?ver=7.2.4')}}" type='text/css'
 media='all' />
 @endpush
 @section('main')
@@ -342,7 +342,7 @@ media='all' />
                                                 data-desktop="4" data-tablet_landscape="4" data-tablet="3"
                                                 data-mobile="1">
                                                 <div class="owl-carousel wd-owl info-box-carousel owl-items-lg-4 owl-items-md-4 owl-items-sm-3 owl-items-xs-1">
-                                                    @foreach ($categories as $category)
+                                                    @foreach ($categories->where('image','!=',null) as $category)
                                                     <div class="info-box-wrapper">
                                                         <div class="wd-info-box text-center box-icon-align-top box-style-base color-scheme-  elementor-repeater-item-83030a4 cursor-pointer">
                                                             <div class="box-icon-wrapper  box-with-icon box-icon-simple">

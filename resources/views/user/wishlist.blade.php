@@ -1,7 +1,7 @@
 @extends('user.index')
 @push('dashboard_styles')
     <link rel='stylesheet' id='elementor-post-492-css'
-        href='https://herbsofafrica.com/wp-content/uploads/elementor/css/post-492.css?ver=1706548779' type='text/css'
+        href='{{asset('wp-content/uploads/elementor/css/post-492.css?ver=1706548779' type='text/css'
         media='all' />
     <link rel="stylesheet" id="wd-woo-mod-shop-table-css"
         href="{{ asset('wp-content/themes/woodmart/css/parts/woo-mod-shop-table.minc30a.css?ver=7.2.4') }}" type="text/css"
@@ -48,7 +48,7 @@
     <div class="woocommerce-MyAccount-content">
         <div class="wd-wishlist-content wd-group-enable">
             <link rel="stylesheet" id="wd-page-wishlist-group-css"
-                href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-page-wishlist-group.min.css?ver=7.2.4"
+                href="{{asset('wp-content/themes/woodmart/css/parts/woo-page-wishlist-group.min.css?ver=7.2.4"
                 type="text/css" media="all">
             <div class="wd-wishlist-head wd-border-off">
                 <h4 class="title">
@@ -58,7 +58,7 @@
             </div>
             <div class="wd-wishlist-group" data-group-id="32">
                 <link rel="stylesheet" id="wd-page-wishlist-bulk-css"
-                    href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-page-wishlist-bulk.min.css?ver=7.2.4"
+                    href="{{asset('wp-content/themes/woodmart/css/parts/woo-page-wishlist-bulk.min.css?ver=7.2.4"
                     type="text/css" media="all">
                 <div class="wd-wishlist-group-head">
                     <div class="wd-wishlist-group-title">
@@ -87,7 +87,7 @@
 
 
                     <link rel="stylesheet" id="wd-social-icons-css"
-                        href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/el-social-icons.min.css?ver=7.2.4"
+                        href="{{asset('wp-content/themes/woodmart/css/parts/el-social-icons.min.css?ver=7.2.4"
                         type="text/css" media="all">
                     <div
                         class="wd-social-icons icons-design-default icons-size-small color-scheme-dark social-share social-form-circle wd-layout-inline text-center">
@@ -164,13 +164,13 @@
 
 
                     <link rel="stylesheet" id="wd-product-loop-css"
-                        href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-product-loop.min.css?ver=7.2.4"
+                        href="{{asset('wp-content/themes/woodmart/css/parts/woo-product-loop.min.css?ver=7.2.4"
                         type="text/css" media="all">
                     <link rel="stylesheet" id="wd-product-loop-quick-css"
-                        href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-product-loop-quick.min.css?ver=7.2.4"
+                        href="{{asset('wp-content/themes/woodmart/css/parts/woo-product-loop-quick.min.css?ver=7.2.4"
                         type="text/css" media="all">
                     <link rel="stylesheet" id="wd-woo-mod-add-btn-replace-css"
-                        href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-mod-add-btn-replace.min.css?ver=7.2.4"
+                        href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-add-btn-replace.min.css?ver=7.2.4"
                         type="text/css" media="all">
                     <div class="products elements-grid align-items-start row wd-products-holder  wd-spacing-20 grid-columns-3 pagination-links align-items-start"
                         data-paged="1"
@@ -193,27 +193,27 @@
                                 <div class="product-element-top wd-quick-shop">
                                     <a href="https://herbsofafrica.com/product/recnac/" class="product-image-link">
                                         <link rel="stylesheet" id="wd-woo-mod-product-labels-css"
-                                            href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-mod-product-labels.min.css?ver=7.2.4"
+                                            href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-product-labels.min.css?ver=7.2.4"
                                             type="text/css" media="all">
                                         <link rel="stylesheet" id="wd-woo-mod-product-labels-round-css"
-                                            href="https://herbsofafrica.com/wp-content/themes/woodmart/css/parts/woo-mod-product-labels-round.min.css?ver=7.2.4"
+                                            href="{{asset('wp-content/themes/woodmart/css/parts/woo-mod-product-labels-round.min.css?ver=7.2.4"
                                             type="text/css" media="all">
                                         <div class="product-labels labels-rounded"><span
                                                 class="featured product-label">Hot</span></div><img fetchpriority="high"
                                             decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20-300x300.webp"
+                                            src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20-300x300.webp')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1585"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20-300x300.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20-150x150.webp 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20-768x768.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20-600x600.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-20.webp 800w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20-300x300.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20-150x150.webp')}} 150w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20-768x768.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20-600x600.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-20.webp')}} 800w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/recnac/">
                                             <img decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/RECNAC_1_hoa-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-872"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/RECNAC_1_hoa.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/RECNAC_1_hoa-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/RECNAC_1_hoa-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/RECNAC_1_hoa-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/RECNAC_1_hoa-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/RECNAC_1_hoa.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">
@@ -274,19 +274,19 @@
                                 <div class="product-element-top wd-quick-shop">
                                     <a href="https://herbsofafrica.com/product/prostazipin/" class="product-image-link">
                                         <img decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21-300x300.webp"
+                                            src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21-300x300.webp')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1587"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21-300x300.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21-150x150.webp 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21-768x768.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21-600x600.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-21.webp 800w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21-300x300.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21-150x150.webp')}} 150w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21-768x768.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21-600x600.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-21.webp')}} 800w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/prostazipin/">
                                             <img loading="lazy" decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-857"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/Prostazipin-vF-Copy.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/Prostazipin-vF-Copy.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">
@@ -351,19 +351,19 @@
                                         <div class="product-labels labels-rounded"><span
                                                 class="featured product-label">Hot</span></div><img loading="lazy"
                                             decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-25-300x300.webp"
+                                            src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-25-300x300.webp')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1596"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-25-300x300.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-25-150x150.webp 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-25.webp 600w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-25-300x300.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-25-150x150.webp')}} 150w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-25.webp')}} 600w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/fabman/">
                                             <img loading="lazy" decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/FABMAN_1-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-777"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/FABMAN_1.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/FABMAN_1-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/FABMAN_1-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/FABMAN_1-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/FABMAN_1-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/FABMAN_1.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">
@@ -424,19 +424,19 @@
                                 <div class="product-element-top wd-quick-shop">
                                     <a href="https://herbsofafrica.com/product/myraco/" class="product-image-link">
                                         <img loading="lazy" decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.jpg"
+                                            src="{{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.jpg')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1742"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-150x150.jpg 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-768x768.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-600x600.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF.jpg 800w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.jpg')}} 300w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-150x150.jpg')}} 150w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-768x768.jpg')}} 768w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-600x600.jpg')}} 600w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF.jpg')}} 800w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/myraco/">
                                             <img loading="lazy" decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1743"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/Myraco-2023-Aug-VF.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/Myraco-2023-Aug-VF.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">
@@ -499,19 +499,19 @@
                                         <div class="product-labels labels-rounded"><span
                                                 class="featured product-label">Hot</span></div><img loading="lazy"
                                             decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28-300x300.webp"
+                                            src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28-300x300.webp')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1600"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28-300x300.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28-150x150.webp 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28-768x768.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28-600x600.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-28.webp 800w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28-300x300.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28-150x150.webp')}} 150w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28-768x768.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28-600x600.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-28.webp')}} 800w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/cardioright/">
                                             <img loading="lazy" decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-636"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/Cardioright-Undated_vF-veed-remove-background_orange.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">
@@ -574,19 +574,19 @@
                                         <div class="product-labels labels-rounded"><span
                                                 class="featured product-label">Hot</span></div><img loading="lazy"
                                             decoding="async" width="300" height="300"
-                                            src="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27-300x300.webp"
+                                            src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27-300x300.webp')}}"
                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-1599"
                                             alt=""
-                                            srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27-300x300.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27-150x150.webp 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27-768x768.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27-600x600.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-27.webp 800w"
+                                            srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27-300x300.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27-150x150.webp')}} 150w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27-768x768.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27-600x600.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-27.webp')}} 800w"
                                             sizes="(max-width: 300px) 100vw, 300px">
                                     </a>
                                     <div class="hover-img">
                                         <a href="https://herbsofafrica.com/product/bellyfat/">
                                             <img loading="lazy" decoding="async" width="300" height="300"
-                                                src="https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-300x300.png"
+                                                src="{{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-300x300.png')}}"
                                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-image-589"
                                                 alt=""
-                                                srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-300x300.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-150x150.png 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-768x768.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-600x600.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background.png 800w"
+                                                srcset="{{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-300x300.png')}} 300w, {{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-150x150.png')}} 150w, {{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-768x768.png')}} 768w, {{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background-600x600.png')}} 600w, {{asset('wp-content/uploads/2023/08/BELLYFLAT_1_hoa-veed-remove-background.png')}} 800w"
                                                 sizes="(max-width: 300px) 100vw, 300px"> </a>
                                     </div>
                                     <div class="wd-buttons wd-pos-r-t">

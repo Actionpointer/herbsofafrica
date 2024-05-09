@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @push('styles')
 <link rel='stylesheet' id='elementor-post-27-css'
-		href='../wp-content/uploads/elementor/css/post-2748e9.css?ver=1704949304' type='text/css' media='all' />
+		href="{{asset('wp-content/uploads/elementor/css/post-2748e9.css?ver=1704949304')}}" type='text/css' media='all' />
    
         <link rel='stylesheet' id='wd-page-title-css'
         href="{{ asset('wp-content/themes/woodmart/css/parts/page-title.minc30a.css?ver=7.2.4') }}" type='text/css'

@@ -1,7 +1,14 @@
-Paying affiliates 
-- payouts to affiliates on admin->affiliates
-Affiliates - changing percentages
+Wildcard subdomain for affiliates
+Paying affiliates
+Payouts to affiliates via admin->affiliates
+Changing Affiliates percentages via admin
+
+Change flutterwave to paystack payment, 
 Staff roles capabilities
+Language translation
 
-
-
+Notifications
+-order statuses
+-affiliated order
+-settlement deposit
+-withdrawal completed

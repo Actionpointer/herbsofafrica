@@ -51,8 +51,7 @@
                 <article id="post-153" class="post-153 page type-page status-publish hentry">
 
                     <div class="entry-content">
-                        <div data-elementor-type="wp-page" data-elementor-id="153"
-                            class="elementor elementor-153">
+                        <div data-elementor-type="wp-page" data-elementor-id="153" class="elementor elementor-153">
                             <div class="wd-negative-gap elementor-element elementor-element-c124e57 wd-section-stretch e-flex e-con-boxed e-con e-parent"
                                 data-id="c124e57" data-element_type="container"
                                 data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"

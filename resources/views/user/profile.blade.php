@@ -1,6 +1,6 @@
 @extends('user.index')
 @push('dashboard_styles')
-<link rel='stylesheet' id='elementor-post-492-css' href='https://herbsofafrica.com/wp-content/uploads/elementor/css/post-492.css?ver=1706548779' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-post-492-css' href='{{asset('wp-content/uploads/elementor/css/post-492.css?ver=1706548779' type='text/css' media='all' />
 <link rel="stylesheet" id="wd-woo-mod-shop-table-css"
         href="{{ asset('wp-content/themes/woodmart/css/parts/woo-mod-shop-table.minc30a.css?ver=7.2.4') }}" type="text/css"
         media="all">

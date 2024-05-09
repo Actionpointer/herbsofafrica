@@ -213,10 +213,10 @@
                                         href="../navigating-the-world-of-natural-herbal-supplements/index.html">
                                         <img decoding="async"
                                           width="1024" height="683"
-                                          src="../wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1024x683.webp"
+                                          src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1024x683.webp')}}"
                                           class="attachment-large size-large wp-image-1606"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1024x683.webp 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-300x200.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-768x512.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1536x1024.webp 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-2048x1365.webp 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-600x400.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-33-150x100.webp 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1024x683.webp')}} 1024w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-300x200.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-768x512.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-1536x1024.webp')}} 1536w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-2048x1365.webp')}} 2048w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-600x400.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-33-150x100.webp')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -284,10 +284,10 @@
                                         href="../the-science-behind-african-herbal-medicine/index.html">
                                         <img decoding="async"
                                           width="1024" height="683"
-                                          src="../wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1024x683.webp"
+                                          src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1024x683.webp')}}"
                                           class="attachment-large size-large wp-image-1608"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1024x683.webp 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-300x200.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-768x512.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1536x1024.webp 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-2048x1365.webp 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-600x400.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-34-150x100.webp 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1024x683.webp')}} 1024w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-300x200.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-768x512.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-1536x1024.webp')}} 1536w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-2048x1365.webp')}} 2048w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-600x400.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-34-150x100.webp')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -356,10 +356,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="624"
-                                          src="../wp-content/uploads/2023/08/water-lilies-4281965_1280-1-1024x624.jpg"
+                                          src="{{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-1024x624.jpg')}}"
                                           class="attachment-large size-large wp-image-558"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1-1024x624.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1-300x183.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1-768x468.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1-600x366.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1-150x91.jpg 150w, https://herbsofafrica.com/wp-content/uploads/2023/08/water-lilies-4281965_1280-1.jpg 1280w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-1024x624.jpg')}} 1024w, {{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-300x183.jpg')}} 300w, {{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-768x468.jpg')}} 768w, {{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-600x366.jpg')}} 600w, {{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1-150x91.jpg')}} 150w, {{asset('wp-content/uploads/2023/08/water-lilies-4281965_1280-1.jpg')}} 1280w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -429,10 +429,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="585"
-                                          src="../wp-content/uploads/2023/08/202312930_m_normal_none-copy-1024x585.jpg"
+                                          src="{{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-1024x585.jpg')}}"
                                           class="attachment-large size-large wp-image-561"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-1024x585.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-300x171.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-768x439.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-1536x878.jpg 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-2048x1170.jpg 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-600x343.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-150x86.jpg 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-1024x585.jpg')}} 1024w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-300x171.jpg')}} 300w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-768x439.jpg')}} 768w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-1536x878.jpg')}} 1536w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-2048x1170.jpg')}} 2048w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-600x343.jpg')}} 600w, {{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-150x86.jpg')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -503,10 +503,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="678"
-                                          src="../wp-content/uploads/2023/08/122976429_m_normal_none-1024x678.jpg"
+                                          src="{{asset('wp-content/uploads/2023/08/122976429_m_normal_none-1024x678.jpg')}}"
                                           class="attachment-large size-large wp-image-552"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-1024x678.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-300x199.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-768x509.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-1536x1018.jpg 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-2048x1357.jpg 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-600x398.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-150x99.jpg 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/122976429_m_normal_none-1024x678.jpg')}} 1024w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-300x199.jpg')}} 300w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-768x509.jpg')}} 768w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-1536x1018.jpg')}} 1536w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-2048x1357.jpg')}} 2048w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-600x398.jpg')}} 600w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-150x99.jpg')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -577,10 +577,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="683"
-                                          src="../wp-content/uploads/2023/08/206357654_m_normal_none-1024x683.jpg"
+                                          src="{{asset('wp-content/uploads/2023/08/206357654_m_normal_none-1024x683.jpg')}}"
                                           class="attachment-large size-large wp-image-550"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-1024x683.jpg 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-300x200.jpg 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-768x512.jpg 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-1536x1024.jpg 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-2048x1365.jpg 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-600x400.jpg 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/206357654_m_normal_none-150x100.jpg 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/206357654_m_normal_none-1024x683.jpg')}} 1024w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-300x200.jpg')}} 300w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-768x512.jpg')}} 768w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-1536x1024.jpg')}} 1536w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-2048x1365.jpg')}} 2048w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-600x400.jpg')}} 600w, {{asset('wp-content/uploads/2023/08/206357654_m_normal_none-150x100.jpg')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -651,10 +651,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="679"
-                                          src="../wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1024x679.png"
+                                          src="{{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1024x679.png')}}"
                                           class="attachment-large size-large wp-image-548"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1024x679.png 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-300x199.png 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-768x509.png 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1536x1019.png 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-2048x1358.png 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-600x398.png 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-150x99.png 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1024x679.png')}} 1024w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-300x199.png')}} 300w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-768x509.png')}} 768w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-1536x1019.png')}} 1536w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-2048x1358.png')}} 2048w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-600x398.png')}} 600w, {{asset('wp-content/uploads/2023/08/122976429_m_normal_none-veed-remove-background_green-150x99.png')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>
@@ -725,10 +725,10 @@
                                         <img loading="lazy"
                                           decoding="async"
                                           width="1024" height="683"
-                                          src="../wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp"
+                                          src="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp')}}"
                                           class="attachment-large size-large wp-image-1605"
                                           alt=""
-                                          srcset="https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp 1024w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-300x200.webp 300w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-768x512.webp 768w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1536x1024.webp 1536w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-2048x1365.webp 2048w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-600x400.webp 600w, https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-32-150x100.webp 150w"
+                                          srcset="{{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1024x683.webp')}} 1024w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-300x200.webp')}} 300w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-768x512.webp')}} 768w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-1536x1024.webp')}} 1536w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-2048x1365.webp')}} 2048w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-600x400.webp')}} 600w, {{asset('wp-content/uploads/2023/08/ezgif.com-gif-maker-32-150x100.webp')}} 150w"
                                           sizes="(max-width: 1024px) 100vw, 1024px" />
                                       </a>
                                     </div>

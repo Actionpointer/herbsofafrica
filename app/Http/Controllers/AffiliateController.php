@@ -18,7 +18,7 @@ class AffiliateController extends Controller
     use StripeTrait,FlutterwaveTrait;
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
         // $domain = request()->domain ? request()->domain: request()->root();
         // $affiliate = Affiliate::where('username', $domain)->first();
         // \abort_if(!$affiliate,404);
@@ -26,6 +26,7 @@ class AffiliateController extends Controller
     
     public function index()
     { 
+        return view('webpages.affiliate');
         if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
             return redirect()->route('affiliate.overview');
         }

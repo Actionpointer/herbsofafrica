@@ -367,17 +367,6 @@
                                                         <span class="wd-icon"></span>
                                                     </a>
 
-
-
-
-                                                    <a rel="noopener noreferrer nofollow"
-                                                        href="https://pinterest.com/pin/create/button/?url=https://herbsofafrica.com/product/cartis/&amp;media=https://herbsofafrica.com/wp-content/uploads/2023/08/ezgif.com-gif-maker-29-1.webp&amp;description=Cartis"
-                                                        target="_blank" class=" wd-social-icon social-pinterest"
-                                                        aria-label="Pinterest social link">
-                                                        <span class="wd-icon"></span>
-                                                    </a>
-
-
                                                     <a rel="noopener noreferrer nofollow"
                                                         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://herbsofafrica.com/product/cartis/"
                                                         target="_blank" class=" wd-social-icon social-linkedin"

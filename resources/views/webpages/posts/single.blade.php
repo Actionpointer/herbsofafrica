@@ -123,7 +123,7 @@
 
 
               <a rel="noopener noreferrer nofollow"
-                href="https://pinterest.com/pin/create/button/?url=https://herbsofafrica.com/harnessing-the-healing-power-of-nature-organic-herbal-supplements-for-optimal-health/&amp;media=https://herbsofafrica.com/wp-content/uploads/2023/08/202312930_m_normal_none-copy-scaled.jpg&amp;description=Harnessing+the+Healing+Power+of+Nature%3A+Organic+Herbal+Supplements+for+Optimal+Health"
+                href="https://pinterest.com/pin/create/button/?url=https://herbsofafrica.com/harnessing-the-healing-power-of-nature-organic-herbal-supplements-for-optimal-health/&amp;media={{asset('wp-content/uploads/2023/08/202312930_m_normal_none-copy-scaled.jpg&amp;description=Harnessing+the+Healing+Power+of+Nature%3A+Organic+Herbal+Supplements+for+Optimal+Health"
                 target="_blank" class=" wd-social-icon social-pinterest"
                 aria-label="Pinterest social link">
                 <span class="wd-icon"></span>

@@ -179,7 +179,7 @@
                                                                             class="elementor-repeater-item-c383cf6">
                                                                             <img decoding="async" width="20"
                                                                                 height="20"
-                                                                                src="../wp-content/uploads/2023/08/3.png"
+                                                                                src="{{asset('wp-content/uploads/2023/08/3.png')}}"
                                                                                 class="attachment-full size-full wp-image-266"
                                                                                 alt="" />
                                                                             <span class="list-content">
@@ -194,7 +194,7 @@
                                                                             class="elementor-repeater-item-a511145">
                                                                             <img decoding="async" width="20"
                                                                                 height="20"
-                                                                                src="../wp-content/uploads/2023/08/2.png"
+                                                                                src="{{asset('wp-content/uploads/2023/08/2.png')}}"
                                                                                 class="attachment-full size-full wp-image-265"
                                                                                 alt="" />
                                                                             <span class="list-content">
@@ -210,7 +210,7 @@
                                                                             class="elementor-repeater-item-9e46174">
                                                                             <img decoding="async" width="20"
                                                                                 height="20"
-                                                                                src="../wp-content/uploads/2023/08/1.png"
+                                                                                src="{{asset('wp-content/uploads/2023/08/1.png')}}"
                                                                                 class="attachment-full size-full wp-image-264"
                                                                                 alt="" />
                                                                             <span class="list-content">
