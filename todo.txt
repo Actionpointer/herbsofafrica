@@ -12,3 +12,14 @@ Notifications
 -affiliated order
 -settlement deposit
 -withdrawal completed
+
+public function index()
+    { 
+        return view('webpages.affiliate');
+    }
+
+    public function signup(){
+        
+        $countries = Country::all();
+        return view('user.affiliate.register',compact('countries'));
+    }

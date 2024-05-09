@@ -111,7 +111,7 @@
                                                                 your journey towards holistic well-being.<br>
                                                             </h4>
                                                         </div>
-                                                        <a href="#" class="button product_type_simple single_add_to_cart_button" >
+                                                        <a href="{{route('affiliate.signup')}}" class="button product_type_simple single_add_to_cart_button" >
                                                             <span>Sign Up Now </span>
                                                         </a>
                                                     </div>

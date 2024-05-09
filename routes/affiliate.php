@@ -8,6 +8,7 @@ use App\Http\Controllers\AffiliateController;
 //register as affiliate
 Route::group(['prefix'=>'affiliate','as'=> 'affiliate.'],function(){
     Route::get('/', [AffiliateController::class, 'index'])->name('index'); //intro
+    Route::get('signup', [AffiliateController::class, 'signup'])->name('signup'); //register
     Route::post('register', [AffiliateController::class, 'register'])->name('register'); //register
     Route::get('bank/account', [AffiliateController::class, 'bankAccountLink'])->name('bank.account');
     Route::post('bank/account/store', [AffiliateController::class, 'storeBankAccount'])->name('bank.account.store');

@@ -27,6 +27,9 @@ class AffiliateController extends Controller
     public function index()
     { 
         return view('webpages.affiliate');
+    }
+
+    public function signup(){
         if(auth()->user()->affiliate && auth()->user()->affiliate->account_number){
             return redirect()->route('affiliate.overview');
         }
