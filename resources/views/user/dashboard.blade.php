@@ -33,7 +33,7 @@
         --}}
         @if(auth()->user()->affiliate)
         <div class="downloads-link">
-            <a href="{{route('affiliate.index')}}">Affiliate</a>
+            <a href="{{route('affiliate.overview')}}">Affiliate</a>
         </div>
         @endif
         <div class="edit-account-link">

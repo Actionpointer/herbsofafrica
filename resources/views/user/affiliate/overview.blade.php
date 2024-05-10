@@ -64,7 +64,6 @@
                         <tr>
                             <td>Affiliate Link: </td>
                             <td> 
-                                
                                 <a class="text-muted" href="{{route('affiliate.shop',$affiliate->username)}}" target="_blank">
                                     {{route('affiliate.shop',$affiliate->username)}}
                                 </a>
