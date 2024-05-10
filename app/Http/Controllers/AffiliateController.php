@@ -12,20 +12,17 @@ use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
 use App\Http\Traits\StripeTrait;
 use App\Http\Traits\FlutterwaveTrait;
+use App\Http\Traits\PaystackTrait;
 
 class AffiliateController extends Controller
 {
-    use StripeTrait,FlutterwaveTrait;
+    use StripeTrait,PaystackTrait;
 
     public function __construct(){
         $this->middleware('auth')->except('index');
-        // $domain = request()->domain ? request()->domain: request()->root();
-        // $affiliate = Affiliate::where('username', $domain)->first();
-        // \abort_if(!$affiliate,404);
     }
     
-    public function index()
-    { 
+    public function index(){ 
         return view('webpages.affiliate');
     }
 
@@ -51,26 +48,43 @@ class AffiliateController extends Controller
                 ['name'=> $request->affiliate_name,
                 'phone'=> $request->affiliate_phone,
                 'country_id'=> $request->affiliate_country,'percentage'=> $percentage]);
-        if($affiliate->country->iso == "NG"){
-            return redirect()->route('affiliate.bank.account');
-        }else{
-            $account = $this->connectStripe($affiliate);
-            if(!$account)
-            return redirect()->route('affiliate.index');
-            return redirect()->route('affiliate.connect.stripe');
-        }
+        return redirect()->route('affiliate.overview');
         
     }
 
+    public function update(Request $request)
+    { 
+        $request->validate([
+            'affiliate_name' => ['required', 'string'],
+            'affiliate_email' => ['required', 'string','email','max:255'],
+            'affiliate_phone' => ['required', 'string', 'max:255'],
+        ]);
+        Affiliate::updateOrCreate(['user_id'=> auth()->id()],
+                ['name'=> $request->affiliate_name,'email'=> $request->affiliate_email,
+                'phone'=> $request->affiliate_phone]);
+        return redirect()->route('affiliate.overview');
+    }
+
     public function stripeOnboarding(){
-        $link = $this->accountLink(auth()->user()->affiliate);
+        if(!$account_number = auth()->user()->affiliate->account_number){
+            $account_number = $this->connectStripe(auth()->user()->affiliate);
+        }
+        $link = $this->accountLink($account_number);
         if(!$link){
-            return redirect()->route('affiliate.connect.stripe');
-        }else return redirect()->to($link);
+            return "error message";
+        }else return redirect()->to($link); 
+
+    }
+
+    public function stripePostBoarding(){
+        $affiliate = auth()->user()->affiliate;
+        $affiliate->account_status = true;
+        $affiliate->save();
+        return redirect()->route('affiliate.overview');
     }
 
     public function bankAccountLink(){
-        $banks = $this->banks(auth()->user()->affiliate->country->iso);
+        $banks = $this->getBanksByPaystack();
         return view('user.affiliate.bank_account',compact('banks'));
     }
 
@@ -80,17 +94,21 @@ class AffiliateController extends Controller
             'bank_name' => ['required', 'string'],
             'account_number' => ['required', 'string'],
         ]);
-        $affiliate = auth()->user()->affiliate;
-        $affiliate->bank_code = $request->bank_code;
-        $affiliate->bank_name = $request->bank_name;
-        $affiliate->account_number = $request->account_number;
-        $affiliate->save();
-        return redirect()->route('affiliate.index');
+        
+        $result = $this->createRecipient($request->bank_code,$request->account_number);
+        if(!$result){
+            return redirect()->back()->with(['result'=> '0','message'=> 'Bank details could not be saved']);
+        }else{
+            $affiliate = auth()->user()->affiliate;
+            $affiliate->account_number = $result;
+            $affiliate->account_status = true;
+            $affiliate->save();
+        }
+        return redirect()->route('affiliate.overview');
     }
     
     public function dashboard()
     {
-        // $payments = auth()->user()->affiliate->payments;
         $payments = Payment::where('affiliate_id',auth()->user()->affiliate_id)->whereHas('settlement')->get();
         $affiliate = auth()->user()->affiliate;
         $currencies = Currency::all();

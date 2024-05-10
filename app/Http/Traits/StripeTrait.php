@@ -57,6 +57,18 @@ trait StripeTrait
             ->get();
         return $response;
     }
+
+    public function retrieveAccount($account_number){
+        $response = Curl::to("https://api.stripe.com/v1/accounts/$account_number")
+            ->withHeader('Content-Type: application/x-www-form-urlencoded')
+            ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
+            ->asJsonResponse()
+            ->get();
+        // acct_1OpTfgGgPcnGNIQ2, acct_1OuekSGazRDBDWQi
+        dd($response);
+        return false;
+    }
+
   
     public function connectStripe(Affiliate $affiliate){
         $response = Curl::to('https://api.stripe.com/v1/accounts')
@@ -67,19 +79,18 @@ trait StripeTrait
             ->post();
         // acct_1OpTfgGgPcnGNIQ2
         if($response && $response->id){
-            $affiliate->bank_name = 'stripe';
             $affiliate->account_number = $response->id;
             $affiliate->save();
-            return true;
+            return $response->id;
         }else return false;
     }
 
-    public function accountLink(Affiliate $affiliate){
+    public function accountLink($account_number){
         $response = Curl::to('https://api.stripe.com/v1/account_links')
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
-            ->withData( array('account'=> $affiliate->account_number,'type'=> 'account_onboarding',
-            'refresh_url'=> route('affiliate.connect.stripe') ,'return_url' => route('affiliate.index')))
+            ->withData( array('account'=> $account_number,'type'=> 'account_onboarding',
+            'refresh_url'=> route('affiliate.stripe.onboarding') ,'return_url' => route('affiliate.stripe.postboarding')))
             ->asJsonResponse()
             ->post();
         if($response && $response->url){

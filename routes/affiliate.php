@@ -10,9 +10,11 @@ Route::group(['prefix'=>'affiliate','as'=> 'affiliate.'],function(){
     Route::get('/', [AffiliateController::class, 'index'])->name('index'); //intro
     Route::get('signup', [AffiliateController::class, 'signup'])->name('signup'); //register
     Route::post('register', [AffiliateController::class, 'register'])->name('register'); //register
+    Route::post('update', [AffiliateController::class, 'update'])->name('update'); //update
     Route::get('bank/account', [AffiliateController::class, 'bankAccountLink'])->name('bank.account');
     Route::post('bank/account/store', [AffiliateController::class, 'storeBankAccount'])->name('bank.account.store');
-    Route::get('connect/stripe', [AffiliateController::class, 'stripeOnboarding'])->name('connect.stripe');
+    Route::get('stripe/onboarding', [AffiliateController::class, 'stripeOnboarding'])->name('stripe.onboarding');
+    Route::get('stripe/postboarding', [AffiliateController::class, 'stripePostboarding'])->name('stripe.postboarding');
     Route::get('dashboard', [AffiliateController::class, 'dashboard'])->name('overview');
     Route::post('coupon',[AffiliateController::class,'coupon'])->name('coupon');
 });

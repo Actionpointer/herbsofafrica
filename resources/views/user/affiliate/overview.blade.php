@@ -311,7 +311,82 @@
             </form>
         </div>
         <div class="tab-pane fade" id="setting" role="tabpanel" aria-labelledby="setting-tab">
-            Settings
+            <form class="woocommerce-EditAccountForm edit-account" action="{{route('affiliate.update')}}" method="post">@csrf
+                <fieldset>
+                    <legend class="px-0">Settings</legend>
+                    
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first mb-0">
+                                <label for="affiliate_name">Business Name<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input text-start px-3 " name="affiliate_name" value="{{$affiliate->name}}" required
+                                    id="affiliate_name">
+                            </p>
+                            <small class="">This will not affect your affiliate link.</small>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first mb-0">
+                                <label for="affiliate_email">Affiliate Email </label>
+                                <input type="text" class="woocommerce-Input text-start px-3 " name="affiliate_email" value="{{$affiliate->email}}"
+                                    id="affiliate_email" autocomplete="given-email" required>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first mb-0">
+                                <label for="affiliate_phone">Affiliate Phone<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input text-start px-3 " name="affiliate_phone" value="{{$affiliate->phone}}" required
+                                    id="affiliate_phone">
+                            </p>
+                            
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first mb-0">
+                                <label for="affiliate_country">Affiliate Country </label>
+                                <input type="text" class="woocommerce-Input text-start px-3 " name="affiliate_country" value="{{$affiliate->country->name}}"
+                                    id="affiliate_country" autocomplete="given-country" readonly>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="">Withdrawal</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="withdrawal" id="auto" value="auto" checked>
+                                <label class="form-check-label" for="auto">
+                                  Automatically To Bank Account (every Monday)
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="withdrawal" value="manual" id="manual">
+                                <label class="form-check-label" for="manual">
+                                  Manual (When I request withdrawal)
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Bank Account Status: @if($affiliate->account_status) Linked @else Not Linked @endif</label>
+
+                            <a @if($affiliate->country->iso == "NG")  href="{{route('affiliate.bank.account')}}" @else  href="{{route('affiliate.stripe.onboarding')}}"  @endif class="bg-success bg-gradient text-white rounded p-2"> @if($affiliate->account_status) Re-@endif Link Bank Account</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="woocommerce-Button button" name="save_account_details" value="Save changes">Save changes</button>
+                    
+
+                    
+                </fieldset>
+                
+                
+                <div class="clear"></div>
+                
+                <p></p>
+            </form>
         </div>
       </div>
     <p></p>

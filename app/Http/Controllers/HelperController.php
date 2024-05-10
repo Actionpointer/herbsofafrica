@@ -6,13 +6,13 @@ use App\Models\Rate;
 use App\Models\State;
 use App\Models\Currency;
 use Illuminate\Http\Request;
-use App\Http\Traits\FlutterwaveTrait;
 use App\Http\Traits\GeoLocationTrait;
 use App\Http\Traits\OrderTrait;
+use App\Http\Traits\PaystackTrait;
 
 class HelperController extends Controller
 {
-    use GeoLocationTrait,FlutterwaveTrait, OrderTrait;
+    use GeoLocationTrait,PaystackTrait, OrderTrait;
 
     public function switch_currency(){
         $currency = Currency::where('code',request()->currency)->first();
@@ -50,7 +50,7 @@ class HelperController extends Controller
 
 
     public function verify_account(Request $request){
-        $response = $this->resolveBankAccountByFlutter($request->bank_code,$request->account_number);
+        $response = $this->resolveBankAccountByPaystack($request->bank_code,$request->account_number);
         return response()->json(
             ['message' => $response ? 'Account fetched Successfully':'Unable to verify bank account',
             'name' => $response

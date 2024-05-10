@@ -15,7 +15,7 @@ class Affiliate extends Model
 {
     use HasFactory,Sluggable;
 
-    protected $fillable = ['email','name','username','phone','user_id','currency','country_id','bank_code','bank_name','account_number','balance','status','percentage'];
+    protected $fillable = ['email','name','username','phone','user_id','country_id','account_status','account_number','balance','status','percentage'];
 
     public function sluggable(): array
     {
