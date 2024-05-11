@@ -1,16 +1,34 @@
-Wildcard subdomain for affiliates
-Paying affiliates
-Payouts to affiliates via admin->affiliates
-Changing Affiliates percentages via admin
+Paying affiliates - automatic/manual ?
 
-Change flutterwave to paystack payment, 
-Staff roles capabilities
+Stripe Refund
+
 Language translation
 
-Notifications
--order statuses
--affiliated order
--settlement deposit
--withdrawal completed
 
-shipping addresses
+return venue
+
+user shipping addresses
+
+Settlement job: all pending settlements that are past 14days of order date
+if settlement is withheld, show it to affiliate, 
+withheld settlement can only be paid manually by admin. 
+
+if buyer does not return item within 14days, 
+
+["admin", 
+"categories", 
+"shipment", 
+"product", 
+"orders", 
+"customers", 
+"affiliates", 
+"staff", 
+"payments", 
+"settlements", 
+"revenues", 
+"posts", 
+"settings"]
+
+/*
+
+

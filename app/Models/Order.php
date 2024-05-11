@@ -9,18 +9,22 @@ use App\Models\OrderItem;
 use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
-    protected $fillable = ['user_id','reference', 'payment_id', 'currency', 'total',"note",  "ready_at","shipped_at", "delivered_at"];
+    protected $fillable = ['user_id','reference', 'payment_id', 'currency', 'total',"note",  "ready_at","shipped_at", "delivered_at","disliked_at","refunded_at"];
 
     protected $casts = [
         'ready_at'=> 'datetime',
         'cancelled_at'=> 'datetime',
         'shipped_at'=> 'datetime',
         'delivered_at'=> 'datetime',
+        'disliked_at'=> 'datetime',
+        'refunded_at'=> 'datetime',
+        'deleted_at'=> 'datetime',
     ];
 
     public static function boot(){
@@ -34,6 +38,10 @@ class Order extends Model
     }
 
     public function getStatusAttribute(){
+        if($this->refunded_at)
+        return 'refunded';
+        if($this->disliked_at)
+        return 'disliked';
         if($this->delivered_at)
         return 'delivered';
         elseif($this->shipped_at)
@@ -48,6 +56,10 @@ class Order extends Model
     }
 
     public function getStatusTimeAttribute(){
+        if($this->refunded_at)
+        return $this->refunded_at->format('jS F Y');
+        if($this->disliked_at)
+        return $this->disliked_at->format('jS F Y');
         if($this->delivered_at)
         return $this->delivered_at->format('jS F Y');
         elseif($this->shipped_at)
@@ -58,6 +70,7 @@ class Order extends Model
         return $this->cancelled_at->format('jS F Y');
         else return $this->created_at->format('jS F Y');
     }
+
 
     public function payment(){
         return $this->belongsTo(Payment::class);

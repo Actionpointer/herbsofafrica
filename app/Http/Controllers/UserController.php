@@ -13,13 +13,20 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(){
-        if(auth()->user()->role == 'admin')
+        if(auth()->user()->role && in_array('admin',auth()->user()->role))
         return redirect()->route('admin.dashboard');
         return view('user.dashboard');
     }
 
+    public function admin(){
+        return view('admin.index');
+    }
+
     public function profile(){
-        return view('user.profile');
+        $user = User::where('id', auth()->id())->first();
+        if(auth()->user()->role && in_array('admin',auth()->user()->role))
+        return view('admin.profile', compact('user'));
+        return view('user.profile',compact('user'));
     }
 
     public function profile_update(Request $request){
@@ -47,7 +54,7 @@ class UserController extends Controller
     }
 
     public function customers(){
-        $customers = User::where('role','customer')->get();
+        $customers = User::whereNull('role')->get();
         $currencies = Currency::all();
         return view('admin.user.customers',compact('customers','currencies'));
     }
@@ -64,22 +71,28 @@ class UserController extends Controller
     }
 
     public function staff(){
-        $staffs = User::where('role','admin')->get();
-        return view('admin.user.staff',compact('staffs'));
+        $staffs = User::where('role','!=',null)->get();
+        $permissions = ["categories", "shipment", "products", "orders", "customers", "affiliates", "staff", "payments", "settlements", "revenues", "posts", "settings"];
+        return view('admin.user.staff',compact('staffs','permissions'));
     }
 
     public function manage(Request $request){
+        $role = $request->permissions;
+        array_unshift($role,'admin');
         if($request->action == 'create'){
             $request->validate([
                 'email' => 'required|unique:users,email',
             ]);
-    
             User::create(['first_name'=> $request->first_name,'last_name'=> $request->last_name,'email'=> $request->email,
-            'password'=> Hash::make($request->password), 'role'=> 'admin']);
+            'password'=> Hash::make($request->password), 'role'=> $role]);
         }elseif($request->action == 'delete'){
             User::where('id',$request->user_id)->delete();
         }else{
-            User::where('id',$request->user_id)->update(['status'=> $request->status]);
+            $user = User::find($request->user_id);
+            $user->status = $request->status;
+            if($user->role)
+            $user->role = $role;
+            $user->save();
         }
         return redirect()->back();
     }

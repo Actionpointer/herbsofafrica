@@ -51,6 +51,8 @@
                                   Ready for @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif
                               @elseif($order->status == 'processed')
                                   Processing
+                              @elseif($order->status == 'disliked')
+                                  Refund Requested
                               @else 
                                   {{ucwords($order->status)}}
                               @endif
@@ -137,6 +139,7 @@
                                   @if(!$order->ready_at) <option value="ready">Ready</option> @endif
                                   @if(!$order->shipped_at) <option value="shipped">Shipped</option> @endif
                                   @if(!$order->delivered_at) <option value="delivered">Delivered</option> @endif 
+                                  @if($order->disliked_at) <option value="refund">Refund</option> @endif 
                               </select>
                               <button class="btn btn-dark" type="submit"> Change Status </button>
                           </form>

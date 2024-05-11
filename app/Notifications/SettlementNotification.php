@@ -2,22 +2,23 @@
 
 namespace App\Notifications;
 
-use App\Models\Registration;
+use App\Models\Settlement;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TrainingRegistrationNotification extends Notification
+class SettlementNotification extends Notification
 {
     use Queueable;
-    public $registration;
+    public $settlement;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(Registration $registration)
+    public function __construct(Settlement $settlement)
     {
-        $this->registration = $registration;
+        $this->settlement = $settlement;
     }
 
     /**
@@ -36,15 +37,8 @@ class TrainingRegistrationNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Training Registration')
-            ->line('Someone registered for a training on Havron E-learning platform. The details are below:')
-            ->line('Training Title: '.$this->registration->training->title)
-            ->line('Name: '.$this->registration->name)
-            ->line('Email: '.$this->registration->email)
-            ->line('Address: '.$this->registration->address)
-            ->line('Phone: '.$this->registration->phone)
-            ->line('Comment: '.$this->registration->comment)
-            ->line('Billing Currency: '.$this->registration->currency->name);
+                    ->line('A commission of '.$this->settlement->amount.' '.$this->settlement->currency.' has been paid to you as earnings from Order: '.$this->settlement->order_id)
+                    ->line('Thank you for using Herbs of Africa!');
     }
 
     /**

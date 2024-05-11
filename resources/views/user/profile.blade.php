@@ -49,13 +49,13 @@
             <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
                 <label for="first_name">First name&nbsp;<span class="required">*</span></label>
                 <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="first_name"
-                    id="first_name" autocomplete="given-name" value="{{auth()->user()->first_name}}">
+                    id="first_name" autocomplete="given-name" value="{{$user->first_name}}">
                     @error('first_name') <span class="error d-block" style="color: red;">{{ $message }}</span> @enderror
             </p>
             <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
                 <label for="last_name">Last name&nbsp;<span class="required">*</span></label>
                 <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="last_name"
-                    id="last_name" autocomplete="family-name" value="{{auth()->user()->last_name}}">
+                    id="last_name" autocomplete="family-name" value="{{$user->last_name}}">
                     @error('last_name') <span class="error d-block" style="color: red;">{{ $message }}</span> @enderror
             </p>
             <div class="clear"></div>
@@ -64,7 +64,7 @@
             <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                 <label for="email">Email address&nbsp;<span class="required">*</span></label>
                 <input type="email" class="woocommerce-Input woocommerce-Input--email input-text" name="email"
-                    id="email" autocomplete="email" value="{{auth()->user()->email}}">
+                    id="email" autocomplete="email" value="{{$user->email}}">
                     @error('email') <span class="error d-block" style="color: red;">{{ $message }}</span> @enderror
             </p>
         

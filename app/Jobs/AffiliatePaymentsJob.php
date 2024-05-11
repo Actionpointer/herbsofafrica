@@ -28,7 +28,9 @@ class AffiliatePaymentsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $settlements = Settlement::where('status','pending')->get();
+        $settlements = Settlement::where('status','pending')->whereHas('order',function($query){
+            $query->whereNull('disliked_at')->where('created_at','>',now()->subDays(14));
+        })->get();
         foreach($settlements as $settlement){
             $this->initializeSettlement($settlement);
         }

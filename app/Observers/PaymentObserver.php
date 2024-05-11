@@ -2,9 +2,11 @@
 
 namespace App\Observers;
 
-use App\Http\Traits\OrderTrait;
+use App\Models\User;
 use App\Models\Payment;
-use App\Models\Settlement;
+use App\Http\Traits\OrderTrait;
+use App\Notifications\OrderStatusNotification;
+use Illuminate\Support\Facades\Notification;
 
 class PaymentObserver
 {
@@ -23,20 +25,19 @@ class PaymentObserver
     public function updated(Payment $payment): void
     {
         if($payment->isDirty('status') && $payment->status == 'cancelled'){
-            //refund payments
+            
         }
         if($payment->isDirty('status') && $payment->status == 'failed'){
 
         }
         if($payment->isDirty('status') && $payment->status == 'success'){
+            $payment->user->notify(new OrderStatusNotification($payment->order,'customer'));
+            $users = User::whereJsonContains('role','orders')->get();
+            Notification::send($users, new OrderStatusNotification($payment->order,'admin'));
             if($payment->commission){
                 $affiliate = $payment->affiliate ?? $payment->user->referrer;
-                Settlement::create(['affiliate_id'=> $affiliate->id,'payment_id'=> $payment->id,
-                'order_id'=> $payment->order->id,'description'=> "$affiliate->percentage% Commission on order",
-                'amount'=> $payment->commission,'currency'=> $payment->commission_currency,'reference'=> uniqid()]);
+                $affiliate->notify(new OrderStatusNotification($payment->order,'affiliate'));
             }
-            
-
         }
     }
 

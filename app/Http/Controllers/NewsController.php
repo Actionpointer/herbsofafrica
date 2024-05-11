@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     public function index(){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+        
         $posts = Post::orderBy('created_at','desc')->paginate(50);
         return view('admin.news.list', compact('posts'));
     }
@@ -75,7 +75,7 @@ class NewsController extends Controller
     }
 
     public function delete(Request $request){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+        
         Post::where('id', $request->post_id)->delete();
         return redirect()->route('admin.post.index');
     }

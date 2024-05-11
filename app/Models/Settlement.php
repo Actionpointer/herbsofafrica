@@ -6,14 +6,17 @@ use App\Models\Payment;
 use App\Models\Affiliate;
 use App\Observers\SettlementObserver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Settlement extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $fillable = ['affiliate_id','reference','transfer_id','payment_id','order_id','description','amount','currency','status','paid_at'];
-    protected $casts = ['paid_at'=> 'datetime'];
+    
+    protected $casts = ['paid_at'=> 'datetime','deleted_at'=> 'datetime'];
+    
     public static function boot(){
         parent::boot();
         parent::observe(new SettlementObserver);

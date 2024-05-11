@@ -14,14 +14,14 @@ class SettingsController extends Controller
     
 
     public function index(){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+        
         $currencies = Currency::all();
         $settings = Setting::all();
         return view('admin.settings',compact('currencies','settings'));
     }
 
     public function currencies(Request $request){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+        
         switch($request->action){
             case 'create':
                             $request->validate([
@@ -52,8 +52,7 @@ class SettingsController extends Controller
         }
     }
 
-    public function counters(Request $request){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+    public function counters(Request $request){  
         foreach($request->except('_token') as $key => $value){
             Setting::where('name',$key)->update(['value'=> $value]);
         }

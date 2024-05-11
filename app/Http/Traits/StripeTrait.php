@@ -58,6 +58,10 @@ trait StripeTrait
         return $response;
     }
 
+    public function refundStripe(Payment $payment){
+
+    }
+
     public function retrieveAccount($account_number){
         $response = Curl::to("https://api.stripe.com/v1/accounts/$account_number")
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
@@ -68,7 +72,6 @@ trait StripeTrait
         dd($response);
         return false;
     }
-
   
     public function connectStripe(Affiliate $affiliate){
         $response = Curl::to('https://api.stripe.com/v1/accounts')

@@ -8,12 +8,13 @@ use App\Models\Country;
 use App\Models\Payment;
 use App\Models\Settlement;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Affiliate extends Model
 {
-    use HasFactory,Sluggable;
+    use HasFactory,Sluggable,Notifiable;
 
     protected $fillable = ['email','name','username','phone','user_id','country_id','account_status','account_number','balance','status','percentage'];
 

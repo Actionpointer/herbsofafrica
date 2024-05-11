@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\PaymentTrait;
 use App\Models\Order;
 use App\Models\Currency;
 use App\Models\Affiliate;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    use PaymentTrait;
 
     public function __construct(){
         $this->middleware('auth')->only(['wishlist','addtowish','removefromwish']);
@@ -51,7 +53,14 @@ class OrderController extends Controller
     public function edit(Request $request)
     {
         switch($request->status){
-            case 'cancelled':   Order::where('id',$request->order_id)->update(['cancelled_at'=> now()]);
+            case 'cancelled':   $order = Order::find($request->order_id);
+                                $order->cancelled_at = now();
+                                $order->save();
+                                $refund = $this->initializeRefund($order->payment);
+                                if($refund){
+                                    $order->refunded_at = now();
+                                    $order->save();
+                                }  
                 break;
             case 'ready':       Order::where('id',$request->order_id)->update(['ready_at'=> now()]);
                 break;
@@ -68,6 +77,15 @@ class OrderController extends Controller
                                 $order->shipping->status = true;
                                 $order->shipping->save();
                 break;  
+            case 'disliked':    Order::where('id',$request->order_id)->update(['disliked_at'=> now()]);
+                break;
+            case 'refund':      $order = Order::find($request->order_id);
+                                $refund = $this->initializeRefund($order->payment);
+                                if($refund){
+                                    $order->refunded_at = now();
+                                    $order->save();
+                                } 
+                break;
         }
         return redirect()->back();
         

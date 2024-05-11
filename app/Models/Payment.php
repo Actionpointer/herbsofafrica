@@ -94,7 +94,6 @@ class Payment extends Model
         if($this->affiliate_id){
             if($this->commission_currency == 'NGN' && $this->currency != 'NGN'){
                 return $this->amount;
-
             }else{
                 return $this->amount - ($this->commission + $this->coupon_value);
             }

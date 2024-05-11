@@ -29,7 +29,7 @@ class TransactionsController extends Controller
 
 
     public function manage(Request $request){
-        abort_if(auth()->user()->role != 'admin',503,'Unauthorized Access');
+        
         Settlement::where('id',$request->settlement_id)->update(['status'=> $request->status]);
         return redirect()->back();
     }

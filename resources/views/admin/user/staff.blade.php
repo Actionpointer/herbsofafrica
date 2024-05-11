@@ -1,4 +1,24 @@
 @extends('layouts.admin')
+@push('styles')
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<style>
+    .select2-container--default .select2-selection--single{
+
+    }
+    .select2-container .select2-selection--single{
+        height: 38px;
+        border:none;
+        border-bottom: 1px solid #eee;
+    }
+    /* .custom-control-input{
+        z-index: 2000;
+        opacity: 1;
+    } */
+    /* [type="radio"] + label:before, [type="radio"] + label:after {
+        z-index: 2000 !important;
+    } */
+</style>
+@endpush
 @section('content')
     
     <div class="container-fluid">
@@ -56,6 +76,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-12">Permissions</label>
+                                <div class="col-md-12">
+                                    <select id="permission" class="form-control form-control-line select2" multiple name="permissions[]">
+                                        @foreach ($permissions as $permission)
+                                            <option value="{{$permission}}">{{ucwords($permission)}}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-sm-12">
                                     <button type="submit" name="action" value="create" id="btn-save" class="btn btn-success">Add User</button>
                                 </div>
@@ -74,6 +106,7 @@
                                         <th>#</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
+                                        <th>Permissions</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -81,9 +114,11 @@
                                     @forelse ($staffs as $staff)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$staff->name}}</td>
+                                        <td>{{$staff->name}}  <i class="fa fa-circle @if($staff->status) text-success @else text-danger @endif"></i> </td>
                                         <td>{{$staff->email}}</td>
+                                        <td>{{count($staff->role)}}</td>
                                         <td>
+                                            @if($staff->id != auth()->id())
                                             <div class="d-flex">
                                                 <a data-toggle="modal" href="#exampleModal{{$staff->id}}" class="btn btn-info mr-2">
                                                     <i class="fa fa-pencil"></i>
@@ -95,6 +130,7 @@
                                                     </button>
                                                 </form>
                                             </div>
+                                            @endif
                                         </td>
                                     </tr>
                                     
@@ -129,7 +165,7 @@
                     <tbody>
                         <tr>
                             <td> <strong>Name:</strong> </td>
-                            <td>{{$staff->name}}</td>
+                            <td>{{$staff->name}} </td>
                             <td><strong>Email:</strong> </td>
                             <td>{{$staff->email}}</td>
                         </tr>
@@ -138,21 +174,38 @@
                             <td><strong>Phone:</strong></td>
                             <td>{{$staff->phone}}</td>
                             <td><strong>Status:</strong></td>
-                            <td>@if($staff->status) Active @else Suspended @endif
-                                <form action="{{route('admin.users.manage')}}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure')">@csrf
-                                    <input type="hidden" name="user_id" value="{{$staff->id}}">
-                                    @if($staff->status)
-                                    <input type="hidden" name="status" value="0">
-                                    <button type="submit" class="btn btn-warning btn-sm">Suspend User</button>
-                                    @else 
-                                    <input type="hidden" name="status" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm">Activate User</button>
-                                    @endif
-                                </form>
-                            </td>
+                            <td>@if($staff->status) Active @else Suspended @endif </td>
                         </tr>
                     </tbody>
                 </table>
+                <form action="{{route('admin.users.manage')}}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure')">@csrf
+                    <input type="hidden" name="user_id" value="{{$staff->id}}">
+                    <div class="form-group">
+                        <label class="col-md-12">Permissions</label>
+                        <div class="col-md-12">
+                            <select id="permissions{{$staff->id}}" class="form-control form-control-line select2 w-100" multiple name="permissions[]">
+                                @foreach ($permissions as $permission)
+                                    <option value="{{$permission}}" @if(in_array($permission,$staff->role)) selected @endif>{{ucwords($permission)}}</option>
+                                @endforeach
+                            </select>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-3 mt-2 ml-3">Change Status</label>
+                        <div class="col-md-4">
+                            <select name="status" class="form-control">
+                                <option value="1" @if($staff->status) selected @endif>Active</option>
+                                <option value="0" @if(!$staff->status) selected @endif>Suspended</option>
+                            </select>
+                        
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                   
+                    
+                </form>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -163,7 +216,12 @@
     @endforeach  
 @endsection
 @push('scripts')
+<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
 <script>
+    $('.select2').select2({
+        placeholder:"Select ",
+        width:'100%'
+    });
     
 </script>
 @endpush

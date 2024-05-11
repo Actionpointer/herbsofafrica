@@ -14,9 +14,10 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     
-    public function handle(Request $request, Closure $next,...$roles): Response
+    public function handle(Request $request, Closure $next,$role): Response
     {
-        abort_unless(in_array($request->user()->role,$roles),404,'You do not have permission to view this page');
+        $roles = $request->user()->role ?? [];
+        abort_unless(in_array($role,$roles),404,'You do not have permission to view this page');
         return $next($request);
     }
 }

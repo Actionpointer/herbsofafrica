@@ -56,6 +56,8 @@
                                                 Ready for @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif
                                             @elseif($order->status == 'processed')
                                                 Processing
+                                            @elseif($order->status == 'disliked')
+                                                Refund Requested
                                             @else 
                                                 {{ucwords($order->status)}}
                                             @endif

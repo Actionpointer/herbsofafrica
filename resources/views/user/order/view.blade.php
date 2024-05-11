@@ -56,13 +56,19 @@
                 @case('ready')
                     @if($order->shipping->rate->method == 'local-pickup') 
                     <mark class="order-status">is ready for pickup.</mark>.
-                    @else Shipment 
+                    @else Order 
                     <mark class="order-status">is about to be shipped.</mark>.
                     @endif
                     
                 @break
                 @case('processing')
                     <mark class="order-status">is currently being processed</mark>.
+                @break
+                @case('disliked')
+                    <mark class="order-status">a refund has been requested since {{$order->status_time}}. Items must be returned and received by us on or before {{$order->created_at->addDays(14)->format('d-M-Y h:i A')}}. </mark>.
+                @break
+                @case('refunded')
+                    <mark class="order-status">your requested refund has been completed on {{$order->status_time}}</mark>.
                 @break
                 @case('cancelled')
                     <mark class="order-status">was cancelled on {{$order->status_time}}</mark>.
@@ -179,11 +185,27 @@
                     <button type="submit" class="button bg-danger text-white">Cancel this Order</button>
                 </form>
                 @endif
+                
                 @if($order->note)
                 <p class="border p-3 mt-2">
                     <strong>Special Note:</strong><br>
                     {{$order->note}}
                 </p>
+                @endif
+                @if($order->status == 'delivered' && $order->created_at->addDays(14) > now())
+                <form class="border p-3" action="{{route('admin.orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to request for refund')">@csrf
+                    <input type="hidden" name="order_id" value="{{$order->id}}">
+                    <input type="hidden" name="status" value="disliked">
+                    <p>If you are not pleased with the product, you may request for 
+                        refund and return the items within 14days from the date of purchase ({{$order->created_at->format('d-M-Y')}}), 
+                        ie. on or before {{$order->created_at->addDays(14)->format('d-M-Y')}} </p>
+                    <p>Please Note that delivery fees will not be refunded </p>
+                    <p>Upon our receipt and examination of the product to ascertain your claims, a refund
+                        will be initiated back to your medium of payment. 
+                    </p>
+                    <p>Arrival of funds can take 2 to 3 business depending on your bank.  </p>
+                    <button type="submit" class="button bg-danger text-white">Request Refund</button>
+                </form>
                 @endif
             </div>
         </div>

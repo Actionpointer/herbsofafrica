@@ -4,12 +4,11 @@ namespace App\Http\Traits;
 use App\Models\Payment;
 use App\Http\Traits\StripeTrait;
 use App\Http\Traits\PaystackTrait;
-use App\Http\Traits\FlutterwaveTrait;
 
 
 trait PaymentTrait
 {
-    use FlutterwaveTrait,StripeTrait,PaystackTrait;
+    use StripeTrait,PaystackTrait;
 
     protected function initializePayment($payment){
         $user = auth()->user();
@@ -24,13 +23,11 @@ trait PaymentTrait
 
     protected function initializeRefund(Payment $payment){
         
-        switch(session('currency')['code']){
+        switch($payment->currency){
             case 'NGN': 
-                $link = $this->initiateFlutterWave($payment);
-                return ['link'=> $link,'reference'=> $payment->reference];
+                return $this->refundPaystack($payment);
             break;
-            default: $link = $this->initiateStripe($payment);
-                    return true;
+            default: return $this->refundStripe($payment);
         }
     }
 
