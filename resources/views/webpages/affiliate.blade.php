@@ -104,11 +104,9 @@
                                                     <div class="title-wrapper set-mb-s reset-last-child wd-title-color-default wd-title-style-default wd-title-size-default text-left">
 
 
-                                                        <div class="liner-continer">
+                                                        <div class="liner-continer mb-3">
                                                             <h4 class="woodmart-title-container title wd-fontsize-l">
-                                                                Explore our blog for insightful articles, expert
-                                                                tips, and stories that nourish your mind and inspire
-                                                                your journey towards holistic well-being.<br>
+                                                                Love natural wellness? Share it & earn! Become a Herbs of Africa Affiliate today. Promote trusted, NAFDAC-approved herbal remedies.<br>
                                                             </h4>
                                                         </div>
                                                         <a href="{{route('affiliate.signup')}}" class="button product_type_simple single_add_to_cart_button" >
@@ -154,7 +152,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="wpb_wrapper">
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-627bbd04a5109"
                                                                             class="wd-rs-627bbd04a5109 wd-info-box wd-wpb text-right box-icon-align-right box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1652276489735">
                                                                             <div
@@ -175,12 +173,10 @@
                                                                             <div class="info-box-content">
                                                                                 <h4
                                                                                     class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Overall Health</h4>
+                                                                                    Easy Sign-Up</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>All the lorem ipsum generators on
-                                                                                        the Internet tend to repeat
-                                                                                        predefined chunks as necessary.
+                                                                                    <p>Head over to our platform and register for a free account. It's a quick process that takes just a few minutes.
                                                                                     </p>
                                                                                 </div>
 
@@ -189,7 +185,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-627bbd0a37c48"
                                                                             class=" wd-rs-627bbd0a37c48 wd-info-box wd-wpb text-right box-icon-align-right box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1652276494457">
                                                                             <div
@@ -210,12 +206,10 @@
                                                                             <div class="info-box-content">
                                                                                 <h4
                                                                                     class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Pesticide reduction</h4>
+                                                                                    Become an Affiliate</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>Consectetur, from a Lorem Ipsum
-                                                                                        passage, and going through the
-                                                                                        cites of the word in classical.
+                                                                                    <p>Once you have an account, look for the dedicated section for our Affiliate program. Sign up to become a partner in promoting natural wellness.
                                                                                     </p>
                                                                                 </div>
 
@@ -224,7 +218,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-627bbd1d26d4e"
                                                                             class=" wd-rs-627bbd1d26d4e wd-info-box wd-wpb text-right box-icon-align-right box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1652276512379">
                                                                             <div
@@ -245,12 +239,11 @@
                                                                             <div class="info-box-content">
                                                                                 <h4
                                                                                     class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Antibiotic resistance</h4>
+                                                                                    Link Bank Details</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>Many desktop publishing packages
-                                                                                        and web page editors now use
-                                                                                        lorem ipsum as their.</p>
+                                                                                    <p>To ensure you get paid smoothly for your hard work, fill out your account information accurately. This includes details for receiving commissions.
+                                                                                    </p>
                                                                                 </div>
 
                                                                             </div>
@@ -271,7 +264,7 @@
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="wpb_wrapper">
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-627bbd27edd1c"
                                                                             class=" wd-rs-627bbd27edd1c wd-info-box wd-wpb text-left box-icon-align-left box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1652276524910">
                                                                             <div
@@ -292,12 +285,11 @@
                                                                             <div class="info-box-content">
                                                                                 <h4
                                                                                     class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Antioxidant capacity</h4>
+                                                                                    Share Your Storefront Link</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>Various versions have evolved over
-                                                                                        the years, sometimes by accident,
-                                                                                        sometimes on purpose.</p>
+                                                                                    <p>Share your unique Herbs of Africa storefront link on your available channels. 
+                                                                                        </p>
                                                                                 </div>
 
                                                                             </div>
@@ -305,7 +297,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-627bbd2d921d0"
                                                                             class=" wd-rs-627bbd2d921d0 wd-info-box wd-wpb text-left box-icon-align-left box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1652276530514">
                                                                             <div
@@ -324,14 +316,11 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="info-box-content">
-                                                                                <h4
-                                                                                    class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Environmental safety</h4>
+                                                                                <h4 class="info-box-title title box-title-style-default wd-fontsize-m">
+                                                                                    Get Sales Notification</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>It was popularised in the 60s with
-                                                                                        the release of Letraset sheets
-                                                                                        containing lorem passages.</p>
+                                                                                    <p>You'll be notified whenever customers make a purchase through your storefront. You earn commissions on every successful sale made via your storefront</p>
                                                                                 </div>
 
                                                                             </div>
@@ -339,7 +328,7 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="info-box-wrapper">
+                                                                    <div class="info-box-wrapper mb-3">
                                                                         <div id="wd-66387493e5e2d"
                                                                             class=" wd-info-box wd-wpb text-left box-icon-align-left box-style- color-scheme- wd-bg-none wd-items-top vc_custom_1514465538629">
                                                                             <div
@@ -360,12 +349,11 @@
                                                                             <div class="info-box-content">
                                                                                 <h4
                                                                                     class="info-box-title title box-title-style-default wd-fontsize-m">
-                                                                                    Immune system boost</h4>
+                                                                                    Get Paid</h4>
                                                                                 <div
                                                                                     class="info-box-inner set-cont-mb-s reset-last-child">
-                                                                                    <p>The point of using Lorem Ipsum is
-                                                                                        that it has a more-or-less normal
-                                                                                        distribution of letters as.</p>
+                                                                                    <p>We handle all the order processing and delivery and deposit earnings to your bank account!
+                                                                                        .</p>
                                                                                 </div>
 
                                                                             </div>

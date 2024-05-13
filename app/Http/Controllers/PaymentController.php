@@ -40,8 +40,7 @@ class PaymentController extends Controller
         $response = $this->initializePayment($payment);
         if (!$response){
             Alert::toast('Service Unavailable, Please Try Again Shortly', 'error');
-            dd('no response');
-            return redirect()->back();
+            abort('503','Service Unavailable, Please Try Again Shortly');
         }
         else return redirect()->to($response);
     }

@@ -2,15 +2,9 @@ mail server setup
 cronjob
 
 
-Stripe Refund
 user shipping addresses
 user reviews
-return venue
 Language translation
-
-Settlement job: all pending settlements that are past 14days of order date
-if settlement is withheld, show it to affiliate, 
-withheld settlement can only be paid manually by admin. 
 
 
 ["admin", 

@@ -37,11 +37,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        
         $warehouse = 'Please Contact Support!';
         $rate = Rate::whereJsonContains('states',$order->shipping->state_id)->where('states_mode','include')->where('warehouse','!=',null)->first();
         if($rate) $warehouse = $rate->warehouse;
         $currency = Currency::where('code',$order->currency)->first();
+        $this->initializeRefund($order->payment);
         return view('user.order.view',compact('order','currency','warehouse'));
     }
 

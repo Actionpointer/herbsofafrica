@@ -32,7 +32,7 @@ trait StripeTrait
         $response = Curl::to('https://api.stripe.com/v1/checkout/sessions')
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
-            ->withData( array('customer_email' => 'magreat@gmail.com','currency'=> 'usd',
+            ->withData( array('customer_email' => $payment->user->email,'currency'=> strtolower($payment->currency),
                             'success_url'=> route('payment.callback',with(['tx_ref'=> $payment->reference,'status'=> 'successful'])),
                             'cancel_url'=> route('payment.callback',with(['tx_ref'=> $payment->reference,'status'=> 'cancelled'])),
                             'client_reference_id'=> uniqid(),'mode'=> 'payment',
@@ -59,19 +59,33 @@ trait StripeTrait
     }
 
     public function refundStripe(Payment $payment){
-
-    }
-
-    public function retrieveAccount($account_number){
-        $response = Curl::to("https://api.stripe.com/v1/accounts/$account_number")
+        $session = Curl::to("https://api.stripe.com/v1/checkout/sessions/$payment->stripe_session_id")
             ->withHeader('Content-Type: application/x-www-form-urlencoded')
             ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
             ->asJsonResponse()
             ->get();
-        // acct_1OpTfgGgPcnGNIQ2, acct_1OuekSGazRDBDWQi
-        dd($response);
-        return false;
+
+        $response = Curl::to('https://api.stripe.com/v1/refunds')
+            ->withHeader('Content-Type: application/x-www-form-urlencoded')
+            ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
+            ->withData( array('amount'=> $payment->amount * 100,'payment_intent'=> $session->payment_intent ,'reason' => 'requested_by_customer'))
+            ->asJsonResponse()
+            ->post();
+        if($response &&  isset($response->status) && $response->status == "succeeded")
+         return true;
+         else return false;
     }
+
+    // public function retrieveAccount($account_number){
+    //     $response = Curl::to("https://api.stripe.com/v1/accounts/$account_number")
+    //         ->withHeader('Content-Type: application/x-www-form-urlencoded')
+    //         ->withHeader('Authorization: Bearer '.config('services.stripe.secret'))
+    //         ->asJsonResponse()
+    //         ->get();
+    //     // acct_1OpTfgGgPcnGNIQ2, acct_1OuekSGazRDBDWQi
+    //     
+    //     return false;
+    // }
   
     public function connectStripe(Affiliate $affiliate){
         $response = Curl::to('https://api.stripe.com/v1/accounts')
@@ -108,7 +122,6 @@ trait StripeTrait
             ->withData( array('amount'=> $settlement->amount * 100,'currency'=> $settlement->currency ,'destination'=> $settlement->affiliate->account_number))
             ->asJsonResponse()
             ->post();
-        dd($response);
         if($response && $response->status && $response->status == 'pending'){
             $settlement->transfer_id = $response->id; 
             $settlement->status = 'processing'; 
