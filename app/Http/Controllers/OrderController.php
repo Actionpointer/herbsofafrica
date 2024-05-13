@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\PaymentTrait;
+use App\Models\Rate;
 use App\Models\Order;
 use App\Models\Currency;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
+use App\Http\Traits\PaymentTrait;
 
 class OrderController extends Controller
 {
@@ -36,8 +37,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        
+        $warehouse = 'Please Contact Support!';
+        $rate = Rate::whereJsonContains('states',$order->shipping->state_id)->where('states_mode','include')->where('warehouse','!=',null)->first();
+        if($rate) $warehouse = $rate->warehouse;
         $currency = Currency::where('code',$order->currency)->first();
-        return view('user.order.view',compact('order','currency'));
+        return view('user.order.view',compact('order','currency','warehouse'));
     }
 
     public function browse(){

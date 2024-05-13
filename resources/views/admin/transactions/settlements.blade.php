@@ -60,34 +60,39 @@
                                             {{$settlement->paid_at->format('jS F h:i A')}} 
                                             @elseif($settlement->status == 'pending')
                                             {{$settlement->created_at->addWeek()->startOfWeek()->format('d F h:i A')}} 
+                                                
                                             @endif
-                                            @if($settlement->status == 'pending' || $settlement->status == 'failed')
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            @if(!$automatic_payout && $settlement->status == 'pending')
+                                                <form action="{{route('admin.transactions.settlements.pay')}}" method="post" onsubmit="return confirm('Are you sure you want to make this payment?')" >@csrf
+                                                    <input type="hidden" name="settlement_id" value="{{$settlement->id}}">
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-check"></i> Pay Now 
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if($settlement->status == 'failed')
                                             <form action="{{route('admin.transactions.settlements.pay')}}" method="post" onsubmit="return confirm('Are you sure you want to make this payment?')" >@csrf
                                                 <input type="hidden" name="settlement_id" value="{{$settlement->id}}">
                                                 <button type="submit" class="btn btn-primary btn-sm">
-                                                    <i class="fa fa-check"></i>  @if($settlement->status == 'pending') Pay Now @else Retry @endif
+                                                    <i class="fa fa-check"></i>   Retry 
                                                 </button>
                                             </form>
                                             @endif
-                                        </td>
-                                        <td>
-                                            @if($settlement->status != 'paid')
+                                            @if($settlement->status == 'withheld')
                                             <form action="{{route('admin.transactions.settlements')}}" method="post" 
-                                                @if($settlement->status == 'pending') onsubmit="return confirm('Are you sure you want to Withhold?')"
-                                                @else onsubmit="return confirm('Are you sure you want to Release?')" @endif
+                                                onsubmit="return confirm('Are you sure you want to Release?')"
                                                 >@csrf
                                                 <input type="hidden" name="settlement_id" value="{{$settlement->id}}">
-                                                @if($settlement->status == 'pending')
-                                                <input type="hidden" name="status" value="withheld">
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-warning"></i> Withhold
-                                                </button>
-                                                @else 
-                                                <input type="hidden" name="status" value="pending">
+                                                
+                                                    <input type="hidden" name="status" value="pending">
                                                 <button type="submit" class="btn btn-primary btn-sm">
                                                     <i class="fa fa-check"></i> Release
                                                 </button>
-                                                @endif
+                                                
                                             </form>
                                             @endif
                                         </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Revenue;
+use App\Models\Setting;
 use App\Models\Settlement;
 use Illuminate\Http\Request;
 use App\Http\Traits\PayoutTrait;
@@ -18,8 +19,9 @@ class TransactionsController extends Controller
     }
 
     public function settlements(){
+        $automatic_payout = Setting::where('name','automatic_payout')->first()->value;
         $settlements = Settlement::orderBy('created_at','desc')->get();
-        return view('admin.transactions.settlements',compact('settlements'));
+        return view('admin.transactions.settlements',compact('settlements','automatic_payout'));
     }
 
     public function revenues(){

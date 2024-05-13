@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Setting;
 use App\Models\Settlement;
 use Illuminate\Bus\Queueable;
 use App\Http\Traits\PayoutTrait;
@@ -28,11 +29,15 @@ class AffiliatePaymentsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $settlements = Settlement::where('status','pending')->whereHas('order',function($query){
-            $query->whereNull('disliked_at')->where('created_at','>',now()->subDays(14));
-        })->get();
-        foreach($settlements as $settlement){
-            $this->initializeSettlement($settlement);
+        $automatic_payout = Setting::where('name','automatic_payout')->first()->value;
+        if($automatic_payout){
+            $settlements = Settlement::where('status','pending')->whereHas('order',function($query){
+                $query->whereNull('disliked_at')->where('created_at','>',now()->subDays(14));
+            })->get();
+            foreach($settlements as $settlement){
+                $this->initializeSettlement($settlement);
+            }
         }
+        
     }
 }

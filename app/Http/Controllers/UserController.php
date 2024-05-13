@@ -30,6 +30,7 @@ class UserController extends Controller
     }
 
     public function profile_update(Request $request){
+        /** @var \App\Models\User $user **/
         $user = auth()->user();
         $request->validate([
             'first_name' => ['required', 'string'],
@@ -72,7 +73,7 @@ class UserController extends Controller
 
     public function staff(){
         $staffs = User::where('role','!=',null)->get();
-        $permissions = ["categories", "shipment", "products", "orders", "customers", "affiliates", "staff", "payments", "settlements", "revenues", "posts", "settings"];
+        $permissions = ["categories", "shipments", "products", "orders", "customers", "affiliates", "staff", "payments", "settlements", "revenues", "posts", "settings"];
         return view('admin.user.staff',compact('staffs','permissions'));
     }
 

@@ -162,6 +162,12 @@
                 </section>
             </div>
             <div class="col-md-6">
+                @if($order->status == "disliked")
+                <p class="border p-3 mt-2">
+                    <strong>Address to Return Items to:</strong><br>
+                    {{$warehouse}}
+                </p>
+                @else
                 <div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address">
                     <h2 class="woocommerce-column__title"> @if($order->shipping->rate->method == 'local-pickup') Pickup @else Shipment @endif Address</h2>
                     <address>
@@ -178,7 +184,8 @@
                     </address>
                         
                 </div>
-                @if(!in_array($order->status,['cancelled','shipped','delivered','ready']))
+                @endif
+                @if(!in_array($order->status,['cancelled','shipped','delivered','ready','disliked','refunded']))
                 <form action="{{route('admin.orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to cancel this order')">@csrf
                     <input type="hidden" name="order_id" value="{{$order->id}}">
                     <input type="hidden" name="status" value="cancelled">
@@ -192,14 +199,14 @@
                     {{$order->note}}
                 </p>
                 @endif
-                @if($order->status == 'delivered' && $order->created_at->addDays(14) > now())
+                @if($order->user->orders->count() == 1 && $order->status == 'delivered' && $order->created_at->addDays(14) > now())
                 <form class="border p-3" action="{{route('admin.orders.edit')}}" method="post" onsubmit="return confirm('Are you sure you want to request for refund')">@csrf
                     <input type="hidden" name="order_id" value="{{$order->id}}">
                     <input type="hidden" name="status" value="disliked">
                     <p>If you are not pleased with the product, you may request for 
                         refund and return the items within 14days from the date of purchase ({{$order->created_at->format('d-M-Y')}}), 
                         ie. on or before {{$order->created_at->addDays(14)->format('d-M-Y')}} </p>
-                    <p>Please Note that delivery fees will not be refunded </p>
+                    <p>Please Note that this refund is only available for your first order on Herbs of Africa, and delivery fees will not be refunded </p>
                     <p>Upon our receipt and examination of the product to ascertain your claims, a refund
                         will be initiated back to your medium of payment. 
                     </p>
@@ -207,6 +214,7 @@
                     <button type="submit" class="button bg-danger text-white">Request Refund</button>
                 </form>
                 @endif
+                
             </div>
         </div>
         
