@@ -214,6 +214,16 @@
                     <button type="submit" class="button bg-danger text-white">Request Refund</button>
                 </form>
                 @endif
+                @if($order->status == 'delivered' && $order->reviewable)
+                    <p class="comment-notes">
+                        REVIEWS {{$order->produc}}
+                    </p>
+                    @foreach($order->items as $item)
+                        @if($item->product->reviews->where('user_id',$order->user_id)->isEmpty())
+                            <a href="{{route('product.show',$item->product)}}#reviews"><u>Review {{$item->product->title}}</u></a> <br>
+                        @endif
+                    @endforeach
+                @endif
                 
             </div>
         </div>

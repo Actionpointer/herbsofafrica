@@ -399,10 +399,10 @@
                                     <a class="active" id="home-tab" data-bs-toggle="tab" data-bs-target="#homes"  role="tab" aria-controls="home" aria-selected="true">DESCRIPTION</a>
                                 </li>
                                 <li role="presentation" class="mx-4">
-                                    <a class="" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profiles"  role="tab" aria-controls="profile" aria-selected="false">REVIEWS</a>
+                                    <a class="" id="review-tab" data-bs-toggle="tab" data-bs-target="#reviews"  role="tab" aria-controls="profile" aria-selected="false">REVIEWS</a>
                                 </li>
                                 <li  role="presentation">
-                                    <a class="" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contacts"  role="tab" aria-controls="contact" aria-selected="false">FAQ</a>
+                                    <a class="" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faqs"  role="tab" aria-controls="contact" aria-selected="false">FAQ</a>
                                 </li>
                             </ul>
                         </div>
@@ -643,7 +643,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profiles" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="review-tab">
                                 <div id="reviews" class="woocommerce-Reviews" data-product-id="655">
                                     <div class="container">
                                         <div class="row">
@@ -667,92 +667,62 @@
                                             </div>
 
                                             <div id="review_form_wrapper" class="wd-form-pos-after col-md-6">
-                                                <div id="review_form">
-                                                    <div id="respond" class="comment-respond">
-                                                        <span id="reply-title"
-                                                            class="comment-reply-title">Be the first
-                                                            to review &ldquo;Cartis&rdquo; <small><a
-                                                                    rel="nofollow"
-                                                                    id="cancel-comment-reply-link"
-                                                                    href="{{url('/')}}#respond"
-                                                                    style="display:none;">Cancel
-                                                                    reply</a></small></span>
-                                                        <form action="" method="post"
-                                                            id="commentform" class="comment-form"
-                                                            novalidate>
-                                                            <p class="comment-notes"><span
-                                                                    id="email-notes">Your email
-                                                                    address will not be
-                                                                    published.</span> <span
-                                                                    class="required-field-message">Required
-                                                                    fields are marked <span
-                                                                        class="required">*</span></span>
-                                                            </p>
-                                                            <div class="comment-form-rating"><label
-                                                                    for="rating">Your
-                                                                    rating&nbsp;<span
-                                                                        class="required">*</span></label><select
-                                                                    name="rating" id="rating"
-                                                                    required>
-                                                                    <option value="">Rate&hellip;
-                                                                    </option>
-                                                                    <option value="5">Perfect
-                                                                    </option>
-                                                                    <option value="4">Good</option>
-                                                                    <option value="3">Average
-                                                                    </option>
-                                                                    <option value="2">Not that bad
-                                                                    </option>
-                                                                    <option value="1">Very poor
-                                                                    </option>
-                                                                </select></div>
-                                                            <p class="comment-form-comment"><label
-                                                                    for="comment">Your
-                                                                    review&nbsp;<span
-                                                                        class="required">*</span></label>
-                                                                <textarea id="comment" name="comment" cols="45" rows="8" required></textarea>
-                                                            </p>
-                                                            <p class="comment-form-author"><label
-                                                                    for="author">Name&nbsp;<span
-                                                                        class="required">*</span></label><input
-                                                                    id="author" name="author"
-                                                                    type="text" value=""
-                                                                    size="30" required /></p>
-                                                            <p class="comment-form-email"><label
-                                                                    for="email">Email&nbsp;<span
-                                                                        class="required">*</span></label><input
-                                                                    id="email" name="email"
-                                                                    type="email" value=""
-                                                                    size="30" required /></p>
-                                                            <p class="comment-form-cookies-consent">
-                                                                <input id="wp-comment-cookies-consent"
-                                                                    name="wp-comment-cookies-consent"
-                                                                    type="checkbox" value="yes" />
-                                                                <label
-                                                                    for="wp-comment-cookies-consent">Save
-                                                                    my name, email, and website in
-                                                                    this browser for the next time I
-                                                                    comment.</label>
-                                                            </p>
-                                                            <p class="form-submit"><input name="submit"
-                                                                    type="submit" id="submit"
-                                                                    class="submit" value="Submit" />
-                                                                <input type='hidden'
-                                                                    name='comment_post_ID' value='655'
-                                                                    id='comment_post_ID' />
-                                                                <input type='hidden'
-                                                                    name='comment_parent'
-                                                                    id='comment_parent' value='0' />
-                                                            </p>
-                                                        </form>
-                                                    </div><!-- #respond -->
-                                                </div>
+                                                @auth
+                                                    @if($product->orders->where('user_id',auth()->id())->isEmpty())
+                                                        <p>Reviews are only taken from buyers.</p>
+                                                    @elseif(auth()->user()->reviews->where('product_id',$product->id)->isNotEmpty())
+                                                        <p>You have reviewed product before</p>
+                                                    @else
+                                                        <div id="review_form">
+                                                            <div id="respond" class="comment-respond">
+                                                                <span id="reply-title" class="comment-reply-title">Review {{$product->title}}  </span>
+                                                                <form action="{{route('review.store')}}" method="post" id="commentform" class="comment-form">
+                                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                                    <input type="hidden" name="order_item_id" value="{{$product->orders->where('user_id',auth()->id())->id}}">
+                                                                    <input type="hidden" name="order_id" value="{{$product->orders->where('user_id',auth()->id())->order_id}}">
+                                                                    <div class="d-flex w-100 ps-2">
+                                                                        <label for="rating w-50">Your rating&nbsp;
+                                                                            <span class="required">*</span>
+                                                                        </label>
+                                                                        <div class="w-50 ps-3">
+                                                                            <select name="rating" id="rating" required >
+                                                                                <option value="">Rate&hellip; </option>
+                                                                                <option value="5">Perfect</option>
+                                                                                <option value="4">Good</option>
+                                                                                <option value="3">Average</option>
+                                                                                <option value="2">Not that bad</option>
+                                                                                <option value="1">Very poor</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                    <p class="comment-form-comment">
+                                                                        <label for="comment">Your review&nbsp;
+                                                                            <span class="required">*</span>
+                                                                        </label>
+                                                                        <textarea class="p-4" id="comment" name="body
+                                                                        " cols="45" rows="8" required></textarea>
+                                                                    </p>
+                                                                    <p class="form-submit">
+                                                                        <input name="submit" type="submit" id="submit" class="submit" value="Submit" />
+                                                                    </p>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
+
+                                                @else 
+                                                <button type="button"
+                                                    class="button alt login-side-opener"> Login to Review {{$product->title}}
+                                                </button>
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faq-tab">
                                 <div data-elementor-type="wp-post" data-elementor-id="918"
                                                             class="elementor elementor-918">
                                                             <section
@@ -1086,5 +1056,13 @@
             $('.product_tabs li').removeClass('active')
             $(this).parent().addClass('active')
         });
+        $(document).on('ready',function(){
+            let url = location.href;
+            if(url.indexOf("#reviews") > -1){
+                $('#review-tab').tab('show')
+                $('.product_tabs li').removeClass('active')
+                $('#review-tab').parent().addClass('active')
+            }
+        })
     </script>
 @endpush

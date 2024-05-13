@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Shopper\ReviewController;
 
 
 Route::group(['middleware'=> ['auth','active','verified']],function () {
@@ -17,5 +18,8 @@ Route::group(['middleware'=> ['auth','active','verified']],function () {
         Route::post('status', [OrderController::class, 'edit'])->name('edit');
     });
 
+    Route::group(['prefix'=>'reviews','as'=> 'reviews.'],function(){
+        Route::post('store', [ReviewController::class, 'store'])->name('store');
+    });
 
 });

@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Payment;
 use App\Models\Shipment;
 use App\Models\OrderItem;
 use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -86,6 +87,21 @@ class Order extends Model
 
     public function shipping(){
         return $this->hasOne(Shipment::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReviewableAttribute(){
+        $review = false;
+        foreach($this->items as $item){
+            if($item->product->reviews->where('user_id',$this->user_id)->isEmpty()){
+                $review = true;
+                break;
+            }
+        }
+        return $review;
     }
 
 

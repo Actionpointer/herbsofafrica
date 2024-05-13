@@ -1,9 +1,11 @@
 mail server setup
 cronjob
 
-
 user shipping addresses
 user reviews
+faq
+
+
 Language translation
 
 
