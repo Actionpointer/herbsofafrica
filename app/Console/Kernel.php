@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->job(new AffiliatePaymentsJob)->hourly();
+        $schedule->job(new AffiliatePaymentsJob)->weeklyOn(1, '8:00');
         $schedule->job(new AffiliatePaymentsVerificationJob)->hourly();
     }
 
