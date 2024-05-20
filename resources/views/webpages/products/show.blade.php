@@ -401,9 +401,11 @@
                                 <li role="presentation" class="mx-4">
                                     <a class="" id="review-tab" data-bs-toggle="tab" data-bs-target="#reviews"  role="tab" aria-controls="profile" aria-selected="false">REVIEWS</a>
                                 </li>
+                                @if(!blank($product->faqs))
                                 <li  role="presentation">
                                     <a class="" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faqs"  role="tab" aria-controls="contact" aria-selected="false">FAQ</a>
                                 </li>
+                                @endif
                             </ul>
                         </div>
 
@@ -644,49 +646,32 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="review-tab">
-                                <div id="reviews" class="woocommerce-Reviews" data-product-id="655">
+                                <div id="reviews" class="woocommerce-Reviews">
                                     <div class="container">
                                         <div class="row">
-
-                                            <div id="comments" class="col-md-6">
-                                                <div class="wd-reviews-heading">
-                                                    <div class="wd-reviews-tools">
-                                                        <h2 class="woocommerce-Reviews-title">
-                                                            Reviews </h2>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="wd-reviews-content wd-sticky">
-                                                    <p class="woocommerce-noreviews">There are no
-                                                        reviews yet.</p>
-                                                </div>
-
-                                                <div class="wd-loader-overlay wd-fill"></div>
-                                            </div>
-
-                                            <div id="review_form_wrapper" class="wd-form-pos-after col-md-6">
-                                                @auth
+                                        <div id="review_form_wrapper" class="wd-form-pos mb-5 col-md-12">
+                                                @guest
+                                                <button type="button"
+                                                    class="button alt login-side-opener"> Login to Review {{$product->title}}
+                                                </button>
+                                                @else 
                                                     @if($product->orders->where('user_id',auth()->id())->isEmpty())
-                                                        <p>Reviews are only taken from buyers.</p>
-                                                    @elseif(auth()->user()->reviews->where('product_id',$product->id)->isNotEmpty())
-                                                        <p>You have reviewed product before</p>
+                                                        <p>Reviews are only taken from verified buyers.</p>
                                                     @else
                                                         <div id="review_form">
                                                             <div id="respond" class="comment-respond">
                                                                 <span id="reply-title" class="comment-reply-title">Review {{$product->title}}  </span>
-                                                                <form action="{{route('review.store')}}" method="post" id="commentform" class="comment-form">
+                                                                <form action="{{route('reviews.store')}}" method="post" id="commentform" class="comment-form">@csrf
                                                                     <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                                    <input type="hidden" name="order_item_id" value="{{$product->orders->where('user_id',auth()->id())->id}}">
-                                                                    <input type="hidden" name="order_id" value="{{$product->orders->where('user_id',auth()->id())->order_id}}">
+                                                                    <input type="hidden" name="order_item_id" value="{{$product->orders->where('user_id',auth()->id())->first()->id}}">
+                                                                    <input type="hidden" name="order_id" value="{{$product->orders->where('user_id',auth()->id())->first()->order_id}}">
                                                                     <div class="d-flex w-100 ps-2">
                                                                         <label for="rating w-50">Your rating&nbsp;
                                                                             <span class="required">*</span>
                                                                         </label>
                                                                         <div class="w-50 ps-3">
                                                                             <select name="rating" id="rating" required >
-                                                                                <option value="">Rate&hellip; </option>
+                                                                                <option value="0" selected disabled>Rate&hellip; </option>
                                                                                 <option value="5">Perfect</option>
                                                                                 <option value="4">Good</option>
                                                                                 <option value="3">Average</option>
@@ -697,11 +682,10 @@
                                                                         
                                                                     </div>
                                                                     <p class="comment-form-comment">
-                                                                        <label for="comment">Your review&nbsp;
+                                                                        <label for="comment">Your review
                                                                             <span class="required">*</span>
                                                                         </label>
-                                                                        <textarea class="p-4" id="comment" name="body
-                                                                        " cols="45" rows="8" required></textarea>
+                                                                        <textarea class="p-4" id="comment" name="body" cols="45" rows="8" required></textarea>
                                                                     </p>
                                                                     <p class="form-submit">
                                                                         <input name="submit" type="submit" id="submit" class="submit" value="Submit" />
@@ -710,275 +694,106 @@
                                                             </div>
                                                         </div>
                                                     @endif
-
-
-                                                @else 
-                                                <button type="button"
-                                                    class="button alt login-side-opener"> Login to Review {{$product->title}}
-                                                </button>
-                                                @endauth
+                                                @endguest
                                             </div>
+                                            <div id="comments" class="col-md-12">
+                                                <div class="wd-reviews-heading">
+                                                    <div class="wd-reviews-tools">
+                                                        <h2 class="woocommerce-Reviews-title">
+                                                            Reviews </h2>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="wd-reviews-content wd-sticky">
+                                                    @if($product->reviews->isNotEmpty())
+                                                        <ol class="commentlist wd-grid wd-review-style-1 wd-active wd-in wd-grid-col-1 wd-grid-col-md-1 wd-grid-col-sm-1" style="--wd-col: 1;--wd-col-md: 1;--wd-col-sm: 1;" data-reviews-columns="{&quot;reviews_columns&quot;:&quot;1&quot;,&quot;reviews_columns_tablet&quot;:&quot;1&quot;,&quot;reviews_columns_mobile&quot;:&quot;1&quot;}">
+                                                            @foreach ($product->reviews->sortByDesc('created_at')->unique('user_id')->take(10) as $review)
+                                                            @if((!$review->status && !auth()->check()) || (!$review->status && $review->user_id != auth()->id())) @continue @endif
+                                                            <li class="review even thread-even depth-1 wd-col" id="">
+                                                                <div id="" class="comment_container">
+
+                                                                <img alt="" src="{{'https://www.gravatar.com/avatar/'.hash( 'sha256',strtolower( trim($review->user->email) ) ).'?d=mm&s=60'}}" class="avatar avatar-60 photo" height="60" width="60" loading="lazy" decoding="async">
+
+                                                                    <div class="comment-text">
+                                                                        @if(!$review->status)
+                                                                        <p class="meta"> 
+                                                                            <em class="woocommerce-review__awaiting-approval">
+                                                                                Your review is awaiting approval		
+                                                                            </em>
+                                                                        </p>
+                                                                        @endif
+                                                                        <div class="star-rating" role="img" aria-label="Rated {{$review->rating*5/100}} out of 5">
+                                                                            <span style="width:{{$review->rating}}%">Rated <strong class="rating">{{$review->rating*5/100}}</strong> out of 5</span>
+                                                                        </div>
+                                                                        <div class="description">
+                                                                            <p>{{$review->body}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            @endforeach
+                                                        </ol>
+                                                    @else
+                                                        <p class="woocommerce-noreviews">There are no reviews yet.</p>
+                                                    @endif
+                                                </div>
+                                                <div class="wd-loader-overlay wd-fill"></div>
+                                            </div>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @if(!blank($product->faqs))
                             <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faq-tab">
-                                <div data-elementor-type="wp-post" data-elementor-id="918"
-                                                            class="elementor elementor-918">
-                                                            <section
-                                                                class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-ce04372 wd-section-stretch elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                                                                data-id="ce04372" data-element_type="section"
-                                                                data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
-                                                                data-e-bg-lazyload="">
-                                                                <div
-                                                                    class="elementor-container elementor-column-gap-default">
-                                                                    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-251052c"
-                                                                        data-id="251052c" data-element_type="column">
-                                                                        <div
-                                                                            class="elementor-widget-wrap elementor-element-populated">
-                                                                            <div class="elementor-element elementor-element-c1933a5 elementor-widget elementor-widget-wd_accordion"
-                                                                                data-id="c1933a5"
-                                                                                data-element_type="widget"
-                                                                                data-widget_type="wd_accordion.default">
-                                                                                <div class="elementor-widget-container">
-
-                                                                                    <div class="wd-accordion wd-style-shadow"
-                                                                                        data-state="all_closed">
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="0">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        How do I set
-                                                                                                        an account
-                                                                                                        up? </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="0">
-
-                                                                                                <p>Click top Right
-                                                                                                    side of the
-                                                                                                    header on Icon
-                                                                                                    “login/register”
-                                                                                                    then click on
-                                                                                                    register put
-                                                                                                    your personal
-                                                                                                    details there
-                                                                                                    and Verify your
-                                                                                                    email Account.
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="1">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        Is Herbs of
-                                                                                                        Africa®
-                                                                                                        secure?
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="1">
-
-                                                                                                <p>Yes we are
-                                                                                                    offering Secure
-                                                                                                    payment through
-                                                                                                    PayPal &amp;
-                                                                                                    Mater Card
-                                                                                                    payment gateway.
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="2">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        Do you offer
-                                                                                                        free
-                                                                                                        returns?
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="2">
-
-                                                                                                <p>No, we are not
-                                                                                                    offering Free
-                                                                                                    returns, for
-                                                                                                    More information
-                                                                                                    you can check
-                                                                                                    Return policy
-                                                                                                    here</p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="elementor-element elementor-element-ce481a5 elementor-widget elementor-widget-wd_accordion"
-                                                                                data-id="ce481a5"
-                                                                                data-element_type="widget"
-                                                                                data-widget_type="wd_accordion.default">
-                                                                                <div class="elementor-widget-container">
-
-                                                                                    <div class="wd-accordion wd-style-shadow"
-                                                                                        data-state="all_closed">
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="0">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        Something is
-                                                                                                        missing from
-                                                                                                        the order?
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="0">
-
-                                                                                                <p>While our packers
-                                                                                                    are pretty great
-                                                                                                    at getting your
-                                                                                                    order together,
-                                                                                                    very rarely they
-                                                                                                    may leave an
-                                                                                                    item out from
-                                                                                                    the order. If
-                                                                                                    this happens,
-                                                                                                    please just
-                                                                                                    reach out to us
-                                                                                                    at
-                                                                                                    <strong>contact@herbsofafrica.net</strong>
-                                                                                                    and we can get
-                                                                                                    this sorted for
-                                                                                                    you. If this
-                                                                                                    happens, we will
-                                                                                                    require a photo
-                                                                                                    of what you
-                                                                                                    received for
-                                                                                                    verification
-                                                                                                    purposes
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="1">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        How do I
-                                                                                                        cancel my
-                                                                                                        order?
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="1">
-
-                                                                                                <p>If after placing
-                                                                                                    your order you
-                                                                                                    realize you’ve
-                                                                                                    made a mistake
-                                                                                                    or no longer
-                                                                                                    want the order,
-                                                                                                    then we can
-                                                                                                    process a
-                                                                                                    cancellation
-                                                                                                    within 24 hours
-                                                                                                    of the order
-                                                                                                    being placed.
-                                                                                                    Please reach out
-                                                                                                    to us at
-                                                                                                    contact@herbsofafrica.net
-                                                                                                    and provided
-                                                                                                    it’s within 24
-                                                                                                    hours and the
-                                                                                                    order hasn’t
-                                                                                                    shipped, we
-                                                                                                    should be able
-                                                                                                    to cancel your
-                                                                                                    order and
-                                                                                                    process a refund
-                                                                                                    for you. Once
-                                                                                                    your order has
-                                                                                                    been shipped it
-                                                                                                    is too late to
-                                                                                                    cancel your
-                                                                                                    order.</p>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="wd-accordion-item">
-                                                                                            <div class="wd-accordion-title text-left wd-opener-pos-right"
-                                                                                                data-accordion-index="2">
-                                                                                                <div
-                                                                                                    class="wd-accordion-title-text">
-                                                                                                    <span>
-                                                                                                        Contact Us
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                                <span
-                                                                                                    class="wd-accordion-opener wd-opener-style-arrow"></span>
-                                                                                            </div>
-
-                                                                                            <div class="wd-accordion-content reset-last-child"
-                                                                                                data-accordion-index="2">
-
-                                                                                                <p>If we still
-                                                                                                    haven’t managed
-                                                                                                    to answer your
-                                                                                                    question please
-                                                                                                    feel free to
-                                                                                                    contact us and
-                                                                                                    we’ll get back
-                                                                                                    to you as soon
-                                                                                                    as possible.</p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                <div data-elementor-type="wp-post" data-elementor-id="918" class="elementor elementor-918">
+                                    <section class="wd-negative-gap elementor-section elementor-top-section elementor-element elementor-element-ce04372 wd-section-stretch elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                        data-id="ce04372" data-element_type="section"
+                                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+                                        data-e-bg-lazyload="">
+                                        <div
+                                            class="elementor-container elementor-column-gap-default">
+                                            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-251052c"
+                                                data-id="251052c" data-element_type="column">
+                                                <div class="elementor-widget-wrap elementor-element-populated">
+                                                    <div class="elementor-element elementor-element-c1933a5 elementor-widget elementor-widget-wd_accordion" data-id="c1933a5" data-element_type="widget" data-widget_type="wd_accordion.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="wd-accordion wd-style-shadow" data-state="all_closed">
+                                                                @foreach ($product->faqs as $key => $faq)
+                                                                <div class="wd-accordion-item">
+                                                                    <div class="wd-accordion-title text-left wd-opener-pos-right" data-accordion-index="{{$key}}">
+                                                                        <div class="wd-accordion-title-text">
+                                                                            <span> {{key($faq)}} </span>
                                                                         </div>
+                                                                        <span class="wd-accordion-opener wd-opener-style-arrow"></span>
                                                                     </div>
-                                                                    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-d11f39b"
-                                                                        data-id="d11f39b" data-element_type="column">
-                                                                        <div class="elementor-widget-wrap">
-                                                                        </div>
+
+                                                                    <div class="wd-accordion-content reset-last-child" data-accordion-index="{{$key}}">
+
+                                                                        <p>{{current($faq)}}    </p>
                                                                     </div>
                                                                 </div>
-                                                            </section>
+                                                                @endforeach  
+                                                                
+                                                            </div>
                                                         </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-d11f39b"
+                                                data-id="d11f39b" data-element_type="column">
+                                                <div class="elementor-widget-wrap">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
+                            @endif
                         </div>
                         
                         <div class="container related-and-upsells"></div>

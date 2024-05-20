@@ -5,8 +5,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HelperController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebsiteController;
-
-
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ContactNotification;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +18,14 @@ use App\Http\Controllers\WebsiteController;
 |
 */
     include('affiliate.php');
-
+    Route::get('mailtest',function(){
+	Notification::route('mail', 'reigningkingforever@gmail.com')
+            ->notify(new ContactNotification());
+       return 'done';
+    });
     Route::get('/', [WebsiteController::class, 'welcome']);
     Route::view('who-we-are', 'webpages.whoweare')->name('about');
     Route::view('faqs', 'webpages.faq')->name('faqs');
-    // Route::view('/', 'contact-us');
-    // Route::view('/', 'affilaite-register');
     Route::view('terms-of-use', 'webpages.legal.terms-of-use')->name('terms_of_use');
     Route::view('terms-and-conditions', 'webpages.legal.terms-and-conditions')->name('terms_and_conditions');
     Route::view('organic-and-quality', 'webpages.legal.organic-and-quality')->name('organic_and_quality');

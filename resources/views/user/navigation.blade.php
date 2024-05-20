@@ -13,11 +13,15 @@
                 <a
                     href="{{route('orders.index')}}">Orders</a>
             </li>
-            
+            <li
+                class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                <a
+                    href="{{route('address.index')}}">Addresses</a>
+            </li>
             
             <li
                 class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                <a href="{{ route('profile') }}">Account details</a>
+                <a href="{{ route('profile') }}">Profile</a>
             </li>
             
             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wishlist">
@@ -29,10 +33,10 @@
             </li>
             @endif
             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('navigation_logout').submit();">
                     <span>{{ __('Logout') }}</span>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                <form action="{{ route('logout') }}" method="POST" class="d-none" id="navigation_logout">
                     @csrf
                 </form>
             </li>

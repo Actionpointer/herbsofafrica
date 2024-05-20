@@ -129,6 +129,9 @@
                         @if(in_array('orders',auth()->user()->role))
                         <li> <a class="waves-effect waves-dark" href="{{ route('admin.orders.browse') }}" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a></li>
                         @endif
+                        @if(in_array('reviews',auth()->user()->role))
+                        <li> <a class="waves-effect waves-dark" href="{{ route('admin.reviews.browse') }}" aria-expanded="false"><i class="fa fa-comments"></i><span class="hide-menu">Reviews</span></a></li>
+                        @endif
                         @if(in_array('customers',auth()->user()->role) || in_array('affiliates',auth()->user()->role) || in_array('staff',auth()->user()->role))
                         <li class="">
                             <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">

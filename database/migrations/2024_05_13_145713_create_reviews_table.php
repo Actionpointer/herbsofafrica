@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('rating')->default(0);
             $table->text('body');
+            $table->boolean("status")->default(0);
             $table->timestamps();
         });
     }

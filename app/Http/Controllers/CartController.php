@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use App\Models\Cart;
-use App\Models\Course;
 use App\Models\Country;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Currency;
-use App\Models\Wishlist;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
-use Ixudra\Curl\Facades\Curl;
 use App\Http\Traits\CartTrait;
 use App\Http\Traits\PaymentTrait;
-use App\Http\Traits\PaystackTrait;
 use App\Http\Traits\WishlistTrait;
-use App\Http\Traits\FlutterwaveTrait;
-use RealRashid\SweetAlert\Facades\Alert;
+
 
 class CartController extends Controller
 {

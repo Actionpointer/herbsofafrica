@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Shopper;
+namespace App\Http\Controllers;
 
 use App\Models\State;
 use App\Models\Address;
+use App\Models\Country;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\AddressResource;
 
 class AddressController extends Controller
@@ -17,63 +17,51 @@ class AddressController extends Controller
     
     public function index(){
         $user = auth()->user();
-        $states = State::where('country_id',$user->country_id)->get();
-        return request()->expectsJson() ? 
-            response()->json([
-                'status' => true,
-                'message' => 'Address Retrieved Successfully',
-                'data' => AddressResource::collection($user->addresses)
-            ], 200) :
-            view('customer.address',compact('user','states'));
+        return view('user.addressbook.index',compact('user'));
+    }
+
+    public function create(){
+        $user = auth()->user();
+        $countries = Country::all();
+        return view('user.addressbook.create',compact('user','countries'));
     }
     
     public function store(Request $request){
-        $user= auth()->user();
-        if($request->main){
-            Address::where('user_id',$user->id)->update(['main'=> 0]);
+        $default = 0;
+        if($request->default){
+            Address::where('user_id',auth()->id())->update(['default'=> 0]);
+            $default = 1;
         }
-        $address = Address::create(['user_id'=> auth()->id(),'state_id'=> $request->state_id,'city_id'=> $request->city_id,'street' => $request->street,'contact_phone' => $request->contact_phone,'contact_name' => $request->contact_name ,'main' => $request->main ?? 0]);
-        $addresses = Address::where('user_id',$user->id)->get();
-        if($addresses->isNotEmpty() && $addresses->where('main',true)->isEmpty()){
-            $addresses->first()->main = true;
-            $addresses->first()->save();
-        }
-        return request()->expectsJson() ? 
-            response()->json([
-                'status' => true,
-                'message' => 'Address Added Successfully',
-            ], 200) :
-            redirect()->back()->with(['result'=> '1','message'=> 'Address Added Successfully']); 
+        Address::create(['user_id'=> auth()->id(),'country_id'=> $request->country_id,'state_id'=> $request->state_id,'city'=> $request->city,'street' => $request->street,'email'=> $request->email,'phone' => $request->phone,'firstname' => $request->firstname,'lastname' => $request->lastname,'postcode'=> $request->postcode,'default' => $default]);
+        return redirect()->route('address.index');
+    }
+
+    public function edit(Address $address){
+        $countries = Country::all();
+        $states = State::where('country_id',$address->country_id)->get();
+        return view('user.addressbook.edit',compact('address','countries','states'));
     }
 
 
     public function update(Request $request){
-        $user= auth()->user();
-        if($request->main){
-            Address::where('user_id',$user->id)->update(['main'=> 0]);
+       // dd($request->all());
+        $default = 0;
+        if($request->default){
+            Address::where('user_id',auth()->id())->update(['default'=> 0]);
+            $default = 1;
         }
-        $address = Address::where('id',$request->address_id)->update(['state_id'=> $request->state_id,'city_id'=> $request->city_id,'street' => $request->street,'contact_phone' => $request->contact_phone,'contact_name' => $request->contact_name,'main' => $request->main ?? 0]);
-        return request()->expectsJson() ? 
-        response()->json([
-            'status' => true,
-            'message' => 'Address Updated Successfully',
-        ], 200) :
-        redirect()->back()->with(['result'=> '1','message'=> 'Address Updated Successfully']);
+        $address = Address::where('id',$request->address_id)->update(['country_id'=> $request->country_id,'state_id'=> $request->state_id,'city'=> $request->city,'street' => $request->street,'email'=> $request->email,'phone' => $request->phone,'firstname' => $request->firstname,'lastname' => $request->lastname,'postcode'=> $request->postcode,'default' => $default]);
+        return redirect()->route('address.index');
     }
 
     public function destroy(Request $request){
-        $user= auth()->user();
         Address::where('id',$request->address_id)->delete();
-        $addresses = Address::where('user_id',$user->id)->get();
-        if($addresses->isNotEmpty() && $addresses->where('main',true)->isEmpty()){
+        $addresses = Address::where('user_id',auth()->id())->get();
+        if($addresses->isNotEmpty() && $addresses->where('default',true)->isEmpty()){
             $addresses->first()->main = true;
             $addresses->first()->save();
         }
-        return request()->expectsJson() ? 
-            response()->json([
-                'status' => true,
-                'message' => 'Address Deleted Successfully',
-            ], 200) : redirect()->back()->with(['result'=> '1','message'=> 'Address Deleted Successfully']);
+        return redirect()->route('address.index');
     }
 
 }

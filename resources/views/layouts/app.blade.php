@@ -24,11 +24,6 @@
     <meta property="og:image:height" content="1672" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script type="application/ld+json"
-		class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"","url":"","name":"Herbs of Africa® | Buy African Natural Herbal Supplements 2023","isPartOf":{"@id":"#website"},"about":{"@id":"#organization"},"primaryImageOfPage":{"@id":"#primaryimage"},"image":{"@id":"#primaryimage"},"thumbnailUrl":"wp-content/uploads/2023/08/151515663_m_normal_none-1.jpg')}}","datePublished":"2023-08-17T11:45:02+00:00","dateModified":"2023-10-12T22:22:30+00:00","description":"Discover the blend of tradition & science at Herbs of Africa®. Our herbal solutions, rooted in African organic, natural wellness & balance.","breadcrumb":{"@id":"#breadcrumb"},"inLanguage":"en-GB","potentialAction":[{"@type":"ReadAction","target":[""]}]},{"@type":"ImageObject","inLanguage":"en-GB","@id":"#primaryimage","url":"wp-content/uploads/2023/08/151515663_m_normal_none-1.jpg')}}","contentUrl":"wp-content/uploads/2023/08/151515663_m_normal_none-1.jpg')}}","width":2508,"height":1672},{"@type":"BreadcrumbList","@id":"#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"#website","url":"","name":"Herbs of Africa®","description":"","publisher":{"@id":"#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-GB"},{"@type":"Organization","@id":"#organization","name":"Herbs of Africa®","url":"","logo":{"@type":"ImageObject","inLanguage":"en-GB","@id":"#/schema/logo/image/","url":"wp-content/uploads/2023/08/new-logo.png')}}","contentUrl":"wp-content/uploads/2023/08/new-logo.png')}}","width":2232,"height":1012,"caption":"Herbs of Africa®"},"image":{"@id":"#/schema/logo/image/"}}]}</script>
-    <!-- / Yoast SEO plugin. -->
-
-
     <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
 
     <style id='safe-svg-svg-icon-style-inline-css' type='text/css'>

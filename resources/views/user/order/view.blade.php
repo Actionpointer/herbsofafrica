@@ -94,7 +94,10 @@
                                 @foreach ($order->items as $item)
                                     <tr class="woocommerce-table__line-item order_item">
                                         <td class="woocommerce-table__product-name product-name">
-                                            <a href="{{route('product.show',$item->product)}}">{{$item->title}}</a>
+                                            <a 
+                                                @if($item->product) href="{{route('product.show',$item->product)}}" @else href="#" @endif>
+                                                {{$item->title}}
+                                            </a>
                                             <strong class="product-quantity">×{{$item->quantity}}</strong>
                                         </td>
                                         <td class="woocommerce-table__product-total product-total">
@@ -214,9 +217,9 @@
                     <button type="submit" class="button bg-danger text-white">Request Refund</button>
                 </form>
                 @endif
-                @if($order->status == 'delivered' && $order->reviewable)
+                @if($order->status == 'delivered' && $order->product && $order->reviewable)
                     <p class="comment-notes">
-                        REVIEWS {{$order->produc}}
+                        REVIEWS 
                     </p>
                     @foreach($order->items as $item)
                         @if($item->product->reviews->where('user_id',$order->user_id)->isEmpty())

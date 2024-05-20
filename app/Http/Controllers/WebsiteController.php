@@ -46,7 +46,6 @@ class WebsiteController extends Controller
     }
 
     public function categories(Category $category){
-
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->where('category_id',$category->id)->get();
         $categories = Category::orderBy('title','asc')->get();

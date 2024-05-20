@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Closure;
 use App\Models\User;
+use App\Models\Setting;
 use App\Models\Currency;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
@@ -73,8 +74,10 @@ class UserController extends Controller
 
     public function staff(){
         $staffs = User::where('role','!=',null)->get();
-        $permissions = ["categories", "shipments", "products", "orders", "customers", "affiliates", "staff", "payments", "settlements", "revenues", "posts", "settings"];
-        return view('admin.user.staff',compact('staffs','permissions'));
+        $settings = Setting::all();
+        $permissions = json_decode($settings->where('name','modules')->first()->value);
+        $superadmin = $settings->where('name','superadmin')->first()->value;
+        return view('admin.user.staff',compact('staffs','permissions','superadmin'));
     }
 
     public function manage(Request $request){

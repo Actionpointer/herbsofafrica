@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
 use App\Models\Review;
+use App\Models\Address;
 use App\Models\Wishlist;
 use App\Models\Affiliate;
 use Laravel\Sanctum\HasApiTokens;
@@ -79,5 +80,8 @@ class User extends Authenticatable
 
     public function reviews(){
         return $this->hasMany(Review::class);
+    }
+    public function addresses(){
+        return $this->hasMany(Address::class);
     }
 }

@@ -2,10 +2,10 @@ mail server setup
 cronjob
 
 user shipping addresses
-user reviews
-faq
 
-
+dashboard{
+    pending orders, pending reviews, shipments, total affiliates, settlements, total payments, total revenues
+}
 Language translation
 
 

@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SettingsController;
@@ -52,11 +53,16 @@ Route::group(['prefix'=> 'admin','as'=> 'admin.'],function () {
             Route::get('view/{order}', [OrderController::class, 'read'])->name('read');
             Route::post('status', [OrderController::class, 'edit'])->name('edit');
         });
+        Route::group(['middleware'=> 'role:reviews','prefix'=>'reviews','as'=> 'reviews.'],function(){
+            Route::get('/', [ReviewController::class, 'browse'])->name('browse');
+            Route::post('update', [ReviewController::class, 'update'])->name('update');
+            Route::post('delete', [ReviewController::class, 'delete'])->name('delete');
+        });
 
         Route::group(['middleware'=> 'role:settings','prefix'=>'settings','as'=> 'settings.'],function(){
             Route::get('/', [SettingsController::class, 'index'])->name('index');
             Route::post('currencies', [SettingsController::class, 'currencies'])->name('currencies');
-            Route::post('counters', [SettingsController::class, 'counters'])->name('counters');
+            Route::post('update', [SettingsController::class, 'update'])->name('update');
         });
 
         Route::group(['middleware'=> 'role:shipments','prefix'=>'shipment','as'=> 'shipment.'],function(){

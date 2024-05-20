@@ -10,13 +10,13 @@ use Illuminate\Notifications\Notification;
 class ContactNotification extends Notification
 {
     use Queueable;
-    public $content;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct($content)
+    public function __construct()
     {
-        $this->content = $content;
+        
     }
 
     /**
@@ -35,11 +35,8 @@ class ContactNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('You have a new contact message on Havron E-learning Platform')
-                    ->line('Sender: '.$this->content['name'].' - '.$this->content['email'])
-                    ->line('Subject: '.$this->content['subject'])
-                    ->line('Message Content')
-                    ->line($this->content['message']);
+                    ->line('You have a new contact message on Herbs of Africa')
+                    ->line('Sender: Unknown')->line('Subject: Unkown')->line('Message Content');
     }
 
     /**

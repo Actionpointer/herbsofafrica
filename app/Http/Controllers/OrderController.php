@@ -41,6 +41,7 @@ class OrderController extends Controller
         $rate = Rate::whereJsonContains('states',$order->shipping->state_id)->where('states_mode','include')->where('warehouse','!=',null)->first();
         if($rate) $warehouse = $rate->warehouse;
         $currency = Currency::where('code',$order->currency)->first();
+        // dd($order->items->first()->product_id);
         return view('user.order.view',compact('order','currency','warehouse'));
     }
 
@@ -49,6 +50,7 @@ class OrderController extends Controller
         $currencies = Currency::all();
         return view('admin.orders.list',compact('orders','currencies'));
     }
+
     public function read(Order $order){
         $currency = Currency::where('code',$order->currency)->first();
         return view('admin.orders.view',compact('order','currency'));

@@ -2,21 +2,12 @@
 @push('styles')
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <style>
-    .select2-container--default .select2-selection--single{
-
-    }
     .select2-container .select2-selection--single{
         height: 38px;
         border:none;
         border-bottom: 1px solid #eee;
     }
-    /* .custom-control-input{
-        z-index: 2000;
-        opacity: 1;
-    } */
-    /* [type="radio"] + label:before, [type="radio"] + label:after {
-        z-index: 2000 !important;
-    } */
+    
 </style>
 @endpush
 @section('content')
@@ -116,9 +107,9 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$staff->name}}  <i class="fa fa-circle @if($staff->status) text-success @else text-danger @endif"></i> </td>
                                         <td>{{$staff->email}}</td>
-                                        <td>{{count($staff->role)}}</td>
+                                        <td>@if(!blank($staff->role)) {{count($staff->role)}} @else 0 @endif</td>
                                         <td>
-                                            @if($staff->id != auth()->id())
+                                            @if($staff->id != auth()->id() && $staff->email != $superadmin)
                                             <div class="d-flex">
                                                 <a data-toggle="modal" href="#exampleModal{{$staff->id}}" class="btn btn-info mr-2">
                                                     <i class="fa fa-pencil"></i>
@@ -185,7 +176,7 @@
                         <div class="col-md-12">
                             <select id="permissions{{$staff->id}}" class="form-control form-control-line select2 w-100" multiple name="permissions[]">
                                 @foreach ($permissions as $permission)
-                                    <option value="{{$permission}}" @if(in_array($permission,$staff->role)) selected @endif>{{ucwords($permission)}}</option>
+                                    <option value="{{$permission}}" @if(is_array($staff->role) && in_array($permission,$staff->role)) selected @endif>{{ucwords($permission)}}</option>
                                 @endforeach
                             </select>   
                         </div>

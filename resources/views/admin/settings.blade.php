@@ -1,4 +1,14 @@
 @extends('layouts.admin')
+@push('styles')
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<style>
+    .select2-container .select2-selection--single{
+        height: 38px;
+        border:none;
+        border-bottom: 1px solid #eee;
+    }
+</style>
+@endpush
 @section('content')
 
     <div class="container-fluid">
@@ -22,16 +32,16 @@
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">General</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
               <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Unknown</button>
-            </li>
+            </li> -->
           </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row mt-5">
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
-                            <h4 class="card-title pb-3 pl-5">Add Currency</h4>
+                            <h4 class="card-title p-4">Add Currency</h4>
                             <!-- Tab panes -->
                             <div class="card-body">
                                 <form class="form-horizontal form-material" action="{{route('admin.settings.currencies')}}" method="POST"> @csrf
@@ -160,39 +170,60 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="row">
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <h4 class="card-title text-center mt-5 pb-4">Settings</h4>
-                            <!-- Tab panes -->
-                            <div class="card-body">
-                                <form class="form-horizontal form-material" action="{{route('admin.settings.counters')}}" method="POST"> @csrf
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="col-md-12">Affiliate Percentage</label>
-                                                <div class="col-md-12">
-                                                    <input type="number" name="affiliate_percentage" value="" placeholder="" class="form-control form-control-line" required>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    
-        
-                                    
-        
-                                    
-        
+                <div class="card">
+                    <h4 class="card-title p-4">Settings</h4>
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" action="{{route('admin.settings.update')}}" method="POST"> @csrf
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button type="submit" name="action" value="create" class="btn btn-success">Update</button>
+                                        <label class="col-md-12">Super Admin</label>
+                                        <div class="col-md-12">
+                                            <select class="form-control form-control-line select2" name="superadmin" required>
+                                                @foreach ($staffs as $staff)
+                                                    <option value="{{$staff->email}}" @if($settings->firstWhere('name','superadmin')->value == $staff->email) selected @endif>{{$staff->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                </form>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Affiliate Percentage</label>
+                                        <div class="col-md-12">
+                                            <input type="number" name="affiliate_percentage" value="{{$settings->firstWhere('name','affiliate_percentage')->value}}" placeholder="" class="form-control form-control-line" required>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Affiliate Payout Type</label>
+                                        <div class="col-md-12">
+                                        <select class="form-control form-control-line select2" name="automatic_payout" required>
+                                                <option value="1" @if($settings->firstWhere('name','automatic_payout')->value) selected @endif >Automatic</option>
+                                                <option value="0" @if(!$settings->firstWhere('name','automatic_payout')->value) selected @endif>Manual</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
                             </div>
-                        </div>
-                    </div>            
+                            
+
+                            
+
+                            
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" name="action" value="create" class="btn btn-success">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -205,5 +236,11 @@
 
 @endsection
 @push('scripts')    
-    
+<script src="{{asset('plugins/select2/js/select2.min.js')}}"></script> 
+<script>
+    $('.select2').select2({
+        placeholder:"Select ",
+        width:'100%'
+    });
+</script>
 @endpush

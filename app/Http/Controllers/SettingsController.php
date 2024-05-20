@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Log;
 use Response;
 use Exception;
+use App\Models\User;
 use App\Models\Setting;
 use App\Models\Currency;
 use Illuminate\Http\Request;
@@ -12,12 +13,11 @@ use Illuminate\Http\Request;
 class SettingsController extends Controller
 {
     
-
-    public function index(){
-        
+    public function index(){ 
         $currencies = Currency::all();
         $settings = Setting::all();
-        return view('admin.settings',compact('currencies','settings'));
+        $staffs = User::where('role','!=',null)->get();
+        return view('admin.settings',compact('currencies','settings','staffs'));
     }
 
     public function currencies(Request $request){
@@ -52,7 +52,7 @@ class SettingsController extends Controller
         }
     }
 
-    public function counters(Request $request){  
+    public function update(Request $request){  
         foreach($request->except('_token') as $key => $value){
             Setting::where('name',$key)->update(['value'=> $value]);
         }
