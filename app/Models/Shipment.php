@@ -6,6 +6,7 @@ use App\Models\Rate;
 use App\Models\Order;
 use App\Models\State;
 use App\Models\Country;
+use App\Observers\ShipmentObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,6 +16,11 @@ class Shipment extends Model
     use HasFactory;
 
     protected $fillable = ['rate_id','order_id','firstname','lastname','email','phone','country_id','state_id','city','street','postcode','status'];
+
+    public static function boot(){
+        parent::boot();
+        parent::observe(new ShipmentObserver);
+    }
 
     public function rate(){
         return $this->belongsTo(Rate::class);

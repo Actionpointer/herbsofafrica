@@ -1,7 +1,7 @@
 mail server setup
 cronjob
 
-user shipping addresses
+address on checkout
 
 dashboard{
     pending orders, pending reviews, shipments, total affiliates, settlements, total payments, total revenues

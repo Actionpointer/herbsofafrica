@@ -189,8 +189,7 @@
                                                                 data-accordion-index="2">
 
                                                                 <p>No, we are not offering Free returns, for
-                                                                    More information you can check Return policy
-                                                                    here</p>
+                                                                    More information you can check <a href="{{route('return-policy')}}" target="_blank" rel="noopener noreferrer">Return policy here</a> </p>
                                                             </div>
                                                         </div>
                                                     </div>
