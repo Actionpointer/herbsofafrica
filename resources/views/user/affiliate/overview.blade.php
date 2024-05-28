@@ -91,28 +91,28 @@
                         </tr>
                         <tr>
                             <td>Sales</td>
-                            <td>25.00</td>
-                            <td>25.00</td>
-                            <td>25.00</td>
+                            <td>{{$payments->whereBetween('created_at',today()->startOfDay(),today()->endOfDay())->sum('amount')}}</td>
+                            <td>{{$payments->whereBetween('created_at',today()->startOfWeek(),today()->endOfWeek())->sum('amount')}}</td>
+                            <td>{{$payments->whereBetween('created_at',today()->startOfMonth(),today()->endOfMonth())->sum('amount')}}</td>
                         </tr>
                         <tr>
                             <td>Revenue</td>
-                            <td><span>$0.00</span></td>
-                            <td><span>$0.00</span></td>
-                            <td><span>$0.00</span></td>
+                            <td>{{$affiliate->settlements->whereBetween('created_at',today()->startOfDay(),today()->endOfDay())->sum('amount')}}</td>
+                            <td>{{$affiliate->settlements->whereBetween('created_at',today()->startOfWeek(),today()->endOfWeek())->sum('amount')}}</td>
+                            <td>{{$affiliate->settlements->whereBetween('created_at',today()->startOfMonth(),today()->endOfMonth())->sum('amount')}}</td>
                         </tr>
                         <tr>
                             <td>Withdrawal</td>
-                            <td>25.00</td>
-                            <td>25.00</td>
-                            <td>25.00</td>
+                            <td>{{$affiliate->settlements->where('status','paid')->whereBetween('created_at',today()->startOfDay(),today()->endOfDay())->sum('amount')}}</td>
+                            <td>{{$affiliate->settlements->where('status','paid')->whereBetween('created_at',today()->startOfWeek(),today()->endOfWeek())->sum('amount')}}</td>
+                            <td>{{$affiliate->settlements->where('status','paid')->whereBetween('created_at',today()->startOfMonth(),today()->endOfMonth())->sum('amount')}}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Traffic</td>
                             <td>2</td>
                             <td>25</td>
                             <td>25</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
         
@@ -157,7 +157,37 @@
             </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            Payouts
+            <div class="table-responsive">
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>Generated</th>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($affiliate->settlements as $settlement)
+                        <tr>
+                            <td data-sort="{{strtotime( $payment->created_at )}}">{{$settlement->created_at->format('d/m/Y')}}</td>
+                            <td>{{$settlement->reference}}</td>
+                            <td>{{$settlement->currency}} {{$settlement->amount}}</td>
+                            <td>{{ucwords($settlement->status)}}</td>
+                        </tr>
+                        
+                        @empty 
+                        <tr>
+                            <td colspan="5">
+                                No Payout Yet
+                            </td>
+                        </tr>
+                        @endforelse
+                        
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="coupon" role="tabpanel" aria-labelledby="setting-tab">
             <div class="table-responsive mt-3">

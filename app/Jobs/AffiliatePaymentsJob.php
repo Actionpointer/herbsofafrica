@@ -35,7 +35,9 @@ class AffiliatePaymentsJob implements ShouldQueue
                 $query->whereNull('disliked_at')->where('created_at','>',now()->subDays(14));
             })->get();
             foreach($settlements as $settlement){
-                $this->initializeSettlement($settlement);
+                if($settlement->affiliate->account_status){
+                    $this->initializeSettlement($settlement);
+                }   
             }
         }
         
