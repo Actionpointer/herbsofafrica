@@ -19,7 +19,7 @@ use App\Notifications\ContactNotification;
 */
     include('affiliate.php');
     Route::get('mailtest',function(){
-	Notification::route('mail', 'reigningkingforever@gmail.com')
+	    Notification::route('mail', 'reigningkingforever@gmail.com')
             ->notify(new ContactNotification());
        return 'done';
     });

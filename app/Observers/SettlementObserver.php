@@ -23,7 +23,7 @@ class SettlementObserver
     public function updated(Settlement $settlement): void
     {
         if($settlement->isDirty('status') && $settlement->status == 'paid'){
-            $settlement->affiliate->notify(new SettlementNotification($settlement));
+            //$settlement->affiliate->notify(new SettlementNotification($settlement));
         }
     }
 
