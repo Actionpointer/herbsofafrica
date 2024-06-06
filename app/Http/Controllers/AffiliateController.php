@@ -10,8 +10,8 @@ use App\Models\Currency;
 use App\Models\Affiliate;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
+use Illuminate\Validation\Rule;
 use App\Http\Traits\StripeTrait;
-use App\Http\Traits\FlutterwaveTrait;
 use App\Http\Traits\PaystackTrait;
 
 class AffiliateController extends Controller
@@ -38,7 +38,7 @@ class AffiliateController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'affiliate_name' => ['required', 'string'],
+            'affiliate_name' => ['required', 'string',Rule::notIn(['host','mail','www','ftp','localhost','webmail','admin','_dmarc','dmarc','autodiscover','site','autoconfig','202404._domainkey']),],
             'affiliate_email' => ['required', 'string','email','max:255'],
             'affiliate_phone' => ['required', 'string', 'max:255'],
             'affiliate_country' => ['required', 'string'],

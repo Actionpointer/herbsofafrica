@@ -38,6 +38,10 @@ class WebsiteController extends Controller
         $prices = 'prices->'.session('currency')['code'];
         $products = Product::where('published',true)->whereNotNull($prices)->get();
         $categories = Category::orderBy('title','asc')->get();
+        if(request()->domain){
+           $affiliate = Affiliate::where('username',request()->domain)->first();
+           abort_if(!$affiliate,404);
+        }
         return view('webpages.products.shop', compact('products','categories'));
     }
 
