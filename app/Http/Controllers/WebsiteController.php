@@ -65,7 +65,7 @@ class WebsiteController extends Controller
     public function contact_store(Request $request){
         $content = ['name'=> $request->name,'email'=> $request->email,'subject'=> $request->subject,'message'=> $request->message];
         try {
-            Notification::route('mail', 'admin@havron360.org')
+            Notification::route('mail', 'support@herbsofafrica.com')
                 ->notify(new ContactNotification($content));
             Alert::toast('Contact Message Sent', 'success');
         } catch (\Throwable $th) {

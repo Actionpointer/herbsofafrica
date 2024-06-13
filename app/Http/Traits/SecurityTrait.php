@@ -61,7 +61,7 @@ trait SecurityTrait
             $code.$user->id,
             $perMinute = 10,
             function() use($user,$code){
-                //$user->notify(new OTPNotification($code));
+                $user->notify(new OTPNotification($code));
             },$decaySeconds = 600
         );
         if(!$executed) {

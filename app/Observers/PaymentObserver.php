@@ -31,12 +31,12 @@ class PaymentObserver
 
         }
         if($payment->isDirty('status') && $payment->status == 'success'){
-           // $payment->user->notify(new OrderStatusNotification($payment->order,'customer'));
+            $payment->user->notify(new OrderStatusNotification($payment->order,'customer'));
             $users = User::whereJsonContains('role','orders')->get();
             Notification::send($users, new OrderStatusNotification($payment->order,'admin'));
             if($payment->commission){
                 $affiliate = $payment->affiliate ?? $payment->user->referrer;
-                //$affiliate->notify(new OrderStatusNotification($payment->order,'affiliate'));
+                $affiliate->notify(new OrderStatusNotification($payment->order,'affiliate'));
             }
         }
     }
