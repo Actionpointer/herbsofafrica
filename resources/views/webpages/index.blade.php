@@ -930,12 +930,14 @@ media='all' />
                                                                     <div class="mc4wp-form-fields">
                                                                         <p>
                                                                             <label>
-                                                                                <input type="email" name="EMAIL" placeholder="Your email address" required />
+                                                                                <input id="subscription_email" type="email" name="EMAIL" placeholder="Your email address" required />
                                                                             </label>
+                                                                            <span class="text-danger" id="subscription_error" style="display: none;">Enter valid Email</span>
                                                                         </p>
 
                                                                         <p>
-                                                                            <input type="submit" value="Sign up" style="width:100%;background-color:#e5a406 !important;color:white" />
+                                                                            <button id="subscribe" type="button" style="width:100%;background-color:#e5a406 !important;color:white;border-radius: var(--btn-accented-brd-radius);">Sign up </button>
+                                                                            <span id="subscription_response" class="text-white" style="display: none;"></span>
                                                                         </p>
                                                                     </div>
                                                                     <label style="display: none !important;">
@@ -1589,5 +1591,32 @@ media='all' />
 </div>
 @endsection
 @push('scripts')
-    
+    <script>
+        $(document).on('input','#subscription_email',function(e){
+            $('#subscription_error,#subscription_response').hide()
+        })
+        $(document).on('click','#subscribe',function(e){
+            let email = $('#subscription_email').val()
+            if(email && email.includes('@')){
+                $('#subscription_error').hide()
+                $.ajax({
+                    type:'POST',
+                    dataType: 'json',
+                    url: "{{route('subscription')}}",
+                    data:{
+                        '_token' : $('meta[name="csrf-token"]').attr('content'),
+                        'email': email
+                    },
+                    success:function(data) {
+                        $('#subscription_response').text(data.message).show()
+                    },
+                    error: function (data, textStatus, errorThrown) {
+                        $('#subscription_email').text(data.message).show()
+                    },
+                });
+            }else{
+                $('#subscription_error').show()
+            }
+        })
+    </script>
 @endpush

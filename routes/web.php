@@ -37,6 +37,7 @@ use App\Notifications\ContactNotification;
 
     Route::get('articles', [WebsiteController::class, 'articles'])->name('articles');
     Route::get('articles/{post}', [WebsiteController::class, 'post'])->name('articles.post');
+    Route::post('subscription', [WebsiteController::class, 'subscription'])->name('subscription');
     
     Route::get('services', [WebsiteController::class, 'services'])->name('services');
     Route::get('training', [WebsiteController::class, 'trainings'])->name('training');

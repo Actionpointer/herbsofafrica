@@ -354,9 +354,7 @@
 </div>
 @endsection
 @push('scripts')
-    
-    
-    
+
     <script type="text/javascript"
     src="{{asset('wp-content/themes/woodmart/js/scripts/elements/accordion.minc30a.js?ver=7.2.4')}}"
     id="wd-accordion-element-js"></script>

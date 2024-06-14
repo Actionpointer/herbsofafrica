@@ -196,7 +196,7 @@
         <div class="page-wrapper">
             @yield('content')
             <footer class="footer">
-                © 2023 Havron
+                © 2023 Herbs of Africa
             </footer>
         </div>
         

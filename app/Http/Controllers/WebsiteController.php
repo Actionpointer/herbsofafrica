@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Affiliate;
@@ -90,6 +91,16 @@ class WebsiteController extends Controller
     public function post(Post $post){
         $recents = Post::where('id','!=',$post->id)->orderBy('created_at','asc')->take(10)->get();
         return view('webpages.posts.single', compact('post','recents'));
+    }
+
+    public function subscription(Request $request){
+        $contact = Contact::where('email',$request->email)->first();
+        if($contact){
+            return response()->json(['message'=> 'Already Subscribed'],200);
+        }else{
+            Contact::create(['email'=> $request->email]);
+            return response()->json(['message'=> 'Subscribed Successfully'],200);
+        }
     }
 
     

@@ -444,44 +444,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="elementor-element elementor-element-57e50ab color-scheme-inherit text-left elementor-widget elementor-widget-text-editor"
-                                                            data-id="57e50ab"
-                                                            data-element_type="widget"
-                                                            data-widget_type="text-editor.default">
+                                                        <div class="elementor-element elementor-element-57e50ab color-scheme-inherit text-left elementor-widget">
                                                             <div class="elementor-widget-container">
-                                                                <style>
-                                                                    /*! elementor - v3.18.0 - 20-12-2023 */
-                                                                    .elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap {
-                                                                        background-color: #69727d;
-                                                                        color: #fff
-                                                                    }
-
-                                                                    .elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap {
-                                                                        color: #69727d;
-                                                                        border: 3px solid;
-                                                                        background-color: transparent
-                                                                    }
-
-                                                                    .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap {
-                                                                        margin-top: 8px
-                                                                    }
-
-                                                                    .elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter {
-                                                                        width: 1em;
-                                                                        height: 1em
-                                                                    }
-
-                                                                    .elementor-widget-text-editor .elementor-drop-cap {
-                                                                        float: left;
-                                                                        text-align: center;
-                                                                        line-height: 1;
-                                                                        font-size: 50px
-                                                                    }
-
-                                                                    .elementor-widget-text-editor .elementor-drop-cap-letter {
-                                                                        display: inline-block
-                                                                    }
-                                                                </style>
                                                                 <p>
                                                                     {!! $product->section1['content'] !!}
                                                                 </p>
@@ -492,27 +456,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wd-negative-gap elementor-element elementor-element-a188198 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                        data-id="a188198" data-element_type="container"
-                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                        data-core-v316-plus="true">
+                                    <div class="wd-negative-gap elementor-element elementor-element-a188198 e-flex e-con-boxed wd-section-disabled e-con e-parent">
                                         <div class="e-con-inner">
-                                            <div class="wd-negative-gap elementor-element elementor-element-f1186f8 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                data-id="f1186f8" data-element_type="container"
-                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                            <div class="wd-negative-gap elementor-element elementor-element-f1186f8 wd-section-stretch e-flex e-con-boxed e-con e-child">
                                                 <div class="e-con-inner">
-                                                    <div class="elementor-element elementor-element-9e1e8ff e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="9e1e8ff"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        <div class="elementor-element elementor-element-1449cef elementor-widget elementor-widget-image"
-                                                            data-id="1449cef"
-                                                            data-element_type="widget"
-                                                            data-widget_type="image.default">
-                                                            <div
-                                                                class="elementor-widget-container">
-                                                                <style>
-                                                                    /*! elementor - v3.18.0 - 20-12-2023 */
+                                                    <div class="elementor-element elementor-element-9e1e8ff e-con-full e-flex wd-section-disabled e-con e-child">
+                                                        <div class="elementor-element elementor-element-1449cef elementor-widget elementor-widget-image">
+                                                            <div class="elementor-widget-container">
+                                                                <!-- <style>
+                                                                    
                                                                     .elementor-widget-image {
                                                                         text-align: center
                                                                     }
@@ -529,12 +481,9 @@
                                                                         vertical-align: middle;
                                                                         display: inline-block
                                                                     }
-                                                                </style> 
-                                                                <img loading="lazy"
-                                                                    decoding="async"
-                                                                    width="800" height="800"
-                                                                    src="{{$product->section2['image']}}"
-                                                                    class="attachment-large size-large wp-image-661"
+                                                                </style>  -->
+                                                                <img loading="lazy" decoding="async" width="800" height="800"
+                                                                    src="{{$product->section2['image']}}" class="attachment-large size-large wp-image-661"
                                                                     alt="" />
                                                             </div>
                                                         </div>
@@ -577,40 +526,24 @@
                                                         data-id="8f150c1"
                                                         data-element_type="container"
                                                         data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        <div class="elementor-element elementor-element-edca2b7 elementor-widget elementor-widget-image"
-                                                            data-id="edca2b7"
-                                                            data-element_type="widget"
-                                                            data-widget_type="image.default">
-                                                            <div
-                                                                class="elementor-widget-container">
-                                                                <img loading="lazy"
-                                                                    decoding="async"
-                                                                    width="800" height="800"
-                                                                    src="{{$product->section3['image']}}"
-                                                                    class="attachment-large size-large wp-image-660"
-                                                                    alt=""
-                                                                />
+                                                        <div class="elementor-element elementor-element-edca2b7 elementor-widget elementor-widget-image">
+                                                            <div class="elementor-widget-container">
+                                                                <img loading="lazy" decoding="async" width="800" height="800" src="{{$product->section3['image']}}" 
+                                                                    class="attachment-large size-large wp-image-660" alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="elementor-element elementor-element-a760338 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="a760338"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        <div class="elementor-element elementor-element-4ee8500 elementor-widget elementor-widget-wd_title"
-                                                            data-id="4ee8500"
-                                                            data-element_type="widget"
-                                                            data-widget_type="wd_title.default">
-                                                            <div
-                                                                class="elementor-widget-container">
-                                                                <div
-                                                                    class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
+                                                    <div class="elementor-element elementor-element-a760338 e-con-full e-flex wd-section-disabled e-con e-child">
+                                                        <div class="elementor-element elementor-element-4ee8500 elementor-widget elementor-widget-wd_title">
+                                                            <div class="elementor-widget-container">
+                                                                <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
 
 
                                                                     <div class="liner-continer">
                                                                         <h4
                                                                             class="woodmart-title-container title wd-fontsize-l">
-                                                                            {{$product->section3['title']}}</h4>
+                                                                            {{$product->section3['title']}}
+                                                                        </h4>
                                                                     </div>
 
                                                                 </div>
@@ -622,20 +555,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wd-negative-gap elementor-element elementor-element-c67293b e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                        data-id="c67293b" data-element_type="container"
-                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                        data-core-v316-plus="true">
+                                    <div class="wd-negative-gap elementor-element elementor-element-c67293b e-flex e-con-boxed wd-section-disabled e-con e-parent">
                                         <div class="e-con-inner">
-                                            <div class="wd-negative-gap elementor-element elementor-element-aa9e993 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                data-id="aa9e993" data-element_type="container"
-                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                            <div class="wd-negative-gap elementor-element elementor-element-aa9e993 wd-section-stretch e-flex e-con-boxed e-con e-child">
                                                 <div class="e-con-inner">
-                                                    <div class="elementor-element elementor-element-4d91142 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="4d91142"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        
+                                                    <div class="elementor-element elementor-element-4d91142 e-con-full e-flex wd-section-disabled e-con e-child">
                                                         {!! $product->section4['content'] !!}
                                                     </div>
                                                 </div>

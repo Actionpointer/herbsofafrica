@@ -710,14 +710,7 @@
     <script type="text/javascript"
         src="{{ asset('wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.mine837.js?ver=2.1.4-wc.8.5.1') }}"
         id="js-cookie-js" defer="defer" data-wp-strategy="defer"></script>
-    {{-- <script type="text/javascript" id="woocommerce-js-extra">
-        /* <![CDATA[ */
-        var woocommerce_params = {
-            "ajax_url": "\/wp-admin\/admin-ajax.php",
-            "wc_ajax_url": "\/?wc-ajax=%%endpoint%%"
-        };
-        /* ]]> */
-    </script> --}}
+    
     <script type="text/javascript"
         src="{{ asset('wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min2ff6.js?ver=8.5.1') }}"
         id="woocommerce-js" defer="defer" data-wp-strategy="defer"></script>
