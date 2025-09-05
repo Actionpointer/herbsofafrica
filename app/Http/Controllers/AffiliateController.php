@@ -125,7 +125,7 @@ class AffiliateController extends Controller
                 'end_at' => 'nullable',
             ]);
             Coupon::create(['affiliate_id'=> auth()->user()->affiliate->id,
-            'code'=> strtoupper( substr(uniqid('', true), 6)),'start_at'=> $request->start_at ?? now(),
+            'code'=> strtoupper( substr(uniqid(), -6)),'start_at'=> $request->start_at ?? now(),
             'end_at'=> $request->end_at,'minimum'=> $request->minimum ?? 0,'percentage'=> $request->percentage,
             'limit_per_user'=> $request->limit_per_user,'status'=> $request->status]);
         }elseif($request->action == 'delete'){

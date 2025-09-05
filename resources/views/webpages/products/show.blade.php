@@ -412,24 +412,13 @@
                           
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">
-                                <div data-elementor-type="wp-post" data-elementor-id="655" class="elementor elementor-655">
-                                    <div class="wd-negative-gap elementor-element elementor-element-0fe49f0 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                        data-id="0fe49f0" data-element_type="container"
-                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                        data-core-v316-plus="true">
+                                <div class="elementor elementor-655">
+                                    <div class="wd-negative-gap elementor-element elementor-element-0fe49f0 e-flex e-con-boxed wd-section-disabled e-con e-parent">
                                         <div class="e-con-inner">
-                                            <div class="wd-negative-gap elementor-element elementor-element-29df872 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                data-id="29df872" data-element_type="container"
-                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                            <div class="wd-negative-gap elementor-element elementor-element-29df872 wd-section-stretch e-flex e-con-boxed e-con e-child">
                                                 <div class="e-con-inner">
-                                                    <div class="elementor-element elementor-element-633b37f e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="633b37f"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        <div class="elementor-element elementor-element-6a4aa44 elementor-widget elementor-widget-wd_title"
-                                                            data-id="6a4aa44"
-                                                            data-element_type="widget"
-                                                            data-widget_type="wd_title.default">
+                                                    <div class="elementor-element elementor-element-633b37f e-con-full e-flex wd-section-disabled e-con e-child">
+                                                        <div class="elementor-element elementor-element-6a4aa44 elementor-widget elementor-widget-wd_title">
                                                             <div class="elementor-widget-container">
                                                                 <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
 
@@ -463,69 +452,35 @@
                                                     <div class="elementor-element elementor-element-9e1e8ff e-con-full e-flex wd-section-disabled e-con e-child">
                                                         <div class="elementor-element elementor-element-1449cef elementor-widget elementor-widget-image">
                                                             <div class="elementor-widget-container">
-                                                                <!-- <style>
-                                                                    
-                                                                    .elementor-widget-image {
-                                                                        text-align: center
-                                                                    }
-
-                                                                    .elementor-widget-image a {
-                                                                        display: inline-block
-                                                                    }
-
-                                                                    .elementor-widget-image a img[src$=".svg"] {
-                                                                        width: 48px
-                                                                    }
-
-                                                                    .elementor-widget-image img {
-                                                                        vertical-align: middle;
-                                                                        display: inline-block
-                                                                    }
-                                                                </style>  -->
                                                                 <img loading="lazy" decoding="async" width="800" height="800"
                                                                     src="{{$product->section2['image']}}" class="attachment-large size-large wp-image-661"
                                                                     alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="elementor-element elementor-element-59dff9a e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="59dff9a"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
-                                                        <div class="elementor-element elementor-element-db18292 elementor-widget elementor-widget-wd_title"
-                                                            data-id="db18292"
-                                                            data-element_type="widget"
-                                                            data-widget_type="wd_title.default">
+                                                    
+                                                    <div class="elementor-element elementor-element-59dff9a e-con-full e-flex wd-section-disabled e-con e-child">
+                                                        <div class="elementor-element elementor-element-db18292 elementor-widget elementor-widget-wd_title">
                                                             <div class="elementor-widget-container">
                                                                 <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
-
-
                                                                     <div class="liner-continer">
                                                                         <h4 class="woodmart-title-container title wd-fontsize-l"> {{$product->section2['title']}}</h4>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         {!! $product->section2['content'] !!}
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wd-negative-gap elementor-element elementor-element-81e9f67 e-flex e-con-boxed wd-section-disabled e-con e-parent"
-                                        data-id="81e9f67" data-element_type="container"
-                                        data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
-                                        data-core-v316-plus="true">
+                                    <div class="wd-negative-gap elementor-element elementor-element-81e9f67 e-flex e-con-boxed wd-section-disabled e-con e-parent">
                                         <div class="e-con-inner">
-                                            <div class="wd-negative-gap elementor-element elementor-element-dba6e20 wd-section-stretch e-flex e-con-boxed e-con e-child"
-                                                data-id="dba6e20" data-element_type="container"
-                                                data-settings="{&quot;container_type&quot;:&quot;flex&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+                                            <div class="wd-negative-gap elementor-element elementor-element-dba6e20 wd-section-stretch e-flex e-con-boxed e-con e-child">
                                                 <div class="e-con-inner">
-                                                    <div class="elementor-element elementor-element-8f150c1 e-con-full e-flex wd-section-disabled e-con e-child"
-                                                        data-id="8f150c1"
-                                                        data-element_type="container"
-                                                        data-settings="{&quot;content_width&quot;:&quot;full&quot;,&quot;container_type&quot;:&quot;flex&quot;}">
+                                                    <div class="elementor-element elementor-element-8f150c1 e-con-full e-flex wd-section-disabled e-con e-child">
                                                         <div class="elementor-element elementor-element-edca2b7 elementor-widget elementor-widget-image">
                                                             <div class="elementor-widget-container">
                                                                 <img loading="lazy" decoding="async" width="800" height="800" src="{{$product->section3['image']}}" 
@@ -537,11 +492,8 @@
                                                         <div class="elementor-element elementor-element-4ee8500 elementor-widget elementor-widget-wd_title">
                                                             <div class="elementor-widget-container">
                                                                 <div class="title-wrapper set-mb-s reset-last-child wd-title-color-primary wd-title-style-simple wd-title-size-default text-left">
-
-
                                                                     <div class="liner-continer">
-                                                                        <h4
-                                                                            class="woodmart-title-container title wd-fontsize-l">
+                                                                        <h4 class="woodmart-title-container title wd-fontsize-l">
                                                                             {{$product->section3['title']}}
                                                                         </h4>
                                                                     </div>

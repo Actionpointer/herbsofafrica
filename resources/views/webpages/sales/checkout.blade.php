@@ -346,7 +346,7 @@
                                                                 
                                                                     <p class="form-row form-row-first">
                                                                         <label for="coupon_code" class="screen-reader-text">Coupon:</label>
-                                                                        <input type="text" name="coupon" class="input-text" placeholder="Coupon code" id="coupon_code" value="">
+                                                                        <input type="text" name="coupon" id="coupon_code" class="input-text" placeholder="Coupon code"  value="">
                                                                     </p>
                                                                 
                                                                     <p class="form-row form-row-last">

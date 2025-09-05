@@ -1,28 +1,13 @@
-mail server setup
-cronjob
+ccronjob
+language translation
+ssl for subdomain
 
-address on checkout
+./acme.sh --issue --dns dns_linode_v4 -d herbsofafrica.com -d *.herbsofafrica.com --dnssleep 900
 
-dashboard{
-    pending orders, pending reviews, shipments, total affiliates, settlements, total payments, total revenues
-}
-Language translation
+Certificate/private key file
+/etc/ssl/virtualmin/1715347960182437/ssl.cert
+/root/.acme.sh/herbsofafrica.com_ecc/herbsofafrica.com.cer
 
-
-["admin", 
-"categories", 
-"shipments", 
-"products", 
-"orders", 
-"customers", 
-"affiliates", 
-"staff", 
-"payments", 
-"settlements", 
-"revenues", 
-"posts", 
-"settings"]
-
-/*
-
-
+Private key file
+/etc/ssl/virtualmin/1715347960182437/ssl.key
+/root/.acme.sh/herbsofafrica.com_ecc/herbsofafrica.com.key
